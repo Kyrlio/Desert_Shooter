@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerSkin" load_steps=2 format=3 uid="uid://hx2ue0ym5vj"]
+
+[ext_resource type="Script" uid="uid://cx3yyfufq8rk8" path="res://scenes/entities/player/player_skin.gd" id="1_dnyav"]
+
+[resource]
+script = ExtResource("1_dnyav")
+skin_name = "Mouse"
+skin_id = 2
+metadata/_custom_type_script = "uid://cx3yyfufq8rk8"

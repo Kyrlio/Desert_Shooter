@@ -7,6 +7,12 @@ const BASE_FIRE_RATE: float = 0.2
 
 @export var aim_root: Node2D
 
+# 🎨 SKINS
+@export_group("Skin System")
+@export var character_spritesheet: Texture2D
+@export var available_skins: Array[PlayerSkin] = []
+@export var current_skin_index: int = 1
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var weapon_animation_player: AnimationPlayer = $WeaponAnimationPlayer
 @onready var visuals: Node2D = $Visuals
@@ -14,6 +20,7 @@ const BASE_FIRE_RATE: float = 0.2
 @onready var weapon_root: Node2D = $Visuals/WeaponRoot
 @onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var barrel_position: Marker2D = %BarrelPosition
+@onready var character_sprite: Sprite2D = $Visuals/CharacterSprite
 
 var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
 var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
@@ -22,25 +29,75 @@ var movement_vector: Vector2 = Vector2.ZERO
 var aim_vector: Vector2 = Vector2.RIGHT
 var _input_prefix: String = "player0_"
 
-# Dash
+# DASH
 var dash_timer: float = 0.0
 var dash_reload_timer: float = 0.0
 
 
 func _ready() -> void:
-	pass
+	apply_skin(current_skin_index)
 
 
 func _physics_process(_delta: float) -> void:
 	_gather_input()
 	update_aim_position()
 	
-	print(Engine.get_frames_per_second())
-	print(Engine.get_physics_frames())
-	
 	# Décrémenter le cooldown du dash
 	if dash_reload_timer > 0.0:
 		dash_reload_timer -= _delta
+
+
+func apply_skin(skin_index: int) -> void:
+	if skin_index < 0 or skin_index >= available_skins.size():
+		push_error("Invalid skin index: %d" % skin_index)
+		return
+
+	if not character_spritesheet:
+		push_error("No character spritesheet assigned!")
+		return
+
+	current_skin_index = skin_index
+	var skin = available_skins[skin_index]
+
+	# Créer un AtlasTexture pour extraire la bonne région
+	var atlas = AtlasTexture.new()
+	atlas.atlas = character_spritesheet
+	atlas.region = skin.get_idle_region()  # Frame 0 (idle)
+
+	# Appliquer au sprite
+	character_sprite.texture = atlas
+
+	print("✅ Skin applied: %s (ID: %d)" % [skin.skin_name, skin.skin_id])
+
+
+# Change skin with int
+func set_skin_by_id(skin_id: int) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_id == skin_id:
+			apply_skin(i)
+			return
+	push_error("Skin with ID %d not found" % skin_id)
+
+
+# Change skin by name
+func set_skin_by_name(skin_name: String) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_name == skin_name:
+			apply_skin(i)
+			return
+	push_error("Skin '%s' not found" % skin_name)
+
+
+func get_current_skin() -> PlayerSkin:
+	if current_skin_index >= 0 and current_skin_index < available_skins.size():
+		return available_skins[current_skin_index]
+	return null
+
+
+# Cycler entre les skins (pour debug)
+func cycle_skin(direction: int = 1) -> void:
+	var new_index = wrapi(current_skin_index + direction, 0, available_skins.size())
+	apply_skin(new_index)
 
 
 func update_aim_position() -> void:
@@ -97,6 +154,12 @@ func _gather_input() -> void:
 	
 	if Input.is_action_pressed("player0_attack"):
 		try_fire()
+	
+	# Debug - Changer de skin avec 1/2
+	if Input.is_action_just_pressed("ui_up"):
+		cycle_skin(1)
+	if Input.is_action_just_pressed("ui_down"):
+		cycle_skin(-1)
 
 
 func _ensure_actions_prefix() -> String:

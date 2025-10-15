@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerSkin" load_steps=2 format=3 uid="uid://ct7fndnu1ln2p"]
+
+[ext_resource type="Script" uid="uid://cx3yyfufq8rk8" path="res://scenes/entities/player/player_skin.gd" id="1_nufwh"]
+
+[resource]
+script = ExtResource("1_nufwh")
+skin_name = "Bunny"
+skin_id = 3
+metadata/_custom_type_script = "uid://cx3yyfufq8rk8"

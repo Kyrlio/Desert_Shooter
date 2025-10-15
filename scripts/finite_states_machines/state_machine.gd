@@ -17,7 +17,7 @@ func _ready() -> void:
 		change_state(get_child(0).name)
 
 func _physics_process(delta: float) -> void:
-	print(current_state)
+	#print(current_state)
 	if current_state:
 		current_state.physics_update(delta)
 

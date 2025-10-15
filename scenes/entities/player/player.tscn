@@ -1,13 +1,45 @@
-[gd_scene load_steps=17 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=22 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Texture2D" uid="uid://c0lga6sdmw24r" path="res://scenes/entities/player/tilemap.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://cx3yyfufq8rk8" path="res://scenes/entities/player/player_skin.gd" id="3_5sj0x"]
 [ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="4_1murt"]
 [ext_resource type="Script" uid="uid://dvt5lefgux525" path="res://scripts/finite_states_machines/state_machine.gd" id="4_nh4ur"]
+[ext_resource type="Resource" uid="uid://d25l6n7on3gw8" path="res://resources/skins/skin_character_doggo.tres" id="4_xy2vv"]
 [ext_resource type="Script" uid="uid://cksttb7rm5fnl" path="res://scripts/finite_states_machines/player/idle_state.gd" id="5_8akj5"]
+[ext_resource type="Resource" uid="uid://bh5ewqhrtgxue" path="res://resources/skins/skin_character_squirrel.tres" id="5_r4dfn"]
+[ext_resource type="Resource" uid="uid://hx2ue0ym5vj" path="res://resources/skins/skin_character_mouse.tres" id="6_70kwc"]
 [ext_resource type="Script" uid="uid://bi3j5eiasuxhy" path="res://scripts/finite_states_machines/player/running_state.gd" id="6_bj7e2"]
 [ext_resource type="Script" uid="uid://cf4deu1c6f66i" path="res://scripts/finite_states_machines/player/dashing_state.gd" id="7_bj7e2"]
+[ext_resource type="Resource" uid="uid://ct7fndnu1ln2p" path="res://resources/skins/skin_character_bunny.tres" id="7_yywfu"]
+
+[sub_resource type="Animation" id="Animation_5sj0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/WeaponRoot/WeaponAnimationRoot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/WeaponRoot/WeaponAnimationRoot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_1murt"]
 resource_name = "fire"
@@ -38,33 +70,6 @@ tracks/1/keys = {
 "values": [0.0, -0.2617993877991494, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_5sj0x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/WeaponRoot/WeaponAnimationRoot:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/WeaponRoot/WeaponAnimationRoot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ovg4i"]
 _data = {
 &"RESET": SubResource("Animation_5sj0x"),
@@ -76,7 +81,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +93,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite2D:scale")
+tracks/1/path = NodePath("Visuals/CharacterSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -96,6 +101,24 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bj7e2"]
+resource_name = "dash"
+length = 0.12
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/CharacterSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1.3, 0.7), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_oul6g"]
@@ -106,7 +129,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/CharacterSprite:frame")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,7 +141,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite2D:scale")
+tracks/1/path = NodePath("Visuals/CharacterSprite:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -126,24 +149,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2)]
-}
-
-[sub_resource type="Animation" id="Animation_bj7e2"]
-resource_name = "dash"
-length = 0.12
-loop_mode = 1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(1.3, 0.7), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1dw6"]
@@ -160,6 +165,9 @@ radius = 6.0
 motion_mode = 1
 script = ExtResource("1_rkbax")
 aim_root = NodePath("Visuals/WeaponRoot")
+character_spritesheet = ExtResource("1_oul6g")
+available_skins = Array[ExtResource("3_5sj0x")]([ExtResource("4_xy2vv"), ExtResource("5_r4dfn"), ExtResource("6_70kwc"), ExtResource("7_yywfu")])
+current_skin_index = 0
 
 [node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -186,8 +194,7 @@ texture = ExtResource("2_g1dw6")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("1_oul6g")
+[node name="CharacterSprite" type="Sprite2D" parent="Visuals"]
 offset = Vector2(0, -12)
 hframes = 4
 vframes = 4
