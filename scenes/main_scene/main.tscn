@@ -1,9 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjm5f088lj3hb"]
+[gd_scene load_steps=5 format=3 uid="uid://bjm5f088lj3hb"]
 
+[ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_ihqgu"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="1_ionc4"]
 [ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="1_nqgu8"]
+[ext_resource type="PackedScene" uid="uid://200v6fk6uoha" path="res://scenes/entities/enemy/enemy.tscn" id="4_y24u2"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ihqgu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Container" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FpsLabel" type="Label" parent="CanvasLayer/Container/HBoxContainer"]
+layout_mode = 2
+text = "FPS: 999"
+
+[node name="StateLabel" type="Label" parent="CanvasLayer/Container/HBoxContainer"]
+layout_mode = 2
+text = "State: IDLE"
 
 [node name="Background" parent="." instance=ExtResource("1_ionc4")]
 
@@ -12,3 +34,12 @@ zoom = Vector2(2, 2)
 process_callback = 0
 
 [node name="Player" parent="." instance=ExtResource("1_nqgu8")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_y24u2")]
+position = Vector2(89, -30)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_y24u2")]
+position = Vector2(40, -52)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_y24u2")]
+position = Vector2(61, 65)

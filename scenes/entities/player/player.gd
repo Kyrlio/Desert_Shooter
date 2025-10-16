@@ -20,7 +20,9 @@ const BASE_FIRE_RATE: float = 0.2
 @onready var weapon_root: Node2D = $Visuals/WeaponRoot
 @onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var barrel_position: Marker2D = %BarrelPosition
-@onready var character_sprite: Sprite2D = $Visuals/CharacterSprite
+@onready var character_sprite_old: Sprite2D = $Visuals/CharacterSprite
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var character_sprite: Sprite2D = $Visuals/HitFlashSpriteComponent
 
 var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
 var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
@@ -36,6 +38,7 @@ var dash_reload_timer: float = 0.0
 
 func _ready() -> void:
 	apply_skin(current_skin_index)
+	health_component.died.connect(_on_died)
 
 
 func _physics_process(_delta: float) -> void:
@@ -70,30 +73,6 @@ func apply_skin(skin_index: int) -> void:
 	print("✅ Skin applied: %s (ID: %d)" % [skin.skin_name, skin.skin_id])
 
 
-# Change skin with int
-func set_skin_by_id(skin_id: int) -> void:
-	for i in available_skins.size():
-		if available_skins[i].skin_id == skin_id:
-			apply_skin(i)
-			return
-	push_error("Skin with ID %d not found" % skin_id)
-
-
-# Change skin by name
-func set_skin_by_name(skin_name: String) -> void:
-	for i in available_skins.size():
-		if available_skins[i].skin_name == skin_name:
-			apply_skin(i)
-			return
-	push_error("Skin '%s' not found" % skin_name)
-
-
-func get_current_skin() -> PlayerSkin:
-	if current_skin_index >= 0 and current_skin_index < available_skins.size():
-		return available_skins[current_skin_index]
-	return null
-
-
 # Cycler entre les skins (pour debug)
 func cycle_skin(direction: int = 1) -> void:
 	var new_index = wrapi(current_skin_index + direction, 0, available_skins.size())
@@ -113,7 +92,7 @@ func try_fire() -> void:
 		return
 	
 	var bullet = bullet_scene.instantiate() as Bullet
-	bullet.global_position = weapon_root.global_position
+	bullet.global_position = barrel_position.global_position
 	bullet.start(aim_vector)
 	get_parent().add_child(bullet, true)
 	
@@ -132,10 +111,6 @@ func play_fire_effects():
 	muzzle_flash.global_position = barrel_position.global_position
 	muzzle_flash.rotation = barrel_position.global_rotation
 	get_parent().add_child(muzzle_flash)
-
-
-func get_fire_rate() -> float:
-	return BASE_FIRE_RATE 
 
 
 func block():
@@ -168,13 +143,43 @@ func _ensure_actions_prefix() -> String:
 	return "player0_"
 
 
+func _on_died():
+	print("player died")
+
+
+# ========== GETTERS / SETTERS ==========
+
+func get_fire_rate() -> float:
+	return BASE_FIRE_RATE 
+
+
 func get_movement_speed() -> float:
 	return BASE_MOVEMENT_SPEED
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+func get_current_state() -> State:
+	return state_machine.current_state
+
+
+# Change skin with int
+func set_skin_by_id(skin_id: int) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_id == skin_id:
+			apply_skin(i)
+			return
+	push_error("Skin with ID %d not found" % skin_id)
+
+
+# Change skin by name
+func set_skin_by_name(skin_name: String) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_name == skin_name:
+			apply_skin(i)
+			return
+	push_error("Skin '%s' not found" % skin_name)
+
+
+func get_current_skin() -> PlayerSkin:
+	if current_skin_index >= 0 and current_skin_index < available_skins.size():
+		return available_skins[current_skin_index]
+	return null

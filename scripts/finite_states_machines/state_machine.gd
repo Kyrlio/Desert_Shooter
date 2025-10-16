@@ -1,4 +1,3 @@
-## State Machine simple et légère
 class_name StateMachine
 extends Node
 

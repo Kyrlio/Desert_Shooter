@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=26 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Texture2D" uid="uid://c0lga6sdmw24r" path="res://scenes/entities/player/tilemap.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://bi3j5eiasuxhy" path="res://scripts/finite_states_machines/player/running_state.gd" id="6_bj7e2"]
 [ext_resource type="Script" uid="uid://cf4deu1c6f66i" path="res://scripts/finite_states_machines/player/dashing_state.gd" id="7_bj7e2"]
 [ext_resource type="Resource" uid="uid://ct7fndnu1ln2p" path="res://resources/skins/skin_character_bunny.tres" id="7_yywfu"]
+[ext_resource type="PackedScene" uid="uid://cp3km3fnol4ig" path="res://scenes/component/health_component.tscn" id="8_r4dfn"]
+[ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="11_70kwc"]
+[ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="11_yywfu"]
 
 [sub_resource type="Animation" id="Animation_5sj0x"]
 length = 0.001
@@ -102,6 +105,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HitFlashSpriteComponent:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/HitFlashSpriteComponent:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_bj7e2"]
 resource_name = "dash"
@@ -115,6 +142,18 @@ tracks/0/path = NodePath("Visuals/CharacterSprite:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1.3, 0.7), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/HitFlashSpriteComponent:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
@@ -150,6 +189,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HitFlashSpriteComponent:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/HitFlashSpriteComponent:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1dw6"]
 _data = {
@@ -158,10 +221,15 @@ _data = {
 &"run": SubResource("Animation_oul6g")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yywfu"]
+radius = 5.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
 radius = 6.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("aim_root")]
+collision_layer = 0
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_rkbax")
 aim_root = NodePath("Visuals/WeaponRoot")
@@ -184,6 +252,19 @@ process_callback = 0
 wait_time = 0.2
 one_shot = true
 
+[node name="HealthComponent" parent="." instance=ExtResource("8_r4dfn")]
+max_health = 5
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_70kwc")]
+position = Vector2(0, -6)
+collision_layer = 1
+collision_mask = 4
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_yywfu")
+debug_color = Color(0.9607843, 0, 0, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_oul6g")
@@ -195,9 +276,18 @@ texture = ExtResource("2_g1dw6")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="CharacterSprite" type="Sprite2D" parent="Visuals"]
+visible = false
+texture = ExtResource("1_oul6g")
 offset = Vector2(0, -12)
 hframes = 4
 vframes = 4
+
+[node name="HitFlashSpriteComponent" parent="Visuals" node_paths=PackedStringArray("health_component") instance=ExtResource("11_yywfu")]
+texture = ExtResource("1_oul6g")
+offset = Vector2(0, -12)
+hframes = 4
+vframes = 4
+health_component = NodePath("../../HealthComponent")
 
 [node name="WeaponRoot" type="Node2D" parent="Visuals"]
 position = Vector2(0, -2)
