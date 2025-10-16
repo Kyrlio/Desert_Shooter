@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=28 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Texture2D" uid="uid://c0lga6sdmw24r" path="res://scenes/entities/player/tilemap.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cp3km3fnol4ig" path="res://scenes/component/health_component.tscn" id="8_r4dfn"]
 [ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="11_70kwc"]
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="11_yywfu"]
+[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
 
 [sub_resource type="Animation" id="Animation_5sj0x"]
 length = 0.001
@@ -227,6 +228,11 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
 radius = 6.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18p7g"]
+resource_local_to_scene = true
+shader = ExtResource("12_w3p2j")
+shader_parameter/percent = 0.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("aim_root")]
 collision_layer = 0
 collision_mask = 0
@@ -283,6 +289,7 @@ hframes = 4
 vframes = 4
 
 [node name="HitFlashSpriteComponent" parent="Visuals" node_paths=PackedStringArray("health_component") instance=ExtResource("11_yywfu")]
+material = SubResource("ShaderMaterial_18p7g")
 texture = ExtResource("1_oul6g")
 offset = Vector2(0, -12)
 hframes = 4

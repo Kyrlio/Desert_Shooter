@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4fjkvjerbdpm"]
+[gd_scene load_steps=11 format=3 uid="uid://d4fjkvjerbdpm"]
 
-[ext_resource type="Texture2D" uid="uid://b1a5tu7mm3jtv" path="res://assets/particles.png" id="1_e50f0"]
-[ext_resource type="AudioStream" uid="uid://7kvuj71gyr27" path="res://assets/audio/burst.wav" id="2_2ah7b"]
+[ext_resource type="Texture2D" uid="uid://dad6g46qeqe64" path="res://assets/particles/particles.png" id="1_e50f0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ah7b"]
 particles_animation = true
@@ -31,8 +30,7 @@ emission_sphere_radius = 32.0
 angle_min = -720.0
 angle_max = 720.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 1.5
+scale_min = 0.29999998
 scale_curve = SubResource("CurveTexture_x2j3p")
 color_initial_ramp = SubResource("GradientTexture1D_y6rus")
 anim_offset_max = 1.0
@@ -81,31 +79,12 @@ tracks/1/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitStreamPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_femlq"]
 _data = {
 &"RESET": SubResource("Animation_aoe23"),
 &"default": SubResource("Animation_w5ubf")
 }
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aoe23"]
-random_pitch = 1.1
-streams_count = 1
-stream_0/stream = ExtResource("2_2ah7b")
 
 [node name="EnemyGroundParticles" type="Node2D"]
 
@@ -128,9 +107,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_femlq")
 }
 autoplay = "default"
-
-[node name="HitStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_aoe23")
-volume_db = -5.0
-max_polyphony = 3
-bus = &"sfx"

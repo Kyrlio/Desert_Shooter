@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://200v6fk6uoha"]
+[gd_scene load_steps=12 format=3 uid="uid://200v6fk6uoha"]
 
 [ext_resource type="Script" uid="uid://cgo3h6w6q4bhv" path="res://scenes/entities/enemy/enemy.gd" id="1_1y44r"]
 [ext_resource type="Texture2D" uid="uid://m0d6lv0qrud8" path="res://scenes/entities/enemy/tilemap_packed-sheet.png" id="1_lw7nh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="3_in88q"]
 [ext_resource type="PackedScene" uid="uid://bq80bnwyxew5c" path="res://scenes/component/hitbox_component.tscn" id="5_dxsuy"]
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="6_0wdte"]
+[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/hit_flash_sprite_component.gdshader" id="6_7gxlw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxsuy"]
 size = Vector2(16, 19)
@@ -15,6 +16,11 @@ radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wdte"]
 size = Vector2(9, 11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilesx"]
+resource_local_to_scene = true
+shader = ExtResource("6_7gxlw")
+shader_parameter/percent = 0.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -48,6 +54,7 @@ shape = SubResource("RectangleShape2D_0wdte")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="HitFlashSpriteComponent" parent="Visuals" node_paths=PackedStringArray("health_component") instance=ExtResource("6_0wdte")]
+material = SubResource("ShaderMaterial_ilesx")
 texture = ExtResource("1_lw7nh")
 centered = false
 offset = Vector2(-12, -24)

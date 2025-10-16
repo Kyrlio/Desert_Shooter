@@ -7,7 +7,7 @@ const DASH_RELOAD_COST: float = 0.8
 var dash_dir: Vector2 = Vector2.ZERO
 
 
-func enter() -> void:
+func enter() -> void:	
 	# Activer le cooldown dans le player
 	player.dash_reload_timer = DASH_RELOAD_COST
 	player.dash_timer = DASH_TIME
@@ -38,11 +38,6 @@ func physics_update(delta: float) -> void:
 			get_parent().change_state("RunningState")
 		else:
 			get_parent().change_state("IdleState")
-
-
-func melee_attack():
-	pass
-	#TODO
 
 
 func exit() -> void:

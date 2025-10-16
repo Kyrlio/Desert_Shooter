@@ -5,6 +5,8 @@ extends Node
 signal died
 signal damaged
 
+var ground_particles_scene: PackedScene = preload("uid://d4fjkvjerbdpm")
+
 @export var max_health: int = 1
 
 var current_health: int
@@ -19,4 +21,7 @@ func damage(amount: int):
 	current_health = clamp(current_health - amount, 0, max_health)
 	damaged.emit()
 	if current_health == 0:
+		var die_particles: Node2D = ground_particles_scene.instantiate()
+		die_particles.global_position = get_parent().global_position
+		get_parent().get_parent().add_child(die_particles)
 		died.emit()

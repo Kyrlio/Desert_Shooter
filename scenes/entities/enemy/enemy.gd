@@ -5,8 +5,8 @@ extends CharacterBody2D
 
 
 func _ready() -> void:
-	health_component.died.connect(die)
+	health_component.died.connect(_on_died)
 
 
-func die():
+func _on_died():
 	queue_free.call_deferred()

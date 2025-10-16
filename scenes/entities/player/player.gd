@@ -111,6 +111,8 @@ func play_fire_effects():
 	muzzle_flash.global_position = barrel_position.global_position
 	muzzle_flash.rotation = barrel_position.global_rotation
 	get_parent().add_child(muzzle_flash)
+	
+	GameCamera.shake(1)
 
 
 func block():
