@@ -1,6 +1,8 @@
 class_name Weapon
 extends Node2D
 
+@onready var reloading_timer: Timer = $ReloadingTimer
+
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
 @export var life_time: float = 2.0
@@ -8,6 +10,7 @@ extends Node2D
 @export var bullet_speed: int = 400
 @export_range(0.0, 45.0, 0.1, "degrees") var spread: float = 0.0  ## Dispersion des balles en degrés (0 = précis, 45 = très dispersé)
 @export var number_bullets: int = 1
+@export var magazine_length: int = 10
 @export var use_normal_distribution: bool = false  ## Si true, utilise une distribution normale (gaussienne) pour le spread - Recommandé pour shotgun
 @export var barrel_position: Node2D
 @export var animation_player: AnimationPlayer
@@ -17,17 +20,26 @@ var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
 
 var weapon_owner: Player
 var _cooldown := 0.0
+var number_bullets_in_magazine: int
+
+
+func _ready() -> void:
+	number_bullets_in_magazine = magazine_length
+	reloading_timer.timeout.connect(_on_reloading_timer_timeout)
+
 
 func _process(delta: float) -> void:
 	if _cooldown > 0.0:
 		_cooldown -= delta
 
 func can_fire() -> bool:
-	return _cooldown <= 0.0 and weapon_owner
+	return _cooldown <= 0.0 and weapon_owner and (number_bullets_in_magazine > 0)
 
 func fire(direction: Vector2) -> void:
 	if not can_fire():
 		return
+	
+	number_bullets_in_magazine -= 1
 	
 	for i in number_bullets:
 		# Appliquer la dispersion (spread)
@@ -42,13 +54,20 @@ func fire(direction: Vector2) -> void:
 		bullet.start(final_direction)
 		
 		weapon_owner.get_parent().add_child(bullet, true)
+	
 	_cooldown = fire_rate
 	_play_fire_effects()
+	
+	if number_bullets_in_magazine <= 0:
+		reload()
 
 
 func reload():
-	pass
-	# TODO
+	reloading_timer.start()
+	weapon_owner.start_reloading()
+	animation_player.speed_scale = (1 / reloading_timer.wait_time) + 0.2
+	await animation_player.animation_finished
+	animation_player.play("reload")
 
 
 func on_equipped(new_owner: Player) -> void:
@@ -113,3 +132,9 @@ func _play_fire_effects() -> void:
 	weapon_owner.get_parent().add_child(muzzle_flash)
 	
 	GameCamera.shake(1)
+
+
+func _on_reloading_timer_timeout():
+	weapon_owner.finished_reloading()
+	number_bullets_in_magazine = magazine_length
+	animation_player.speed_scale = 1

@@ -1,3 +1,4 @@
+@icon("res://assets/icons/icon_camera_grid.png")
 class_name GameCamera
 extends Camera2D
 

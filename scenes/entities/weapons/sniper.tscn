@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://did8iv6uy01c"]
+[gd_scene load_steps=7 format=3 uid="uid://did8iv6uy01c"]
 
 [ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_6jcko"]
 [ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="2_okkp5"]
@@ -83,10 +83,38 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(-4, 0), Vector2(2, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lr7jd"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [0.0, -6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(2, 0.5, -2, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 0.75), Vector2(0.72, 1.2), Vector2(0.8, 0.8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ovg4i"]
 _data = {
 &"RESET": SubResource("Animation_5sj0x"),
-&"fire": SubResource("Animation_1murt")
+&"fire": SubResource("Animation_1murt"),
+&"reload": SubResource("Animation_lr7jd")
 }
 
 [node name="Sniper" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
@@ -96,6 +124,7 @@ damage = 50
 life_time = 4.0
 fire_rate = 2.0
 bullet_speed = 700
+magazine_length = 3
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 
@@ -103,6 +132,11 @@ animation_player = NodePath("WeaponAnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_ovg4i")
 }
+
+[node name="ReloadingTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)

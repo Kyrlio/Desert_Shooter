@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=26 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Texture2D" uid="uid://c0lga6sdmw24r" path="res://scenes/entities/player/tilemap.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="11_70kwc"]
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="11_yywfu"]
 [ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
+[ext_resource type="Texture2D" uid="uid://bw1e2f5e8uyh8" path="res://assets/icons/tile_0676.png" id="18_w3p2j"]
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 length = 0.001
@@ -211,6 +212,12 @@ shape = SubResource("CircleShape2D_oul6g")
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.54901963)
 texture = ExtResource("2_g1dw6")
+
+[node name="ReloadSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(13, -18)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("18_w3p2j")
 
 [node name="Visuals" type="Node2D" parent="."]
 

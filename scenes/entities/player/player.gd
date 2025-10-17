@@ -22,6 +22,7 @@ const BASE_MOVEMENT_SPEED: float = 100
 @onready var character_sprite_old: Sprite2D = $Visuals/CharacterSprite
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var character_sprite: Sprite2D = $Visuals/HitFlashSpriteComponent
+@onready var reload_sprite: Sprite2D = $ReloadSprite
 
 
 # WEAPONS
@@ -47,6 +48,7 @@ var dash_reload_timer: float = 0.0
 
 
 func _ready() -> void:
+	reload_sprite.visible = false
 	apply_skin(current_skin_index)
 	health_component.died.connect(_on_died)
 	_initialize_weapon_inventory()
@@ -170,6 +172,14 @@ func try_fire() -> void:
 func block():
 	pass
 	#TODO clic droit bloquer attack ennemi
+
+
+func start_reloading():
+	reload_sprite.visible = true
+
+
+func finished_reloading():
+	reload_sprite.visible = false
 
 
 # ========== GETTERS / SETTERS ==========
