@@ -192,7 +192,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_r4dfn")]
-max_health = 5
+max_health = 10
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_70kwc")]
 position = Vector2(0, -6)

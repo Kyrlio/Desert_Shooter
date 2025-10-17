@@ -69,6 +69,7 @@ _data = {
 script = ExtResource("1_qlr4j")
 display_name = "Uzi"
 damage = 2
+life_time = 0.7
 spread = 30.0
 use_normal_distribution = true
 barrel_position = NodePath("BarrelPosition")

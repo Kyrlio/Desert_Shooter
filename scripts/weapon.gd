@@ -3,7 +3,9 @@ extends Node2D
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
+@export var life_time: float = 2.0
 @export var fire_rate: float = 0.2
+@export var bullet_speed: int = 400
 @export_range(0.0, 45.0, 0.1, "degrees") var spread: float = 0.0  ## Dispersion des balles en degrés (0 = précis, 45 = très dispersé)
 @export var number_bullets: int = 1
 @export var use_normal_distribution: bool = false  ## Si true, utilise une distribution normale (gaussienne) pour le spread - Recommandé pour shotgun
@@ -35,6 +37,8 @@ func fire(direction: Vector2) -> void:
 		var bullet = bullet_scene.instantiate() as Bullet
 		bullet.global_position = barrel_position.global_position
 		bullet.set_damage(damage)  # Transmettre les dégâts de l'arme à la balle
+		bullet.set_lifetime(life_time)
+		bullet.set_speed(bullet_speed)
 		bullet.start(final_direction)
 		
 		weapon_owner.get_parent().add_child(bullet, true)
@@ -49,11 +53,9 @@ func reload():
 
 func on_equipped(new_owner: Player) -> void:
 	weapon_owner = new_owner
-	print("✅ %s équipé" % display_name)
 
 
 func on_unequipped() -> void:
-	print("❌ %s déséquipé" % display_name)
 	weapon_owner = null
 
 

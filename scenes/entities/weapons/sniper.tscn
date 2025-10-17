@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://r4fu7s6dkih4"]
+[gd_scene load_steps=6 format=3 uid="uid://did8iv6uy01c"]
 
-[ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_5bb75"]
-[ext_resource type="Texture2D" uid="uid://buirw8a0smry5" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_8.png" id="1_hn68x"]
+[ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_6jcko"]
+[ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="2_okkp5"]
 
 [sub_resource type="Animation" id="Animation_5sj0x"]
 length = 0.001
@@ -29,6 +29,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_1murt"]
 resource_name = "fire"
@@ -44,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(0.5, 1.6), Vector2(1.5, 0.75), Vector2(0.8, 0.8)]
+"values": [Vector2(0.8, 0.8), Vector2(0.6, 1.5), Vector2(1.25, 0.75), Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,6 +70,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, -0.2617993877991494, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(2, 2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-4, 0), Vector2(2, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ovg4i"]
 _data = {
@@ -65,15 +89,13 @@ _data = {
 &"fire": SubResource("Animation_1murt")
 }
 
-[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
-script = ExtResource("1_5bb75")
-display_name = "Shotgun"
-damage = 2
-life_time = 0.5
+[node name="Sniper" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
+script = ExtResource("1_6jcko")
+display_name = "Sniper"
+damage = 50
+life_time = 4.0
 fire_rate = 2.0
-spread = 45.0
-number_bullets = 8
-use_normal_distribution = true
+bullet_speed = 700
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 
@@ -84,10 +106,10 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_hn68x")
+texture = ExtResource("2_okkp5")
 centered = false
 offset = Vector2(-11, -12)
 
 [node name="BarrelPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(11, -1)
+position = Vector2(12, 0)

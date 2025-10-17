@@ -25,12 +25,15 @@ const BASE_MOVEMENT_SPEED: float = 100
 
 
 # WEAPONS
-var current_weapon: Weapon
 var rifle_scene: PackedScene = preload("uid://bnnmu2ycsi5pd")
 var uzi_scene: PackedScene = preload("uid://c55fbudaqm7bl")
 var shotgun_scene: PackedScene = preload("uid://r4fu7s6dkih4")
+var sniper_scene: PackedScene = preload("uid://did8iv6uy01c")
 var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
 var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
+var current_weapon: Weapon
+var weapon_scenes: Array[PackedScene] = []
+var current_weapon_index: int = -1
 
 # MOVEMENTS
 var movement_vector: Vector2 = Vector2.ZERO
@@ -46,10 +49,7 @@ var dash_reload_timer: float = 0.0
 func _ready() -> void:
 	apply_skin(current_skin_index)
 	health_component.died.connect(_on_died)
-	
-	# Équiper l'arme de départ (rifle)
-	var rifle = rifle_scene.instantiate() as Weapon
-	equip_weapon(rifle)
+	_initialize_weapon_inventory()
 
 
 func _physics_process(delta: float) -> void:
@@ -102,8 +102,6 @@ func update_aim_position() -> void:
 	visuals.scale = Vector2.ONE if aim_vector.x >= 0 else Vector2(-1, 1)
 
 
-# ========== SYSTÈME D'ARMES MODULAIRE ==========
-
 ## Équipe une nouvelle arme
 ## @param weapon_instance: L'instance de l'arme à équiper (peut être créée depuis une PackedScene)
 func equip_weapon(weapon_instance: Weapon) -> void:
@@ -141,6 +139,26 @@ func change_weapon(weapon_scene: PackedScene) -> void:
 		return
 	
 	equip_weapon(new_weapon)
+	_sync_weapon_index_with_scene(weapon_scene)
+
+
+## Fait défiler les armes disponibles dans un sens donné
+## @param direction: +1 pour suivant, -1 pour précédent
+func cycle_weapon(direction: int) -> void:
+	if weapon_scenes.is_empty():
+		return
+
+	current_weapon_index = wrapi(current_weapon_index + direction, 0, weapon_scenes.size())
+	var next_scene: PackedScene = weapon_scenes[current_weapon_index]
+	change_weapon(next_scene)
+
+
+## Maintient l'index courant aligné avec la scène équipée
+func _sync_weapon_index_with_scene(target_scene: PackedScene) -> void:
+	for i in weapon_scenes.size():
+		if weapon_scenes[i] == target_scene:
+			current_weapon_index = i
+			return
 
 
 func try_fire() -> void:
@@ -196,6 +214,26 @@ func get_current_weapon() -> Weapon:
 	return current_weapon
 
 
+## Prépare la liste des armes disponibles et équipe la première
+func _initialize_weapon_inventory() -> void:
+	weapon_scenes.clear()
+	if rifle_scene:
+		weapon_scenes.append(rifle_scene)
+	if uzi_scene:
+		weapon_scenes.append(uzi_scene)
+	if shotgun_scene:
+		weapon_scenes.append(shotgun_scene)
+	if sniper_scene:
+		weapon_scenes.append(sniper_scene)
+
+	if weapon_scenes.is_empty():
+		push_error("❌ Aucune arme configurée pour le joueur")
+		return
+
+	current_weapon_index = 0
+	change_weapon(weapon_scenes[current_weapon_index])
+
+
 func _gather_input() -> void:
 	var prefix := _ensure_actions_prefix()
 	movement_vector = Input.get_vector(
@@ -214,13 +252,11 @@ func _gather_input() -> void:
 	if Input.is_action_just_pressed("ui_down"):
 		cycle_skin(-1)
 	
-	# Debug - Changer d'arme avec ui_left/ui_right (pour tester)
+	# Debug - Changer d'arme avec ui_left/ui_right (cycle modulo)
 	if Input.is_action_just_pressed("ui_left"):
-		change_weapon(rifle_scene)
+		cycle_weapon(-1)
 	if Input.is_action_just_pressed("ui_right"):
-		change_weapon(uzi_scene)
-	if Input.is_action_just_pressed("ui_accept"):
-		change_weapon(shotgun_scene)
+		cycle_weapon(1)
 
 
 func _ensure_actions_prefix() -> String:
