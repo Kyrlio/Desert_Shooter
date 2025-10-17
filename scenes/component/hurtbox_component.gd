@@ -2,6 +2,8 @@
 class_name HurtboxComponent
 extends Area2D
 
+signal knockbacked(direction: Vector2, force: float, knockback_duration: float)
+
 var impact_particles_scene: PackedScene = preload("uid://dtr5lw5ocrg3p")
 
 @export var health_component: HealthComponent
@@ -24,6 +26,11 @@ func _handle_hit(hitbox_component: HitboxComponent):
 	hitbox_component.register_hurtbox_hit(self)
 	health_component.damage(hitbox_component.damage)
 	spawn_hit_particles()
+	
+	var raw_direction := (global_position - hitbox_component.global_position)
+	var knockback_direction := raw_direction.normalized() if raw_direction.length_squared() > 0.0001 else Vector2.ZERO
+	#get_parent().apply_knockback(knockback_direction, 150.0, 0.12)
+	knockbacked.emit(knockback_direction, 20.0, 0.12)
 	
 	if get_parent() is Player:
 		GameCamera.shake(1)

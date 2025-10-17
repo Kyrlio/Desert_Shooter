@@ -40,19 +40,21 @@ func fire(direction: Vector2) -> void:
 		weapon_owner.get_parent().add_child(bullet, true)
 	_cooldown = fire_rate
 	_play_fire_effects()
-	
 
-func _play_fire_effects() -> void:
-	if animation_player.is_playing():
-		animation_player.stop()
-	animation_player.play("fire")
-	
-	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
-	muzzle_flash.global_position = barrel_position.global_position
-	muzzle_flash.rotation = barrel_position.global_rotation
-	weapon_owner.get_parent().add_child(muzzle_flash)
-	
-	GameCamera.shake(1)
+
+func reload():
+	pass
+	# TODO
+
+
+func on_equipped(new_owner: Player) -> void:
+	weapon_owner = new_owner
+	print("✅ %s équipé" % display_name)
+
+
+func on_unequipped() -> void:
+	print("❌ %s déséquipé" % display_name)
+	weapon_owner = null
 
 
 ## Applique la dispersion à la direction de tir
@@ -98,12 +100,14 @@ func _randfn(mean: float, std_dev: float) -> float:
 	return mean + z0 * std_dev
 
 
-# Appelé quand l'arme est équipée
-func on_equipped(new_owner: Player) -> void:
-	weapon_owner = new_owner
-	print("✅ %s équipé" % display_name)
-
-# Appelé quand l'arme est déséquipée
-func on_unequipped() -> void:
-	print("❌ %s déséquipé" % display_name)
-	weapon_owner = null
+func _play_fire_effects() -> void:
+	if animation_player.is_playing():
+		animation_player.stop()
+	animation_player.play("fire")
+	
+	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
+	muzzle_flash.global_position = barrel_position.global_position
+	muzzle_flash.rotation = barrel_position.global_rotation
+	weapon_owner.get_parent().add_child(muzzle_flash)
+	
+	GameCamera.shake(1)

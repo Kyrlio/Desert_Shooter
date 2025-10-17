@@ -31,7 +31,6 @@ text = "State: IDLE"
 [node name="Background" parent="." instance=ExtResource("1_ionc4")]
 
 [node name="GameCamera" parent="." instance=ExtResource("3_ib4vx")]
-zoom = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_nqgu8")]

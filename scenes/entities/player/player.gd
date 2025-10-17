@@ -3,7 +3,6 @@ class_name Player
 extends CharacterBody2D
 
 const BASE_MOVEMENT_SPEED: float = 100
-const BASE_FIRE_RATE: float = 0.2
 
 @export var aim_root: Node2D
 
@@ -24,13 +23,16 @@ const BASE_FIRE_RATE: float = 0.2
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var character_sprite: Sprite2D = $Visuals/HitFlashSpriteComponent
 
-var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
-var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
 
+# WEAPONS
+var current_weapon: Weapon
 var rifle_scene: PackedScene = preload("uid://bnnmu2ycsi5pd")
 var uzi_scene: PackedScene = preload("uid://c55fbudaqm7bl")
 var shotgun_scene: PackedScene = preload("uid://r4fu7s6dkih4")
+var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
+var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
 
+# MOVEMENTS
 var movement_vector: Vector2 = Vector2.ZERO
 var aim_vector: Vector2 = Vector2.RIGHT
 var _input_prefix: String = "player0_"
@@ -39,8 +41,6 @@ var _input_prefix: String = "player0_"
 var dash_timer: float = 0.0
 var dash_reload_timer: float = 0.0
 
-# WEAPONS - Système modulaire
-var current_weapon: Weapon  # L'arme actuellement équipée
 
 
 func _ready() -> void:
@@ -143,13 +143,6 @@ func change_weapon(weapon_scene: PackedScene) -> void:
 	equip_weapon(new_weapon)
 
 
-## Obtient l'arme actuellement équipée
-func get_current_weapon() -> Weapon:
-	return current_weapon
-
-
-# ========== FIN SYSTÈME D'ARMES ==========
-
 func try_fire() -> void:
 	if current_weapon == null or state_machine.current_state is DashingState:
 		return
@@ -159,6 +152,48 @@ func try_fire() -> void:
 func block():
 	pass
 	#TODO clic droit bloquer attack ennemi
+
+
+# ========== GETTERS / SETTERS ==========
+
+func get_fire_rate() -> float:
+	return current_weapon.fire_rate
+
+
+func get_movement_speed() -> float:
+	return BASE_MOVEMENT_SPEED
+
+
+func get_current_state() -> State:
+	return state_machine.current_state
+
+
+# Change skin with int
+func set_skin_by_id(skin_id: int) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_id == skin_id:
+			apply_skin(i)
+			return
+	push_error("Skin with ID %d not found" % skin_id)
+
+
+# Change skin by name
+func set_skin_by_name(skin_name: String) -> void:
+	for i in available_skins.size():
+		if available_skins[i].skin_name == skin_name:
+			apply_skin(i)
+			return
+	push_error("Skin '%s' not found" % skin_name)
+
+
+func get_current_skin() -> PlayerSkin:
+	if current_skin_index >= 0 and current_skin_index < available_skins.size():
+		return available_skins[current_skin_index]
+	return null
+
+
+func get_current_weapon() -> Weapon:
+	return current_weapon
 
 
 func _gather_input() -> void:
@@ -196,41 +231,3 @@ func _ensure_actions_prefix() -> String:
 
 func _on_died():
 	print("player died")
-
-
-# ========== GETTERS / SETTERS ==========
-
-func get_fire_rate() -> float:
-	return BASE_FIRE_RATE 
-
-
-func get_movement_speed() -> float:
-	return BASE_MOVEMENT_SPEED
-
-
-func get_current_state() -> State:
-	return state_machine.current_state
-
-
-# Change skin with int
-func set_skin_by_id(skin_id: int) -> void:
-	for i in available_skins.size():
-		if available_skins[i].skin_id == skin_id:
-			apply_skin(i)
-			return
-	push_error("Skin with ID %d not found" % skin_id)
-
-
-# Change skin by name
-func set_skin_by_name(skin_name: String) -> void:
-	for i in available_skins.size():
-		if available_skins[i].skin_name == skin_name:
-			apply_skin(i)
-			return
-	push_error("Skin '%s' not found" % skin_name)
-
-
-func get_current_skin() -> PlayerSkin:
-	if current_skin_index >= 0 and current_skin_index < available_skins.size():
-		return available_skins[current_skin_index]
-	return null
