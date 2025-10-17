@@ -28,7 +28,7 @@ collision_mask = 0
 script = ExtResource("1_1y44r")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_6fawb")]
-max_health = 3
+max_health = 20
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_in88q")]
 position = Vector2(0, -10)

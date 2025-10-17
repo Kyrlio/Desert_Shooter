@@ -7,9 +7,12 @@ const SPEED: int = 400
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 var direction: Vector2
+var damage_to_apply: int = 1  # Dégâts à appliquer (sera configuré avant _ready)
 
 
 func _ready() -> void:
+	# Appliquer les dégâts une fois que hitbox_component est initialisé
+	hitbox_component.damage = damage_to_apply
 	hitbox_component.hit_hurtbox.connect(_on_hit_hurtbox)
 	life_timer.timeout.connect(_on_life_timer_timeout)
 
@@ -21,6 +24,12 @@ func _physics_process(delta: float) -> void:
 func start(dir: Vector2):
 	self.direction = dir
 	rotation = direction.angle()
+
+
+## Configure les dégâts de la balle
+## @param dmg: Valeur des dégâts à appliquer
+func set_damage(dmg: int) -> void:
+	damage_to_apply = dmg
 
 
 func register_collision():

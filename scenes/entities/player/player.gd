@@ -14,10 +14,10 @@ const BASE_FIRE_RATE: float = 0.2
 @export var current_skin_index: int = 1
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var weapon_animation_player: AnimationPlayer = $WeaponAnimationPlayer
 @onready var visuals: Node2D = $Visuals
 @onready var state_machine: StateMachine = $StateMachine
 @onready var weapon_root: Node2D = $Visuals/WeaponRoot
+@onready var weapon_animation_root: Node2D = $Visuals/WeaponRoot/WeaponAnimationRoot
 @onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var barrel_position: Marker2D = %BarrelPosition
 @onready var character_sprite_old: Sprite2D = $Visuals/CharacterSprite
@@ -27,6 +27,10 @@ const BASE_FIRE_RATE: float = 0.2
 var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
 var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
 
+var rifle_scene: PackedScene = preload("uid://bnnmu2ycsi5pd")
+var uzi_scene: PackedScene = preload("uid://c55fbudaqm7bl")
+var shotgun_scene: PackedScene = preload("uid://r4fu7s6dkih4")
+
 var movement_vector: Vector2 = Vector2.ZERO
 var aim_vector: Vector2 = Vector2.RIGHT
 var _input_prefix: String = "player0_"
@@ -35,19 +39,30 @@ var _input_prefix: String = "player0_"
 var dash_timer: float = 0.0
 var dash_reload_timer: float = 0.0
 
+# WEAPONS - Système modulaire
+var current_weapon: Weapon  # L'arme actuellement équipée
+
 
 func _ready() -> void:
 	apply_skin(current_skin_index)
 	health_component.died.connect(_on_died)
+	
+	# Équiper l'arme de départ (rifle)
+	var rifle = rifle_scene.instantiate() as Weapon
+	equip_weapon(rifle)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if current_weapon == null:
+		return
+	current_weapon._process(delta)
+	
 	_gather_input()
 	update_aim_position()
 	
 	# Décrémenter le cooldown du dash
 	if dash_reload_timer > 0.0:
-		dash_reload_timer -= _delta
+		dash_reload_timer -= delta
 
 
 func apply_skin(skin_index: int) -> void:
@@ -87,32 +102,58 @@ func update_aim_position() -> void:
 	visuals.scale = Vector2.ONE if aim_vector.x >= 0 else Vector2(-1, 1)
 
 
-func try_fire() -> void:
-	if !fire_rate_timer.is_stopped():
+# ========== SYSTÈME D'ARMES MODULAIRE ==========
+
+## Équipe une nouvelle arme
+## @param weapon_instance: L'instance de l'arme à équiper (peut être créée depuis une PackedScene)
+func equip_weapon(weapon_instance: Weapon) -> void:
+	# Déséquiper l'arme actuelle si elle existe
+	if current_weapon != null:
+		unequip_weapon()
+	
+	# Équiper la nouvelle arme
+	current_weapon = weapon_instance
+	weapon_animation_root.add_child(current_weapon)
+	current_weapon.on_equipped(self)
+
+
+## Déséquipe l'arme actuelle
+func unequip_weapon() -> void:
+	if current_weapon == null:
 		return
 	
-	var bullet = bullet_scene.instantiate() as Bullet
-	bullet.global_position = barrel_position.global_position
-	bullet.start(aim_vector)
-	get_parent().add_child(bullet, true)
-	
-	fire_rate_timer.wait_time = get_fire_rate()
-	fire_rate_timer.start()
-	
-	play_fire_effects()
+	current_weapon.on_unequipped()
+	weapon_animation_root.remove_child(current_weapon)
+	current_weapon.queue_free()
+	current_weapon = null
 
 
-func play_fire_effects():
-	if weapon_animation_player.is_playing():
-		weapon_animation_player.stop()
-	weapon_animation_player.play("fire")
+## Change l'arme actuelle par une nouvelle
+## @param weapon_scene: La PackedScene de l'arme à équiper
+func change_weapon(weapon_scene: PackedScene) -> void:
+	if weapon_scene == null:
+		push_error("❌ Tentative de changer d'arme avec une scène nulle")
+		return
 	
-	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
-	muzzle_flash.global_position = barrel_position.global_position
-	muzzle_flash.rotation = barrel_position.global_rotation
-	get_parent().add_child(muzzle_flash)
+	var new_weapon = weapon_scene.instantiate() as Weapon
+	if new_weapon == null:
+		push_error("❌ La scène n'est pas une arme valide")
+		return
 	
-	GameCamera.shake(1)
+	equip_weapon(new_weapon)
+
+
+## Obtient l'arme actuellement équipée
+func get_current_weapon() -> Weapon:
+	return current_weapon
+
+
+# ========== FIN SYSTÈME D'ARMES ==========
+
+func try_fire() -> void:
+	if current_weapon == null or state_machine.current_state is DashingState:
+		return
+	current_weapon.fire(aim_vector)
 
 
 func block():
@@ -132,11 +173,19 @@ func _gather_input() -> void:
 	if Input.is_action_pressed("player0_attack"):
 		try_fire()
 	
-	# Debug - Changer de skin avec 1/2
+	# Debug - Changer de skin avec ui_up/ui_down
 	if Input.is_action_just_pressed("ui_up"):
 		cycle_skin(1)
 	if Input.is_action_just_pressed("ui_down"):
 		cycle_skin(-1)
+	
+	# Debug - Changer d'arme avec ui_left/ui_right (pour tester)
+	if Input.is_action_just_pressed("ui_left"):
+		change_weapon(rifle_scene)
+	if Input.is_action_just_pressed("ui_right"):
+		change_weapon(uzi_scene)
+	if Input.is_action_just_pressed("ui_accept"):
+		change_weapon(shotgun_scene)
 
 
 func _ensure_actions_prefix() -> String:

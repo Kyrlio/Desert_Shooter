@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://your_uid_here"]
+
+[ext_resource type="Script" path="res://scenes/entities/weapon_pickup.gd" id="1_weapon_pickup"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rifle.png" id="2_rifle_texture"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
+size = Vector2(32, 32)
+
+[node name="WeaponPickup" type="Area2D"]
+script = ExtResource("1_weapon_pickup")
+weapon_name = "Rifle"
+auto_pickup = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pickup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rifle_texture")
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = -10.0
+text = "Rifle"
+horizontal_alignment = 1
+vertical_alignment = 1
