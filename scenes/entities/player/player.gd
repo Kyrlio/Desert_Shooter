@@ -5,6 +5,8 @@ extends CharacterBody2D
 const BASE_MOVEMENT_SPEED: float = 100
 
 @export var aim_root: Node2D
+@export_range(0, 3) var player_index: int = 0
+@export var allow_mouse_aim: bool = true
 
 # 🎨 SKINS
 @export_group("Skin System")
@@ -23,6 +25,7 @@ const BASE_MOVEMENT_SPEED: float = 100
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var character_sprite: Sprite2D = $Visuals/HitFlashSpriteComponent
 @onready var reload_sprite: Sprite2D = $ReloadSprite
+@onready var shield := $Shield
 
 
 # WEAPONS
@@ -36,10 +39,16 @@ var current_weapon: Weapon
 var weapon_scenes: Array[PackedScene] = []
 var current_weapon_index: int = -1
 
-# MOVEMENTS
+# MOVEMENTS & INPUTS
 var movement_vector: Vector2 = Vector2.ZERO
 var aim_vector: Vector2 = Vector2.RIGHT
+var aim_direct: Vector2 = Vector2.RIGHT
+var is_attack_pressed: bool
+var last_gamepad_aim: Vector2 = Vector2.RIGHT  # Store last gamepad aim direction
 var _input_prefix: String = "player0_"
+var _using_mouse_for_aim: bool = true
+var _mouse_hidden: bool = false
+var _gamepad_aim_deadzone: float = 0.25
 
 # DASH
 var dash_timer: float = 0.0
@@ -52,6 +61,7 @@ func _ready() -> void:
 	apply_skin(current_skin_index)
 	health_component.died.connect(_on_died)
 	_initialize_weapon_inventory()
+	_using_mouse_for_aim = allow_mouse_aim
 
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +71,8 @@ func _physics_process(delta: float) -> void:
 	
 	_gather_input()
 	update_aim_position()
+	if shield:
+		shield.update_orientation(aim_vector)
 	
 	# Décrémenter le cooldown du dash
 	if dash_reload_timer > 0.0:
@@ -97,11 +109,24 @@ func cycle_skin(direction: int = 1) -> void:
 
 
 func update_aim_position() -> void:
-	# Mouse
-	aim_vector = aim_root.global_position.direction_to(aim_root.get_global_mouse_position())
-	var aim_position = weapon_root.global_position + aim_vector
-	weapon_root.look_at(aim_position)
+	var effective_aim := aim_vector
+	if allow_mouse_aim and _using_mouse_for_aim:
+		var mouse_position := aim_root.get_global_mouse_position()
+		effective_aim = aim_root.global_position.direction_to(mouse_position)
+	else:
+		if aim_direct.length_squared() >= _gamepad_aim_deadzone * _gamepad_aim_deadzone:
+			last_gamepad_aim = aim_direct.normalized()
+		if last_gamepad_aim.length_squared() >= 0.0001:
+			effective_aim = last_gamepad_aim
+		else:
+			effective_aim = aim_vector
+
+	if effective_aim.length_squared() < 0.0001:
+		effective_aim = Vector2.RIGHT
+	aim_vector = effective_aim.normalized()
+	var aim_position := weapon_root.global_position + aim_vector
 	visuals.scale = Vector2.ONE if aim_vector.x >= 0 else Vector2(-1, 1)
+	weapon_root.look_at(aim_position)
 
 
 ## Équipe une nouvelle arme
@@ -164,14 +189,23 @@ func _sync_weapon_index_with_scene(target_scene: PackedScene) -> void:
 
 
 func try_fire() -> void:
-	if current_weapon == null or state_machine.current_state is DashingState:
+	if (current_weapon == null) or (state_machine.current_state is DashingState) or (shield and shield.is_active()):
 		return
 	current_weapon.fire(aim_vector)
 
 
 func block():
-	pass
-	#TODO clic droit bloquer attack ennemi
+	if shield == null:
+		return
+	if state_machine.current_state is DashingState:
+		return
+	shield.activate()
+
+
+func stop_block() -> void:
+	if shield == null:
+		return
+	shield.deactivate()
 
 
 func start_reloading():
@@ -253,6 +287,20 @@ func _gather_input() -> void:
 		prefix + "move_down"
 	)
 	
+	# CONTROLLER - Check if gamepad is being used for aiming
+	aim_direct = Input.get_vector(
+		prefix + "weapon_aim_left",
+		prefix + "weapon_aim_right",
+		prefix + "weapon_aim_up",
+		prefix + "weapon_aim_down"
+	)
+	
+	if aim_direct.length_squared() >= _gamepad_aim_deadzone * _gamepad_aim_deadzone:
+		last_gamepad_aim = aim_direct.normalized()
+		if _using_mouse_for_aim:
+			_using_mouse_for_aim = false
+			_set_mouse_visibility(false)
+
 	if Input.is_action_pressed("player0_attack"):
 		try_fire()
 	
@@ -263,10 +311,17 @@ func _gather_input() -> void:
 		cycle_skin(-1)
 	
 	# Debug - Changer d'arme avec ui_left/ui_right (cycle modulo)
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("player0_prev_weapon"):
 		cycle_weapon(-1)
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("player0_next_weapon"):
 		cycle_weapon(1)
+
+	var block_action := prefix + "block"
+	if InputMap.has_action(block_action):
+		if Input.is_action_pressed(block_action):
+			block()
+		else:
+			stop_block()
 
 
 func _ensure_actions_prefix() -> String:
@@ -275,5 +330,32 @@ func _ensure_actions_prefix() -> String:
 	return "player0_"
 
 
+func _input(event: InputEvent) -> void:
+	if not allow_mouse_aim:
+		return
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		_using_mouse_for_aim = true
+		_set_mouse_visibility(true)
+		if event is InputEventMouseMotion and event.relative.length_squared() > 0.0:
+			var mouse_position := aim_root.get_global_mouse_position()
+			aim_vector = aim_root.global_position.direction_to(mouse_position)
+	elif event is InputEventJoypadMotion:
+		if event.axis in [JOY_AXIS_RIGHT_X, JOY_AXIS_RIGHT_Y] and abs(event.axis_value) >= _gamepad_aim_deadzone:
+			_using_mouse_for_aim = false
+			_set_mouse_visibility(false)
+
+
 func _on_died():
 	print("player died")
+	stop_block()
+
+
+func _set_mouse_visibility(should_be_visible: bool) -> void:
+	if not allow_mouse_aim:
+		return
+	if should_be_visible and _mouse_hidden:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		_mouse_hidden = false
+	elif not should_be_visible and not _mouse_hidden:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		_mouse_hidden = true

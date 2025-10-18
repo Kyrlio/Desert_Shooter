@@ -121,6 +121,7 @@ _data = {
 script = ExtResource("1_lr7jd")
 display_name = "Rifle"
 fire_rate = 0.5
+bullet_speed = 300
 spread = 3.0
 use_normal_distribution = true
 barrel_position = NodePath("BarrelPosition")
