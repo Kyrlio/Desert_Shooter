@@ -1,3 +1,4 @@
+@icon("res://assets/icons/icon_weapon.png")
 class_name Weapon
 extends Node2D
 
@@ -21,6 +22,7 @@ var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
 var weapon_owner: Player
 var _cooldown := 0.0
 var number_bullets_in_magazine: int
+var is_reloading: bool = false
 
 
 func _ready() -> void:
@@ -33,7 +35,7 @@ func _process(delta: float) -> void:
 		_cooldown -= delta
 
 func can_fire() -> bool:
-	return _cooldown <= 0.0 and weapon_owner and (number_bullets_in_magazine > 0)
+	return _cooldown <= 0.0 and weapon_owner and (number_bullets_in_magazine > 0) and not is_reloading
 
 func fire(direction: Vector2) -> void:
 	if not can_fire():
@@ -47,6 +49,7 @@ func fire(direction: Vector2) -> void:
 		
 		# Créer et configurer la balle
 		var bullet = bullet_scene.instantiate() as Bullet
+		bullet.set_owner_player(weapon_owner)
 		bullet.global_position = barrel_position.global_position
 		bullet.set_damage(damage)  # Transmettre les dégâts de l'arme à la balle
 		bullet.set_lifetime(life_time)
@@ -63,11 +66,17 @@ func fire(direction: Vector2) -> void:
 
 
 func reload():
+	if number_bullets_in_magazine >= magazine_length:
+		return
+	is_reloading = true
 	reloading_timer.start()
 	weapon_owner.start_reloading()
 	animation_player.speed_scale = (1 / reloading_timer.wait_time) + 0.2
-	await animation_player.animation_finished
+	if animation_player.is_playing():
+		await animation_player.animation_finished
 	animation_player.play("reload")
+	await animation_player.animation_finished
+	is_reloading = false
 
 
 func on_equipped(new_owner: Player) -> void:

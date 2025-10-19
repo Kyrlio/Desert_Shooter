@@ -181,7 +181,6 @@ script = ExtResource("1_rkbax")
 aim_root = NodePath("Visuals/WeaponRoot")
 character_spritesheet = ExtResource("1_oul6g")
 available_skins = Array[ExtResource("3_5sj0x")]([ExtResource("4_xy2vv"), ExtResource("5_r4dfn"), ExtResource("6_70kwc"), ExtResource("7_yywfu")])
-current_skin_index = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -199,7 +198,7 @@ max_health = 10
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_70kwc")]
 position = Vector2(0, -6)
 collision_layer = 1
-collision_mask = 4
+collision_mask = 260
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

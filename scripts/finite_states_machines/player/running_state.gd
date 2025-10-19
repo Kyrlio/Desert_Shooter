@@ -6,12 +6,14 @@ func enter() -> void:
 
 
 func physics_update(_delta: float) -> void:
+	var movement_vector := player.get_movement_vector()
+	
 	# If not moving -> goto Idle
-	if is_equal_approx(player.movement_vector.length_squared(), 0):
+	if is_equal_approx(movement_vector.length_squared(), 0):
 		get_parent().change_state("IdleState")
 	
 	# Apply movement logic
-	var target_velocity = player.movement_vector * player.get_movement_speed()
+	var target_velocity := movement_vector * player.get_movement_speed()
 	player.velocity = player.velocity.lerp(target_velocity, 1 - exp(-25 * _delta))
 	
 	dash()
@@ -22,7 +24,7 @@ func exit() -> void:
 	player.animation_player.play("RESET")
 
 func dash():
-	if Input.is_action_just_pressed("player0_dash"):
+	if player.is_dash_pressed():
 		# ✅ Vérifier que le dash est disponible
 		if player.dash_reload_timer <= 0.0:
 			get_parent().change_state("DashingState")

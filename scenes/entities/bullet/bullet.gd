@@ -10,6 +10,7 @@ var direction: Vector2
 var damage_to_apply: int = 1  # Dégâts à appliquer (sera configuré avant _ready)
 var time_to_apply: float
 var speed_to_apply: int
+var owner_player_index: int = -1
 
 
 func _ready() -> void:
@@ -17,6 +18,7 @@ func _ready() -> void:
 	SPEED = speed_to_apply
 	# Appliquer les dégâts une fois que hitbox_component est initialisé
 	hitbox_component.damage = damage_to_apply
+	hitbox_component.owner_player_index = owner_player_index
 	hitbox_component.hit_hurtbox.connect(_on_hit_hurtbox)
 	life_timer.timeout.connect(_on_life_timer_timeout)
 
@@ -39,6 +41,15 @@ func set_lifetime(time: float):
 
 func set_speed(speed: int):
 	speed_to_apply = speed
+
+
+func set_owner_player(player: Player) -> void:
+	if player == null:
+		owner_player_index = -1
+	else:
+		owner_player_index = player.player_index
+	if is_inside_tree() and is_instance_valid(hitbox_component):
+		hitbox_component.owner_player_index = owner_player_index
 
 
 ## Configure les dégâts de la balle

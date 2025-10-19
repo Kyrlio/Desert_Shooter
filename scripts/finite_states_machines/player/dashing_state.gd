@@ -13,10 +13,12 @@ func enter() -> void:
 	player.dash_timer = DASH_TIME
 	
 	# Déterminer la direction du dash
-	dash_dir = player.movement_vector
+	var movement_vector := player.get_movement_vector()
+	dash_dir = movement_vector
 	if dash_dir.length_squared() == 0:
 		# Si pas de mouvement, dash dans la direction de visée
-		dash_dir = player.aim_vector
+		if player.input_controller:
+			dash_dir = player.input_controller.get_effective_aim(player.aim_root)
 	
 	# Appliquer la vitesse de dash
 	player.velocity = dash_dir * DASH_SPEED
@@ -34,7 +36,8 @@ func physics_update(delta: float) -> void:
 		player.move_and_slide()
 	else:
 		# Dash terminé, sortir
-		if player.movement_vector.length_squared() > 0:
+		var movement_vector := player.get_movement_vector()
+		if movement_vector.length_squared() > 0:
 			get_parent().change_state("RunningState")
 		else:
 			get_parent().change_state("IdleState")

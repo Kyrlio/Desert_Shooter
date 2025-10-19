@@ -84,6 +84,10 @@ func _on_area_entered(other_area: Area2D) -> void:
 
 
 func _handle_block_hit(hitbox: HitboxComponent) -> void:
+	if hitbox.owner_player_index != -1 and get_parent() is Player:
+		var shield_owner: Player = get_parent()
+		if shield_owner.player_index == hitbox.owner_player_index:
+			return
 	var parent := hitbox.get_parent()
 	if parent is Bullet:
 		parent.register_collision()

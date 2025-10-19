@@ -5,17 +5,19 @@ func enter() -> void:
 		player.animation_player.play("RESET")
 
 func physics_update(_delta: float) -> void:
+	var movement_vector := player.get_movement_vector()
+	
 	# If player moves
-	if player.movement_vector.length_squared() > 0.01:
+	if movement_vector.length_squared() > 0.01:
 		get_parent().change_state("RunningState")
 	
 	# ✅ Vérifier input de dash
-	if Input.is_action_just_pressed("player0_dash") and player.dash_reload_timer <= 0.0:
+	if player.is_dash_pressed() and player.dash_reload_timer <= 0.0:
 		get_parent().change_state("DashingState")
 		return
 	
 	# Deceleration
-	var target_velocity = player.movement_vector * player.get_movement_speed()
+	var target_velocity := movement_vector * player.get_movement_speed()
 	player.velocity = player.velocity.lerp(target_velocity, 1 - exp(-25 * _delta))
 	
 	player.move_and_slide()

@@ -22,6 +22,10 @@ func spawn_hit_particles():
 func _handle_hit(hitbox_component: HitboxComponent):
 	if hitbox_component.is_hit_handled:
 		return
+	if hitbox_component.owner_player_index != -1 and get_parent() is Player:
+		var owning_player: Player = get_parent()
+		if owning_player.player_index == hitbox_component.owner_player_index:
+			return
 	
 	hitbox_component.register_hurtbox_hit(self)
 	health_component.damage(hitbox_component.damage)

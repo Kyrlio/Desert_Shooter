@@ -6,6 +6,7 @@ signal hit_hurtbox(hurtbox_component: HurtboxComponent)
 
 var damage: int = 1
 var is_hit_handled: bool
+var owner_player_index: int = -1
 
 
 func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
