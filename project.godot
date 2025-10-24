@@ -34,6 +34,10 @@ folder_colors={
 "res://scripts/": "orange"
 }
 
+[global_group]
+
+obstacle=""
+
 [input]
 
 player0_move_left={
@@ -120,6 +124,7 @@ player0_reload={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_2="Environment"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_9="Bullet"
 

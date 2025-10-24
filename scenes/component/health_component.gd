@@ -16,12 +16,20 @@ func _ready() -> void:
 	current_health = max_health
 
 
+func spawn_death_particles():
+	var die_particles: Node2D = ground_particles_scene.instantiate()
+	die_particles.global_position = get_parent().global_position 
+	
+	var background_node: Node = Main.background_effects
+	if not is_instance_valid(background_node):
+		background_node = get_parent()
+	background_node.add_child(die_particles)
+
+
 func damage(amount: int):
 	# never go below 0 and never go abose max_health
 	current_health = clamp(current_health - amount, 0, max_health)
 	damaged.emit()
 	if current_health == 0:
-		var die_particles: Node2D = ground_particles_scene.instantiate()
-		die_particles.global_position = get_parent().global_position
-		get_parent().get_parent().add_child(die_particles)
+		spawn_death_particles()
 		died.emit()

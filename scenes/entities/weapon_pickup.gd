@@ -1,4 +1,3 @@
-@icon("res://assets/icons/icon_weapon.png")
 class_name WeaponPickup
 extends Area2D
 
@@ -8,6 +7,7 @@ extends Area2D
 @export var weapon_scene: PackedScene  # La scène de l'arme à donner
 @export var weapon_name: String = "Weapon"  # Nom affiché
 @export var auto_pickup: bool = true  # Ramassage automatique ou manuel ?
+@export var weapon_sprite: CompressedTexture2D
 
 @onready var sprite: Sprite2D = $Sprite2D  # Optionnel: sprite de l'arme au sol
 @onready var label: Label = $Label  # Optionnel: label avec le nom
@@ -18,6 +18,7 @@ var _player_nearby: Player = null
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	sprite.texture = weapon_sprite
 	
 	if label:
 		label.text = weapon_name
@@ -30,7 +31,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	print("yers")
 	if body is Player:
+		print("hello")
 		_player_nearby = body
 		
 		# Afficher une indication visuelle (optionnel)
@@ -43,6 +46,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
+	print("AAALLOOO")
 	if body is Player and body == _player_nearby:
 		_player_nearby = null
 		

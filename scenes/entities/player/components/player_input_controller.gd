@@ -26,6 +26,7 @@ var _mouse_hidden: bool = false
 
 func _ready() -> void:
 	is_using_mouse_for_aim = allow_mouse_aim
+	
 
 
 func gather_input() -> void:

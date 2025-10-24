@@ -1,11 +1,16 @@
 @icon("res://assets/icons/icon_map.png")
+class_name Main 
 extends Node2D
 
 const PLAYER_SCENE: PackedScene = preload("res://scenes/entities/player/player.tscn")
 
+static var background_effects: Node2D
+
 @onready var fps_label: Label = $CanvasLayer/Container/HBoxContainer/FpsLabel
 @onready var state_label: Label = $CanvasLayer/Container/HBoxContainer/StateLabel
-@onready var base_player: Player = $Player
+@onready var base_player: Player = $YSortRoot/Player
+@onready var _background_effects: Node2D = $BackgroundEffects
+
 
 var players: Array[Player] = []
 var device_to_player: Dictionary = {}
@@ -13,6 +18,8 @@ var base_player_device_id: int = -1
 
 
 func _ready() -> void:
+	background_effects = _background_effects
+	
 	players.append(base_player)
 	base_player.player_index = 0
 	_strip_gamepad_events_for_prefix(GameConfig.get_player_prefix(0))

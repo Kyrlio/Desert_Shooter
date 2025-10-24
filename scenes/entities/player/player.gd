@@ -41,6 +41,7 @@ func _ready() -> void:
 	_initialize_components()
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
+	
 
 
 func _initialize_components() -> void:

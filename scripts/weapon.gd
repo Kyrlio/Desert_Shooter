@@ -2,7 +2,10 @@
 class_name Weapon
 extends Node2D
 
+signal reloading
+
 @onready var reloading_timer: Timer = $ReloadingTimer
+@onready var label: Label = $CanvasLayer/Container/VBoxContainer/Label
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
@@ -31,11 +34,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	label.text = "AMMO : " + str(number_bullets_in_magazine)
+	
 	if _cooldown > 0.0:
 		_cooldown -= delta
 
+
 func can_fire() -> bool:
 	return _cooldown <= 0.0 and weapon_owner and (number_bullets_in_magazine > 0) and not is_reloading
+
 
 func fire(direction: Vector2) -> void:
 	if not can_fire():
@@ -72,6 +79,7 @@ func reload():
 	reloading_timer.start()
 	weapon_owner.start_reloading()
 	animation_player.speed_scale = (1 / reloading_timer.wait_time) + 0.2
+	reloading.emit()
 	if animation_player.is_playing():
 		await animation_player.animation_finished
 	animation_player.play("reload")
