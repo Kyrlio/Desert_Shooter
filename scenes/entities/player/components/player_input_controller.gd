@@ -114,11 +114,11 @@ func _check_skin_cycle() -> void:
 		skin_changed = true
 	
 	# Debug keyboard shortcuts retained for player 0 only
-	if not skin_changed and input_prefix == "player0_":
-		if Input.is_action_just_pressed("ui_up"):
-			skin_cycled.emit(1)
-		if Input.is_action_just_pressed("ui_down"):
-			skin_cycled.emit(-1)
+	#if not skin_changed and input_prefix == "player0_":
+		#if Input.is_action_just_pressed("ui_up"):
+			#skin_cycled.emit(1)
+		#if Input.is_action_just_pressed("ui_down"):
+			#skin_cycled.emit(-1)
 
 
 func handle_input_event(event: InputEvent, aim_root: Node2D) -> void:
