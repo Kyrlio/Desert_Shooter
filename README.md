@@ -94,11 +94,6 @@ Prérequis:
   - `center_offset` (optionnel): décalage local si pas de pivot
 - Méthode: `update_orientation(direction: Vector2)` — oriente et positionne le bouclier par rapport au centre, à utiliser depuis le joueur selon la direction visée.
 
----
-
-Si tu veux, je peux ajouter des captures d’écran (section "Aperçu") — place tes images dans `assets/ui/` ou `assets/` et je les référencerai dans le README.
-
-
 ## Assets
 
 Kenney's Desert Shooter Pack : https://kenney.nl/assets/desert-shooter-pack 
