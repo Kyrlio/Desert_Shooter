@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjpj7dqwqutxi"]
+
+[ext_resource type="Script" uid="uid://c1frjh23jb6h" path="res://autoload/cursor.gd" id="1_mp8dx"]
+[ext_resource type="Texture2D" uid="uid://cvpl0vkt81dco" path="res://assets/cursors/pointer_b.png" id="2_mp8dx"]
+
+[node name="Cursor" type="CanvasLayer"]
+layer = 1000
+script = ExtResource("1_mp8dx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mp8dx")
+centered = false
+offset = Vector2(-10, -8)

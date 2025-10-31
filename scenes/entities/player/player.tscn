@@ -1,6 +1,5 @@
 [gd_scene load_steps=26 format=3 uid="uid://diol0b6nt06in"]
 
-[ext_resource type="Texture2D" uid="uid://c0lga6sdmw24r" path="res://scenes/entities/player/tilemap.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://cx3yyfufq8rk8" path="res://scenes/entities/player/player_skin.gd" id="3_5sj0x"]
@@ -16,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="11_70kwc"]
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="11_yywfu"]
 [ext_resource type="PackedScene" uid="uid://ch7jqdfbu4el4" path="res://scenes/entities/shield/shield.tscn" id="12_knby6"]
-[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
+[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/shaders/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
+[ext_resource type="Texture2D" uid="uid://d03ubl7xpaihe" path="res://scenes/entities/player/tilemaptest.png" id="15_knby6"]
 [ext_resource type="Texture2D" uid="uid://bw1e2f5e8uyh8" path="res://assets/icons/tile_0676.png" id="18_w3p2j"]
 
 [sub_resource type="Animation" id="Animation_rkbax"]
@@ -79,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 1]
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -113,12 +113,11 @@ shader = ExtResource("12_w3p2j")
 shader_parameter/percent = 0.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("aim_root")]
-collision_layer = 0
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_rkbax")
 aim_root = NodePath("Visuals/WeaponRoot")
-character_spritesheet = ExtResource("1_oul6g")
+character_spritesheet = ExtResource("15_knby6")
 available_skins = Array[ExtResource("3_5sj0x")]([ExtResource("4_xy2vv"), ExtResource("5_r4dfn"), ExtResource("6_70kwc"), ExtResource("7_yywfu")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -132,7 +131,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_r4dfn")]
-max_health = 10
+max_health = 50
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_70kwc")]
 position = Vector2(0, -6)
@@ -150,6 +149,7 @@ shape = SubResource("CircleShape2D_oul6g")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.54901963)
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_g1dw6")
 
 [node name="ReloadSprite" type="Sprite2D" parent="."]
@@ -161,13 +161,18 @@ texture = ExtResource("18_w3p2j")
 [node name="Shield" parent="." instance=ExtResource("12_knby6")]
 arc_radius = 25.0
 offset_distance = 0.24
+center_marker_path = NodePath("../Visuals/CenterPivot")
 
 [node name="Visuals" type="Node2D" parent="."]
 
+[node name="CenterPivot" type="Marker2D" parent="Visuals"]
+position = Vector2(0, -6)
+gizmo_extents = 5.0
+
 [node name="HitFlashSpriteComponent" parent="Visuals" node_paths=PackedStringArray("health_component") instance=ExtResource("11_yywfu")]
 material = SubResource("ShaderMaterial_18p7g")
-texture = ExtResource("1_oul6g")
-offset = Vector2(0, -12)
+texture = ExtResource("15_knby6")
+offset = Vector2(1, -11)
 hframes = 4
 vframes = 4
 health_component = NodePath("../../HealthComponent")
@@ -176,7 +181,7 @@ health_component = NodePath("../../HealthComponent")
 position = Vector2(0, -2)
 
 [node name="WeaponAnimationRoot" type="Node2D" parent="Visuals/WeaponRoot"]
-position = Vector2(3, 0)
+position = Vector2(3, -2)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_nh4ur")

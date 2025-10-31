@@ -4,6 +4,9 @@ extends Area2D
 
 signal hit_hurtbox(hurtbox_component: HurtboxComponent)
 
+const ENVIRONMENT_IMPACT_PARTICLES = preload("uid://dtm267ungrnsi")
+
+
 var damage: int = 1
 var is_hit_handled: bool
 var owner_player_index: int = -1
@@ -19,5 +22,9 @@ func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
 
 func _on_body_entered(body: Node2D):
 	if body.is_in_group("obstacle"):
-		# TODO play environment hit particles
+		var hit_particles: Node2D = ENVIRONMENT_IMPACT_PARTICLES.instantiate()
+		hit_particles.global_position = self.global_position
+		get_parent().get_parent().add_child(hit_particles)
+		hit_particles.z_index = 1
 		get_parent().queue_free.call_deferred()
+	

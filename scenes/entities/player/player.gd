@@ -41,7 +41,6 @@ func _ready() -> void:
 	_initialize_components()
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
-	
 
 
 func _initialize_components() -> void:
@@ -63,6 +62,7 @@ func _initialize_components() -> void:
 	# Skin Manager
 	skin_manager = PlayerSkinManager.new()
 	skin_manager.sprite = character_sprite
+	print(character_sprite)
 	skin_manager.spritesheet = character_spritesheet
 	skin_manager.available_skins = available_skins
 	add_child(skin_manager)
@@ -204,3 +204,5 @@ func _on_died() -> void:
 	print("Player %d died" % player_index)
 	if shield:
 		shield.deactivate()
+	
+	queue_free.call_deferred()

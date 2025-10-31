@@ -7,7 +7,7 @@ signal damaged
 
 var ground_particles_scene: PackedScene = preload("uid://d4fjkvjerbdpm")
 
-@export var max_health: int = 1
+@export var max_health: int = 10
 
 var current_health: int
 

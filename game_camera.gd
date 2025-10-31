@@ -19,7 +19,7 @@ var current_shake_percentage: float
 func _ready() -> void:
 	instance = self
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if current_shake_percentage == 0:
 		return
 	

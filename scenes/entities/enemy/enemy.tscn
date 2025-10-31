@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://k3qunapgqxkp" path="res://scenes/component/hurtbox_component.tscn" id="3_in88q"]
 [ext_resource type="PackedScene" uid="uid://bq80bnwyxew5c" path="res://scenes/component/hitbox_component.tscn" id="5_dxsuy"]
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="6_0wdte"]
-[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/hit_flash_sprite_component.gdshader" id="6_7gxlw"]
+[ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/shaders/hit_flash_sprite_component.gdshader" id="6_7gxlw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxsuy"]
 size = Vector2(16, 19)

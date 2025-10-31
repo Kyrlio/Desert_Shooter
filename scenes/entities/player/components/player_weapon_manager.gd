@@ -30,6 +30,21 @@ func equip_weapon(weapon_instance: Weapon) -> void:
 	weapon_animation_root.add_child(current_weapon)
 	current_weapon.on_equipped(weapon_owner)
 	weapon_changed.emit(current_weapon)
+	
+	# WEAPON CURSOR
+	match current_weapon.display_name:
+		"Rifle": 
+			var cursor := load("uid://k77h833x77v0")
+			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
+		"Uzi":
+			var cursor := load("uid://c3cps5gb0s6r5")
+			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
+		"Shotgun":
+			var cursor := load("uid://bcyt0d2u7ni4j")
+			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
+		"Sniper":
+			var cursor := load("uid://l5xfn518qxye")
+			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
 
 
 func unequip_weapon() -> void:
@@ -74,7 +89,7 @@ func try_fire(aim_vector: Vector2, can_fire: bool) -> void:
 func process_weapon(delta: float) -> void:
 	if current_weapon == null:
 		return
-	current_weapon._process(delta)
+	current_weapon._physics_process(delta)
 
 
 func get_fire_rate() -> float:

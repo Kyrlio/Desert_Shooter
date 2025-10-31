@@ -33,7 +33,7 @@ func _ready() -> void:
 	reloading_timer.timeout.connect(_on_reloading_timer_timeout)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	label.text = "AMMO : " + str(number_bullets_in_magazine)
 	
 	if _cooldown > 0.0:

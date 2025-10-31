@@ -14,11 +14,14 @@ signal shield_ready
 @export_range(6, 32, 1) var arc_segments: int = 16
 @export_range(0.0, 5.0, 0.1) var recharge_delay: float = 1.0
 @export_range(0.1, 10.0, 0.1) var recharge_rate: float = 1.0
+@export_node_path("Node2D") var center_marker_path: NodePath
+@export var center_offset: Vector2 = Vector2.ZERO
 
 @onready var shield_area: Area2D = $ShieldArea
 @onready var collision_polygon: CollisionPolygon2D = $"ShieldArea/CollisionPolygon2D"
 @onready var shield_arc: Line2D = $ShieldArc
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var center_marker: Node2D = get_node_or_null(center_marker_path) as Node2D
 
 var remaining_hits: float
 var _is_active: bool = false
@@ -73,7 +76,16 @@ func update_orientation(direction: Vector2) -> void:
 	if direction.length_squared() < 0.0001:
 		return
 	rotation = direction.angle()
-	position = direction.normalized() * offset_distance
+	var base_global := Vector2.ZERO
+	if is_instance_valid(center_marker):
+		base_global = center_marker.global_position
+	else:
+		var parent2d := get_parent() as Node2D
+		if parent2d:
+			base_global = parent2d.to_global(center_offset)
+		else:
+			base_global = global_position
+	global_position = base_global + direction.normalized() * offset_distance
 
 
 func _on_area_entered(other_area: Area2D) -> void:
@@ -119,7 +131,7 @@ func _on_cooldown_finished() -> void:
 	shield_ready.emit()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if _in_cooldown:
 		return
 	if _regen_cooldown > 0.0:
