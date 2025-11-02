@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://542ov0s7gl6y"]
+[gd_scene load_steps=9 format=3 uid="uid://542ov0s7gl6y"]
 
+[ext_resource type="Script" uid="uid://dhhh8ybx1ttcw" path="res://scenes/menu_scene/main_menu.gd" id="1_1ysjf"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="1_fbj1f"]
+[ext_resource type="Script" uid="uid://bqtisf0gn5jyq" path="res://scenes/menu_scene/menu_input_manager.gd" id="1_xqrp2"]
+[ext_resource type="Script" uid="uid://c0tag3crunvtu" path="res://resources/menu_config.gd" id="2_1ysjf"]
+[ext_resource type="Texture2D" uid="uid://ba4vy0rfrn6ag" path="res://scenes/entities/player/test.png" id="5_swh3s"]
+
+[sub_resource type="Resource" id="Resource_swh3s"]
+script = ExtResource("2_1ysjf")
+menu_parent = NodePath("../MainVBoxContainer")
+default_button = NodePath("../MainVBoxContainer/SingleplayerButton")
+button_parents = Array[NodePath]([NodePath("../MainVBoxContainer")])
+metadata/_custom_type_script = "uid://c0tag3crunvtu"
+
+[sub_resource type="Resource" id="Resource_vylqo"]
+script = ExtResource("2_1ysjf")
+menu_parent = NodePath("../MultiplayerContainer")
+default_button = NodePath("../MultiplayerContainer/VBoxContainer/MultiplayerBackButton")
+button_parents = Array[NodePath]([NodePath("../MultiplayerContainer/VBoxContainer"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"), NodePath("../MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer")])
+metadata/_custom_type_script = "uid://c0tag3crunvtu"
+
+[sub_resource type="Resource" id="Resource_1v0a0"]
+script = ExtResource("2_1ysjf")
+menu_parent = NodePath("../OptionsVBoxContainer")
+default_button = NodePath("../OptionsVBoxContainer/OptionBack")
+button_parents = Array[NodePath]([NodePath("../OptionsVBoxContainer")])
+metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -8,28 +33,260 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_1ysjf")
+
+[node name="MenuInputManager" type="Node" parent="."]
+script = ExtResource("1_xqrp2")
+base_menu = SubResource("Resource_swh3s")
+popup_menus = Array[ExtResource("2_1ysjf")]([SubResource("Resource_vylqo"), SubResource("Resource_1v0a0")])
+metadata/_custom_type_script = "uid://bqtisf0gn5jyq"
 
 [node name="Background" parent="." instance=ExtResource("1_fbj1f")]
 position = Vector2(458, 311)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(240, 0)
+[node name="MainVBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="SingleplayerButton" type="Button" parent="VBoxContainer"]
+[node name="SingleplayerButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../MultiplayerButton")
 text = "SINGLEPLAYER"
 
-[node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
+[node name="MultiplayerButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SingleplayerButton")
 text = "MULTIPLAYER"
 
-[node name="OptionButton" type="Button" parent="VBoxContainer"]
+[node name="OptionButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
 text = "OPTIONS"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="MultiplayerContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="MultiplayerContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Les boutons PREV NEXT et READY fonctionnent pas cheh"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="MultiplayerBackButton" type="Button" parent="MultiplayerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "BACK"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(225, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+position = Vector2(0, -80)
+scale = Vector2(10, 10)
+texture = ExtResource("5_swh3s")
+offset = Vector2(11, 20)
+hframes = 4
+vframes = 4
+region_rect = Rect2(0, 28, 22, 20)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PREV"
+
+[node name="NextButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NEXT"
+
+[node name="ReadyButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "READY"
+
+[node name="Label" type="Label" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player 1"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(224, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PanelContainer"]
+position = Vector2(0, -80)
+scale = Vector2(10, 10)
+texture = ExtResource("5_swh3s")
+offset = Vector2(11, 20)
+hframes = 4
+vframes = 4
+frame = 4
+region_rect = Rect2(0, 28, 22, 20)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PREV"
+
+[node name="NextButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NEXT"
+
+[node name="ReadyButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "READY"
+
+[node name="Label" type="Label" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Player 2"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(224, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PanelContainer"]
+position = Vector2(0, -80)
+scale = Vector2(10, 10)
+texture = ExtResource("5_swh3s")
+offset = Vector2(11, 20)
+hframes = 4
+vframes = 4
+frame = 8
+region_rect = Rect2(0, 28, 22, 20)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PREV"
+
+[node name="NextButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NEXT"
+
+[node name="ReadyButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "READY"
+
+[node name="Label" type="Label" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Player 3"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(224, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4/PanelContainer"]
+position = Vector2(0, -80)
+scale = Vector2(10, 10)
+texture = ExtResource("5_swh3s")
+offset = Vector2(11, 20)
+hframes = 4
+vframes = 4
+frame = 12
+region_rect = Rect2(0, 28, 22, 20)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PREV"
+
+[node name="NextButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NEXT"
+
+[node name="ReadyButton" type="Button" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "READY"
+
+[node name="Label" type="Label" parent="MultiplayerContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Player 4"
+horizontal_alignment = 1
+
+[node name="MultiplayerPlayButton" type="Button" parent="MultiplayerContainer/VBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "PLAY"
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OptionBack" type="Button" parent="OptionsVBoxContainer"]
+layout_mode = 2
+text = "BACK"
+
+[node name="Button2" type="Button" parent="OptionsVBoxContainer"]
+layout_mode = 2
+text = "PROUT"
+
+[connection signal="pressed" from="MainVBoxContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/OptionButton" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerBackButton" to="." method="_on_multiplayer_back_button_pressed"]
+[connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerPlayButton" to="." method="_on_singleplayer_button_pressed"]
+[connection signal="pressed" from="OptionsVBoxContainer/OptionBack" to="." method="_on_option_back_pressed"]

@@ -1,7 +1,7 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dkhrnbg06cxqy"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dkhrnbg06cxqy"]
 
-[ext_resource type="Texture2D" uid="uid://4dod21ugqnvl" path="res://assets/ui/buttons.png" id="1_7ct1h"]
 [ext_resource type="FontFile" uid="uid://dkqrdhqr02vr8" path="res://resources/font/KarenFat.ttf" id="1_d4nwg"]
+[ext_resource type="Texture2D" uid="uid://jxtg8iy5yi0k" path="res://assets/Interface/Tilemap/tilemap_packed.png" id="1_owntx"]
 [ext_resource type="Texture2D" uid="uid://cso3mmw8k2dpu" path="res://assets/ui/panel.png" id="2_886mr"]
 [ext_resource type="Texture2D" uid="uid://cstl1g50rngv8" path="res://assets/ui/progress_bar_outline.png" id="3_owntx"]
 [ext_resource type="Texture2D" uid="uid://cg7b4yf6qc221" path="res://assets/ui/progress_bar_fill.png" id="4_aaf3v"]
@@ -17,32 +17,21 @@ texture_margin_right = 4.0
 texture_margin_bottom = 6.0
 region_rect = Rect2(48, 2, 16, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ct1h"]
-load_path = "res://.godot/imported/buttons.png-12fe8cd646fbf8701fc35ae7af4f992b.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_udp68"]
-texture = SubResource("CompressedTexture2D_7ct1h")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-region_rect = Rect2(16, 2, 16, 16)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b751m"]
-texture = SubResource("CompressedTexture2D_7ct1h")
+texture = ExtResource("1_owntx")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-region_rect = Rect2(16, 2, 16, 16)
+texture_margin_bottom = 4.0
+region_rect = Rect2(112, 48, 48, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_886mr"]
-texture = ExtResource("1_7ct1h")
-texture_margin_left = 4.0
+texture = ExtResource("1_owntx")
+texture_margin_left = 5.0
 texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-region_rect = Rect2(0, 2, 16, 16)
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(176, 48, 48, 16)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owntx"]
 load_path = "res://.godot/imported/buttons.png-12fe8cd646fbf8701fc35ae7af4f992b.ctex"
@@ -80,12 +69,12 @@ modulate_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
 [resource]
 default_font = ExtResource("1_d4nwg")
 default_font_size = 32
-Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_color = Color(0.28235295, 0.2, 0.29803923, 1)
 Button/colors/font_disabled_color = Color(1, 1, 1, 1)
-Button/colors/font_focus_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
-Button/colors/font_hover_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/styles/disabled = SubResource("StyleBoxTexture_owntx")
-Button/styles/focus = SubResource("StyleBoxTexture_udp68")
+Button/styles/focus = SubResource("StyleBoxTexture_b751m")
 Button/styles/hover = SubResource("StyleBoxTexture_b751m")
 Button/styles/normal = SubResource("StyleBoxTexture_886mr")
 Button/styles/pressed = SubResource("StyleBoxTexture_aaf3v")

@@ -35,10 +35,12 @@ var rifle_scene: PackedScene = preload("uid://bnnmu2ycsi5pd")
 var uzi_scene: PackedScene = preload("uid://c55fbudaqm7bl")
 var shotgun_scene: PackedScene = preload("uid://r4fu7s6dkih4")
 var sniper_scene: PackedScene = preload("uid://did8iv6uy01c")
+var corpse_scene: PackedScene = preload("uid://bm5ha6ujfnjyi")
 
 
 func _ready() -> void:
 	_initialize_components()
+	add_to_group("player")
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
 
@@ -204,5 +206,17 @@ func _on_died() -> void:
 	print("Player %d died" % player_index)
 	if shield:
 		shield.deactivate()
+	# Spawn corpse at current position and keep some momentum
+	var corpse := corpse_scene.instantiate()
+	if corpse:
+		corpse.sprite = $Visuals/HitFlashSpriteComponent.texture
+		if corpse is RigidBody2D:
+			(corpse as RigidBody2D).global_position = global_position
+			(corpse as RigidBody2D).linear_velocity = velocity
+		else:
+			(corpse as Node2D).global_position = global_position
+		var target_parent: Node = Main.corpse_layer if Main.corpse_layer else get_parent()
+		if target_parent:
+			target_parent.add_child(corpse)
 	
 	queue_free.call_deferred()

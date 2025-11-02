@@ -23,6 +23,7 @@ func physics_update(_delta: float) -> void:
 func exit() -> void:
 	player.animation_player.play("RESET")
 
+
 func dash():
 	if player.is_dash_pressed():
 		# ✅ Vérifier que le dash est disponible

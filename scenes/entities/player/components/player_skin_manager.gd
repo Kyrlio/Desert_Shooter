@@ -43,7 +43,6 @@ func apply_skin(skin_index: int) -> void:
 	# Appliquer au sprite
 	sprite.texture = atlas
 	
-	print("✅ Skin applied: %s (ID: %d)" % [skin.skin_name, skin.skin_id])
 	skin_changed.emit(skin)
 
 

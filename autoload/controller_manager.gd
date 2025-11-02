@@ -4,6 +4,7 @@ const PLAYER_SCENE: PackedScene = preload("res://scenes/entities/player/player.t
 
 var players: Array[Player] = []
 var device_to_player_index: Dictionary = {}
+var device_to_last_player_index: Dictionary = {}
 var player_nodes: Dictionary = {}
 var base_player_device_id: int = -1
 
@@ -80,13 +81,24 @@ func _refresh_spawned_players() -> void:
 func _register_device(device_id: int) -> void:
 	if device_to_player_index.has(device_id):
 		return
-	if base_player_device_id == -1:
+	# Try to restore this device to the last player index it controlled, if still free
+	var preferred_index: int = -1
+	if device_to_last_player_index.has(device_id):
+		preferred_index = int(device_to_last_player_index[device_id])
+		# Check if this index is currently assigned to another device
+		for existing_device in device_to_player_index.keys():
+			if int(device_to_player_index[existing_device]) == preferred_index:
+				preferred_index = -1
+				break
+	# Handle base player first-time (or re-)assignment
+	if base_player_device_id == -1 and (preferred_index == -1 or preferred_index == 0):
 		base_player_device_id = device_id
 		device_to_player_index[device_id] = 0
 		_configure_actions_for_player(0, device_id)
 		_spawn_player_if_ready(0)
 		return
-	var player_index := _get_available_player_index()
+
+	var player_index := preferred_index if preferred_index != -1 else _get_available_player_index()
 	if player_index == -1:
 		return
 	device_to_player_index[device_id] = player_index
@@ -98,14 +110,13 @@ func _unregister_device(device_id: int) -> void:
 	if not device_to_player_index.has(device_id):
 		return
 	var player_index := int(device_to_player_index[device_id])
+	# Remember where this device was mapped so we can restore on reconnect
+	device_to_last_player_index[device_id] = player_index
 	device_to_player_index.erase(device_id)
-	if player_index == 0:
-		_remove_device_bindings_for_player(0, device_id)
-		if device_id == base_player_device_id:
-			base_player_device_id = -1
-		return
-	_clear_actions_for_player(player_index)
-	_teardown_player_node(player_index)
+	# Remove only this device's bindings for the player's actions; keep the player node alive
+	_remove_device_bindings_for_player(player_index, device_id)
+	if player_index == 0 and device_id == base_player_device_id:
+		base_player_device_id = -1
 
 
 func _spawn_player_if_ready(player_index: int) -> void:

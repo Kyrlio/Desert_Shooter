@@ -15,3 +15,10 @@ func change_cursor(sprite: CompressedTexture2D, cursor_scale := Vector2.ONE, cur
 	sprite_2d.texture = sprite
 	sprite_2d.scale = cursor_scale
 	sprite_2d.offset = cursor_pos
+
+func show_cursor(visibility: bool):
+	sprite_2d.visible = visibility
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+func get_actual_cursor() -> CompressedTexture2D:
+	return sprite_2d.texture

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm5ha6ujfnjyi"]
+
+[ext_resource type="Script" uid="uid://dvn0j1w14cqev" path="res://scenes/entities/corpse/corpse.gd" id="1_w00rx"]
+[ext_resource type="Texture2D" uid="uid://ba4vy0rfrn6ag" path="res://scenes/entities/player/test.png" id="2_o4lux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w00rx"]
+radius = 5.0
+
+[node name="Corpse" type="RigidBody2D"]
+collision_mask = 263
+gravity_scale = 0.0
+linear_damp = 2.0
+angular_damp = 2.5
+script = ExtResource("1_w00rx")
+push_impulse = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o4lux")
+centered = false
+offset = Vector2(-12, -14)
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w00rx")

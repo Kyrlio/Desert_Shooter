@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e1f18b3rav15"]
+
+[ext_resource type="Script" uid="uid://bqtisf0gn5jyq" path="res://scenes/menu_scene/menu_input_manager.gd" id="1_ohfw6"]
+
+[node name="MenuInputManager" type="Node"]
+script = ExtResource("1_ohfw6")
