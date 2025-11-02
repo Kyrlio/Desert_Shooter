@@ -12,7 +12,7 @@ gravity_scale = 0.0
 linear_damp = 2.0
 angular_damp = 2.5
 script = ExtResource("1_w00rx")
-push_impulse = 50.0
+push_impulse = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o4lux")

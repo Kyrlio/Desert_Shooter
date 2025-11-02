@@ -15,6 +15,7 @@ signal reloading
 @export_range(0.0, 45.0, 0.1, "degrees") var spread: float = 0.0  ## Dispersion des balles en degrés (0 = précis, 45 = très dispersé)
 @export var number_bullets: int = 1
 @export var magazine_length: int = 10
+@export var number_total_ammo: int = 20
 @export var use_normal_distribution: bool = false  ## Si true, utilise une distribution normale (gaussienne) pour le spread - Recommandé pour shotgun
 @export var barrel_position: Node2D
 @export var animation_player: AnimationPlayer
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	label.text = "AMMO : " + str(number_bullets_in_magazine)
+	
+	print(number_total_ammo)
 	
 	if _cooldown > 0.0:
 		_cooldown -= delta
@@ -153,5 +156,11 @@ func _play_fire_effects() -> void:
 
 func _on_reloading_timer_timeout():
 	weapon_owner.finished_reloading()
-	number_bullets_in_magazine = magazine_length
+	if number_total_ammo >= magazine_length:
+		number_total_ammo += number_bullets_in_magazine
+		number_bullets_in_magazine = magazine_length
+		number_total_ammo -= magazine_length
+	else:
+		number_bullets_in_magazine = number_total_ammo
+		number_total_ammo = 0
 	animation_player.speed_scale = 1

@@ -11,6 +11,7 @@ var base_player_device_id: int = -1
 var base_player: Player
 var player_parent: Node
 
+
 func _ready() -> void:
 	if not Input.joy_connection_changed.is_connected(_on_joy_connection_changed):
 		Input.joy_connection_changed.connect(_on_joy_connection_changed)

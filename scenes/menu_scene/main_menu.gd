@@ -6,10 +6,13 @@ const MAIN_LEVEL: String = "uid://bjm5f088lj3hb"
 @onready var main_menu_container: VBoxContainer = $MainVBoxContainer
 @onready var multiplayer_container: MarginContainer = $MultiplayerContainer
 @onready var player_slots_row: HBoxContainer = $MultiplayerContainer/VBoxContainer/HBoxContainer
+@onready var options_container: VBoxContainer = $OptionsVBoxContainer
 var player_slot_nodes: Array[Control] = []
 
 func _ready() -> void:
 	Cursor.change_cursor(load("uid://cvpl0vkt81dco"))
+	
+	_initialize_options()
 	
 	menu_input_manager.closing_menu.connect(_on_menu_closed)
 	multiplayer_container.visible = false
@@ -21,6 +24,11 @@ func _ready() -> void:
 	# React to gamepad hotplug
 	if not Input.joy_connection_changed.is_connected(_on_joy_connection_changed):
 		Input.joy_connection_changed.connect(_on_joy_connection_changed)
+
+
+func _initialize_options():
+	options_container.modulate = Color(1, 1, 1, 0)
+	$OptionsVBoxContainer/CheckButton.button_pressed = GameManager.show_fps
 
 
 func _on_singleplayer_button_pressed() -> void:
@@ -70,3 +78,8 @@ func _on_option_back_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	GameManager.show_fps = toggled_on
+	print(GameManager.show_fps)

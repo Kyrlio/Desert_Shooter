@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var push_impulse: float = 200.0
+@export var push_impulse: float = 50
 @export var use_player_velocity: bool = true
 @export var sprite: AtlasTexture
 
@@ -8,7 +8,6 @@ extends RigidBody2D
 
 func _ready() -> void:
 	if sprite != null:
-		print("yo")
 		sprite_2d.texture = sprite
 	contact_monitor = true
 	max_contacts_reported = 4

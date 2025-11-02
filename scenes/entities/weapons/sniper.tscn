@@ -126,6 +126,7 @@ life_time = 4.0
 fire_rate = 2.0
 bullet_speed = 700
 magazine_length = 3
+number_total_ammo = 3
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 

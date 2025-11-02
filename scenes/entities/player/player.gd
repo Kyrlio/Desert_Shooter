@@ -37,6 +37,8 @@ var shotgun_scene: PackedScene = preload("uid://r4fu7s6dkih4")
 var sniper_scene: PackedScene = preload("uid://did8iv6uy01c")
 var corpse_scene: PackedScene = preload("uid://bm5ha6ujfnjyi")
 
+var is_dead: bool = false
+
 
 func _ready() -> void:
 	_initialize_components()
@@ -204,6 +206,10 @@ func is_dash_pressed() -> bool:
 
 func _on_died() -> void:
 	print("Player %d died" % player_index)
+	if is_dead:
+		return
+	
+	is_dead = true
 	if shield:
 		shield.deactivate()
 	# Spawn corpse at current position and keep some momentum
