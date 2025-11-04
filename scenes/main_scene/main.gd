@@ -10,7 +10,7 @@ static var corpse_layer: Node2D
 @onready var base_player: Player = $YSortRoot/Player
 @onready var _background_effects: Node2D = $BackgroundEffects
 @onready var _corpse_layer: Node2D = $CorpseLayer
-@onready var player_spawners: Node2D = $PlayerSpawners
+@onready var player_spawn_manager: Node2D = $PlayerSpawnManager
 
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _ready() -> void:
 	var YSortRoot: Node2D = base_player.get_parent()
 	if YSortRoot:
 		ControllerManager.setup_scene(base_player, YSortRoot)
-	_spawn_players_on_markers()
+	player_spawn_manager.spawn_players()
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,24 +43,3 @@ func show_fps():
 
 func _exit_tree() -> void:
 	ControllerManager.teardown_scene()
-
-
-func _spawn_players_on_markers():
-	if not is_instance_valid(player_spawners):
-		return
-	
-	var positions: Array[Vector2] = []
-	for marker in player_spawners.get_children():
-		if marker is Marker2D:
-			positions.append(marker.global_position)
-	
-	if positions.is_empty():
-		return
-	
-	positions.shuffle()
-	for player in ControllerManager.get_players():
-		if not is_instance_valid(player):
-			continue
-		var idx := player.player_index % positions.size()
-		player.global_position = positions[idx]
-	

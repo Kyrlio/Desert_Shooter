@@ -3,6 +3,7 @@ class_name RunningState extends State
 func enter() -> void:
 	if player.has_node("AnimationPlayer"):
 		player.animation_player.play("run")
+	player.run_particles.emitting = true
 
 
 func physics_update(_delta: float) -> void:

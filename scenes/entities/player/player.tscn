@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=31 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://co4v0dqhcd5wg" path="res://scenes/component/hit_flash_sprite_component.tscn" id="11_yywfu"]
 [ext_resource type="PackedScene" uid="uid://ch7jqdfbu4el4" path="res://scenes/entities/shield/shield.tscn" id="12_knby6"]
 [ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/shaders/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
+[ext_resource type="Texture2D" uid="uid://dad6g46qeqe64" path="res://assets/particles/particles.png" id="13_knby6"]
 [ext_resource type="Texture2D" uid="uid://bw1e2f5e8uyh8" path="res://assets/icons/tile_0676.png" id="18_w3p2j"]
 
 [sub_resource type="Animation" id="Animation_rkbax"]
@@ -106,6 +107,35 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
 radius = 4.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18p7g"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fg2wu"]
+_data = [Vector2(0.010489516, 0.97202295), 0.0, -2.8894067, 0, 0, Vector2(1, 0), 0.045591816, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7dqom"]
+curve = SubResource("Curve_fg2wu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_go8vc"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+alpha_curve = SubResource("CurveTexture_7dqom")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_18p7g"]
 resource_local_to_scene = true
 shader = ExtResource("12_w3p2j")
@@ -163,6 +193,15 @@ offset_distance = 0.24
 center_marker_path = NodePath("../Visuals/CenterPivot")
 
 [node name="Visuals" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Visuals"]
+material = SubResource("CanvasItemMaterial_18p7g")
+texture = ExtResource("13_knby6")
+preprocess = 0.41
+randomness = 0.98
+fixed_fps = 0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_go8vc")
 
 [node name="CenterPivot" type="Marker2D" parent="Visuals"]
 position = Vector2(0, -6)

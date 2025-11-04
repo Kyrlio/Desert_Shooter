@@ -1,10 +1,11 @@
-class_name WeaponSpawnManager
+@icon("res://assets/icons/icon_destroyable.png")
+class_name ObjectSpawnManager
 extends Node2D
 
-@export var weapon_pickup_scene: PackedScene = preload("uid://cnf41vieqjkp5")
+@export var object_pickup_scene: PackedScene
 
 # Armes possibles et sprites correspondants (même index)
-@export var available_weapons: Array[PackedScene] = []
+@export var available_objects: Array[PackedScene] = []
 @export var available_sprites: Array[Texture2D] = []
 
 # Où parent-er les pickups (laisser vide = ce nœud). 
@@ -53,7 +54,7 @@ func _schedule_next_spawn(marker: Marker2D) -> void:
 
 
 func _spawn_on_marker(marker: Marker2D) -> void:
-	if not weapon_pickup_scene:
+	if not object_pickup_scene:
 		return
 	
 	# Un seul pickup par marker
@@ -61,14 +62,14 @@ func _spawn_on_marker(marker: Marker2D) -> void:
 		return
 	
 	# Choix de l'arme
-	if available_weapons.is_empty():
+	if available_objects.is_empty():
 		return
-	var idx := randi() % available_weapons.size()
+	var idx := randi() % available_objects.size()
 	
-	var pickup := weapon_pickup_scene.instantiate()
+	var pickup := object_pickup_scene.instantiate()
 	
 	if pickup is WeaponPickup:
-		pickup.weapon_scene = available_weapons[idx]
+		pickup.weapon_scene = available_objects[idx]
 		if idx < available_sprites.size():
 			pickup.weapon_sprite = available_sprites[idx]
 		pickup.auto_pickup = auto_pickup

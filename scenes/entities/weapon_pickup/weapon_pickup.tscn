@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cnf41vieqjkp5"]
 
-[ext_resource type="Script" uid="uid://3o37vastatsr" path="res://scenes/entities/weapon_pickup.gd" id="1_weapon_pickup"]
-[ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_by1ob"]
-[ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="3_46u1s"]
+[ext_resource type="Script" uid="uid://3o37vastatsr" path="res://scenes/entities/weapon_pickup/weapon_pickup.gd" id="1_t8w0i"]
+[ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_767qy"]
+[ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="3_rv6jk"]
 
 [sub_resource type="Animation" id="Animation_46u1s"]
 length = 0.001
@@ -196,7 +196,7 @@ radius = 8.0
 
 [node name="WeaponPickup" type="Area2D"]
 collision_layer = 2
-script = ExtResource("1_weapon_pickup")
+script = ExtResource("1_t8w0i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -210,7 +210,7 @@ shape = SubResource("CircleShape2D_t4hff")
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.42745098)
 position = Vector2(0, 8)
-texture = ExtResource("2_by1ob")
+texture = ExtResource("2_767qy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_46u1s")
+texture = ExtResource("3_rv6jk")

@@ -92,6 +92,10 @@ func process_weapon(delta: float) -> void:
 	current_weapon._physics_process(delta)
 
 
+func add_ammo(qte: int):
+	current_weapon.add_ammo(qte)
+
+
 func get_fire_rate() -> float:
 	if current_weapon == null:
 		return 0.0

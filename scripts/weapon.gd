@@ -6,6 +6,7 @@ signal reloading
 
 @onready var reloading_timer: Timer = $ReloadingTimer
 @onready var label: Label = $CanvasLayer/Container/VBoxContainer/Label
+@onready var label_2: Label = $CanvasLayer/Container/VBoxContainer/Label2
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
@@ -36,11 +37,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	label.text = "AMMO : " + str(number_bullets_in_magazine)
-	
-	print(number_total_ammo)
+	label_2.text = "TOTAL : " + str(number_total_ammo)
 	
 	if _cooldown > 0.0:
 		_cooldown -= delta
+
+
+func add_ammo(qte: int):
+	number_total_ammo += qte
 
 
 func can_fire() -> bool:

@@ -25,6 +25,7 @@ var weapon_manager: PlayerWeaponManager
 @onready var character_sprite: Sprite2D = $Visuals/HitFlashSpriteComponent
 @onready var reload_sprite: Sprite2D = $ReloadSprite
 @onready var shield := $Shield
+@onready var run_particles: GPUParticles2D = $Visuals/GPUParticles2D
 
 # DASH
 var dash_timer: float = 0.0
@@ -66,7 +67,6 @@ func _initialize_components() -> void:
 	# Skin Manager
 	skin_manager = PlayerSkinManager.new()
 	skin_manager.sprite = character_sprite
-	print(character_sprite)
 	skin_manager.spritesheet = character_spritesheet
 	skin_manager.available_skins = available_skins
 	add_child(skin_manager)
@@ -85,6 +85,14 @@ func _physics_process(delta: float) -> void:
 	_update_aim_and_visuals()
 	_update_shield()
 	_update_dash_cooldown(delta)
+
+
+func add_ammo(amount: int):
+	weapon_manager.add_ammo(amount)
+
+
+func heal(amount: int):
+	health_component.heal(amount)
 
 
 func _input(event: InputEvent) -> void:
@@ -205,7 +213,6 @@ func is_dash_pressed() -> bool:
 # ========== CLEANUP ==========
 
 func _on_died() -> void:
-	print("Player %d died" % player_index)
 	if is_dead:
 		return
 	

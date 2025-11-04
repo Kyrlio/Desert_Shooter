@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccn4qae0xhort"]
-
-[ext_resource type="Script" uid="uid://cbjskfuvcf3m6" path="res://scenes/component/weapon_spawn_manager.gd" id="1_dixqq"]
-
-[node name="WeaponSpawnManager" type="Node2D"]
-script = ExtResource("1_dixqq")

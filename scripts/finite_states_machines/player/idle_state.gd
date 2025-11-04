@@ -3,6 +3,7 @@ class_name IdleState extends State
 func enter() -> void:
 	if player.has_node("AnimationPlayer"):
 		player.animation_player.play("RESET")
+	player.run_particles.emitting = false
 
 func physics_update(_delta: float) -> void:
 	var movement_vector := player.get_movement_vector()
