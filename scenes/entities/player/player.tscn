@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=32 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://cmcfkilxgu556" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
@@ -141,6 +141,9 @@ resource_local_to_scene = true
 shader = ExtResource("12_w3p2j")
 shader_parameter/percent = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knby6"]
+size = Vector2(12, 15)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("aim_root") groups=["player"]]
 collision_mask = 2
 motion_mode = 1
@@ -232,3 +235,11 @@ script = ExtResource("6_bj7e2")
 
 [node name="DashingState" type="Node" parent="StateMachine"]
 script = ExtResource("7_bj7e2")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -10.5)
+collision_layer = 8
+collision_mask = 0
+
+[node name="laser_stop_cshape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_knby6")

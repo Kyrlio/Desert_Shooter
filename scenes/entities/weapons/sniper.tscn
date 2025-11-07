@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://did8iv6uy01c"]
+[gd_scene load_steps=8 format=3 uid="uid://did8iv6uy01c"]
 
 [ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_6jcko"]
 [ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="2_okkp5"]
+[ext_resource type="Script" uid="uid://bkatfql0g2xjb" path="res://scenes/entities/weapons/sniper_laser.gd" id="3_8d0ct"]
 
 [sub_resource type="Animation" id="Animation_5sj0x"]
 length = 0.001
@@ -130,26 +131,6 @@ number_total_ammo = 3
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 
-[node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ovg4i")
-}
-
-[node name="ReloadingTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 2.0
-one_shot = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_okkp5")
-centered = false
-offset = Vector2(-11, -12)
-
-[node name="BarrelPosition" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(12, 0)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Container" type="Container" parent="CanvasLayer"]
@@ -172,3 +153,36 @@ text = "AMMO : 999"
 layout_mode = 2
 size_flags_horizontal = 0
 text = "TOTAL : 999"
+
+[node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ovg4i")
+}
+
+[node name="ReloadingTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_okkp5")
+centered = false
+offset = Vector2(-11, -12)
+
+[node name="BarrelPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 0.34901962)
+position = Vector2(12, 0)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("3_8d0ct")
+
+[node name="RayCast2D" type="RayCast2D" parent="BarrelPosition"]
+target_position = Vector2(1000, 0)
+collision_mask = 15
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="BarrelPosition/RayCast2D"]
+points = PackedVector2Array(0, 0, 59, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
