@@ -1,5 +1,7 @@
 extends Node
 
+signal players_changed(slot_count: int, players: Array)
+
 const PLAYER_SCENE: PackedScene = preload("res://scenes/entities/player/player.tscn")
 
 var players: Array[Player] = []
@@ -10,6 +12,8 @@ var base_player_device_id: int = -1
 
 var base_player: Player
 var player_parent: Node
+
+var _last_emitted_count: int = -1
 
 
 func _ready() -> void:
@@ -39,6 +43,7 @@ func setup_scene(base: Player, parent: Node) -> void:
 	for device_id in Input.get_connected_joypads():
 		_register_device(device_id)
 	_refresh_spawned_players()
+	_emit_players_changed_if_needed()
 
 
 func teardown_scene() -> void:
@@ -46,6 +51,7 @@ func teardown_scene() -> void:
 	player_parent = null
 	players.clear()
 	player_nodes.clear()
+	_emit_players_changed_if_needed()
 
 
 func get_players() -> Array[Player]:
@@ -125,6 +131,7 @@ func _spawn_player_if_ready(player_index: int) -> void:
 		if base_player and not players.has(base_player):
 			players.append(base_player)
 			player_nodes[0] = base_player
+			_emit_players_changed_if_needed()
 		return
 	if base_player == null or player_parent == null:
 		return
@@ -143,6 +150,7 @@ func _spawn_player_if_ready(player_index: int) -> void:
 	players.append(new_player)
 	player_nodes[player_index] = new_player
 	new_player.tree_exited.connect(_on_dynamic_player_tree_exited.bind(player_index, new_player))
+	_emit_players_changed_if_needed()
 
 
 func _teardown_player_node(player_index: int) -> void:
@@ -154,6 +162,7 @@ func _teardown_player_node(player_index: int) -> void:
 		players.erase(player)
 	if is_instance_valid(player):
 		player.queue_free()
+	_emit_players_changed_if_needed()
 
 
 func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
@@ -279,6 +288,7 @@ func _on_dynamic_player_tree_exited(player_index: int, player_ref: Player) -> vo
 		players.erase(player_ref)
 	if player_nodes.get(player_index) == player_ref:
 		player_nodes.erase(player_index)
+	_emit_players_changed_if_needed()
 
 
 func _on_base_player_tree_exited() -> void:
@@ -287,3 +297,24 @@ func _on_base_player_tree_exited() -> void:
 	player_nodes.erase(0)
 	base_player = null
 	player_parent = null
+	_emit_players_changed_if_needed()
+
+
+func get_player_slots_count() -> int:
+	# Count distinct player indices currently mapped by devices (these are the UI slots)
+	var used: Dictionary = {}
+	for device_id in device_to_player_index.keys():
+		var idx := int(device_to_player_index[device_id])
+		used[idx] = true
+	# Always include base player slot 0 if a base player existed or its device once mapped
+	if base_player_device_id != -1 or base_player:
+		used[0] = true
+	return used.keys().size()
+
+
+func _emit_players_changed_if_needed() -> void:
+	var arr := get_players()
+	var slot_count := get_player_slots_count()
+	if slot_count != _last_emitted_count:
+		_last_emitted_count = slot_count
+		players_changed.emit(slot_count, arr)

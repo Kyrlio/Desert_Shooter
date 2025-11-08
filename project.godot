@@ -44,10 +44,11 @@ folder_colors={
 
 obstacle=""
 player=""
+foreground_layer=""
 
 [gui]
 
-theme/custom="uid://dkhrnbg06cxqy"
+theme/custom="uid://be6k0bx4x642b"
 
 [input]
 

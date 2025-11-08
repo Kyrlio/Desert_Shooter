@@ -3,10 +3,9 @@ class_name Weapon
 extends Node2D
 
 signal reloading
+signal ammo_changed(current_mag: int, total_ammo: int, mag_size: int)
 
 @onready var reloading_timer: Timer = $ReloadingTimer
-@onready var label: Label = $CanvasLayer/Container/VBoxContainer/Label
-@onready var label_2: Label = $CanvasLayer/Container/VBoxContainer/Label2
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
@@ -33,18 +32,17 @@ var is_reloading: bool = false
 func _ready() -> void:
 	number_bullets_in_magazine = magazine_length
 	reloading_timer.timeout.connect(_on_reloading_timer_timeout)
+	_emit_ammo_changed()
 
 
-func _physics_process(delta: float) -> void:
-	label.text = "AMMO : " + str(number_bullets_in_magazine)
-	label_2.text = "TOTAL : " + str(number_total_ammo)
-	
+func _physics_process(delta: float) -> void:	
 	if _cooldown > 0.0:
 		_cooldown -= delta
 
 
 func add_ammo(qte: int):
 	number_total_ammo += qte
+	_emit_ammo_changed()
 
 
 func can_fire() -> bool:
@@ -56,6 +54,7 @@ func fire(direction: Vector2) -> void:
 		return
 	
 	number_bullets_in_magazine -= 1
+	_emit_ammo_changed()
 	
 	for i in number_bullets:
 		# Appliquer la dispersion (spread)
@@ -92,14 +91,17 @@ func reload():
 	animation_player.play("reload")
 	await animation_player.animation_finished
 	is_reloading = false
+	_emit_ammo_changed()
 
 
 func on_equipped(new_owner: Player) -> void:
 	weapon_owner = new_owner
+	_emit_ammo_changed()
 
 
 func on_unequipped() -> void:
 	weapon_owner = null
+	_emit_ammo_changed()
 
 
 ## Applique la dispersion à la direction de tir
@@ -168,3 +170,8 @@ func _on_reloading_timer_timeout():
 		number_bullets_in_magazine = number_total_ammo
 		number_total_ammo = 0
 	animation_player.speed_scale = 1
+	_emit_ammo_changed()
+
+
+func _emit_ammo_changed() -> void:
+	ammo_changed.emit(number_bullets_in_magazine, number_total_ammo, magazine_length)

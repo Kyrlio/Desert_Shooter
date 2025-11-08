@@ -5,6 +5,7 @@ extends Area2D
 signal knockbacked(direction: Vector2, force: float, knockback_duration: float)
 
 var impact_particles_scene: PackedScene = preload("uid://dtr5lw5ocrg3p")
+var floating_text_scene: PackedScene = preload("uid://d256axv46seu0")
 
 @export var health_component: HealthComponent
 
@@ -22,10 +23,6 @@ func spawn_hit_particles():
 func _handle_hit(hitbox_component: HitboxComponent):
 	if hitbox_component.is_hit_handled:
 		return
-	if hitbox_component.owner_player_index != -1 and get_parent() is Player:
-		var owning_player: Player = get_parent()
-		if owning_player.player_index == hitbox_component.owner_player_index:
-			return
 	
 	hitbox_component.register_hurtbox_hit(self)
 	health_component.damage(hitbox_component.damage)
@@ -44,5 +41,22 @@ func _on_area_entered(other_area: Area2D):
 	if other_area is not HitboxComponent:
 		return
 	
-	_handle_hit.call_deferred(other_area)
+	var hitbox := other_area as HitboxComponent
+	
+	# empêcher self-hit
+	if get_parent() is Player and hitbox.owner_player_index != -1:
+		var owning_player := get_parent() as Player
+		if owning_player.player_index == hitbox.owner_player_index:
+			return
+	
+	_handle_hit.call_deferred(hitbox)
+	
+	var floating_text = floating_text_scene.instantiate() as Node2D
+	get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text)
+	
+	var spawn_position_x := randi_range(-16, 16)
+	var spawn_position_y := randi_range(0, 16)
+	
+	floating_text.global_position = global_position + (Vector2(spawn_position_x, spawn_position_y))
+	floating_text.start(str(hitbox.damage))
 	

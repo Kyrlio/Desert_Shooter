@@ -4,12 +4,21 @@ extends Node
 
 signal died
 signal damaged
+signal health_changed(current_health: int, max_health: int)
 
 var ground_particles_scene: PackedScene = preload("uid://d4fjkvjerbdpm")
 
 @export var max_health: int = 10
 
-var current_health: int
+var _current_health: int
+var current_health: int:
+	get:
+		return _current_health
+	set(value):
+		if value == _current_health:
+			return
+		_current_health = value
+		health_changed.emit(_current_health, max_health)
 
 
 func _ready() -> void:

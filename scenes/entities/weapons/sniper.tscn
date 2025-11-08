@@ -131,29 +131,6 @@ number_total_ammo = 3
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Container" type="Container" parent="CanvasLayer"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="CanvasLayer/Container/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "AMMO : 999"
-
-[node name="Label2" type="Label" parent="CanvasLayer/Container/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "TOTAL : 999"
-
 [node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ovg4i")
@@ -179,7 +156,7 @@ script = ExtResource("3_8d0ct")
 
 [node name="RayCast2D" type="RayCast2D" parent="BarrelPosition"]
 target_position = Vector2(1000, 0)
-collision_mask = 15
+collision_mask = 13
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="BarrelPosition/RayCast2D"]

@@ -82,3 +82,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	GameManager.show_fps = toggled_on
+
+
+func _on_show_damage_check_button_toggled(toggled_on: bool) -> void:
+	GameManager.show_damage = toggled_on

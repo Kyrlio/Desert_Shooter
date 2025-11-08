@@ -270,7 +270,6 @@ size_flags_vertical = 8
 text = "PLAY"
 
 [node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -283,6 +282,13 @@ text = "BACK"
 [node name="CheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
 layout_mode = 2
 text = "SHOW FPS"
+alignment = 1
+
+[node name="ShowDamageCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "SHOW DAMAGE"
+alignment = 1
 
 [connection signal="pressed" from="MainVBoxContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
@@ -292,3 +298,4 @@ text = "SHOW FPS"
 [connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerPlayButton" to="." method="_on_singleplayer_button_pressed"]
 [connection signal="pressed" from="OptionsVBoxContainer/OptionBack" to="." method="_on_option_back_pressed"]
 [connection signal="toggled" from="OptionsVBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
