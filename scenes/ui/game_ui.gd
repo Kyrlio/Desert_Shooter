@@ -35,21 +35,19 @@ func _ready() -> void:
 	if typeof(ControllerManager) != TYPE_NIL:
 		if not ControllerManager.players_changed.is_connected(_on_players_changed):
 			ControllerManager.players_changed.connect(_on_players_changed)
-	# Do an initial refresh (in case signal hasn't fired yet)
+	
 	_update_visibility(_get_player_count())
 	_rebind_all_player_slots()
-
-## No per-frame polling needed; we refresh on signal
 
 
 func _get_player_count() -> int:
 	# Prefer the slot count (distinct player indices/devices), so UI stays visible if a player dies.
 	var count := 1
-	if typeof(ControllerManager) != TYPE_NIL and "get_player_slots_count" in ControllerManager:
+	if "get_player_slots_count" in ControllerManager:
 		count = int(ControllerManager.get_player_slots_count())
 	else:
 		# Fallback to number of active player nodes
-		var arr := ControllerManager.get_players() if typeof(ControllerManager) != TYPE_NIL else []
+		var arr := ControllerManager.get_players()
 		if typeof(arr) == TYPE_ARRAY and arr.size() > 0:
 			count = arr.size()
 	return clamp(count, 1, MAX_PLAYERS)
@@ -166,7 +164,7 @@ func _on_player_weapon_changed(new_weapon: Weapon, slot_index: int) -> void:
 	if new_weapon:
 		_set_ammo_text(slot_index, "%d / %d" % [new_weapon.number_bullets_in_magazine, new_weapon.number_total_ammo])
 	else:
-		_set_ammo_text(slot_index, "— / —")
+		_set_ammo_text(slot_index, "— / —") 
 
 
 func _on_player_ammo_changed(current_mag: int, total_ammo: int, _mag_size: int, slot_index: int) -> void:

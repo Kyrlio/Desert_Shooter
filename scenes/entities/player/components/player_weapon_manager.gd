@@ -1,7 +1,8 @@
 class_name PlayerWeaponManager
 extends Node
 
-## Gère l'équipement et le changement d'armes pour un joueur
+var thrown_weapon_scene: PackedScene = preload("uid://cfxoiaf6prpg4")
+var knife_scene: PackedScene = preload("uid://d1s6h2umj862l")
 
 signal weapon_changed(weapon: Weapon)
 
@@ -11,15 +12,14 @@ signal weapon_changed(weapon: Weapon)
 var current_weapon: Weapon
 var current_weapon_index: int = -1
 var weapon_owner: Player
+var has_firearm: bool = false  # Track si le joueur a une arme à feu
 
 
 func initialize(player: Player) -> void:
 	weapon_owner = player
-	if available_weapons.is_empty():
-		push_error("❌ No weapons configured for player")
-		return
-	current_weapon_index = 0
-	change_weapon(available_weapons[current_weapon_index])
+	# Toujours commencer avec le couteau
+	change_weapon(knife_scene)
+	has_firearm = false
 
 
 func equip_weapon(weapon_instance: Weapon) -> void:
@@ -30,6 +30,9 @@ func equip_weapon(weapon_instance: Weapon) -> void:
 	weapon_animation_root.add_child(current_weapon)
 	current_weapon.on_equipped(weapon_owner)
 	weapon_changed.emit(current_weapon)
+	
+	# Déterminer si c'est une arme à feu ou le couteau
+	has_firearm = not (current_weapon is Knife)
 	
 	# WEAPON CURSOR
 	match current_weapon.display_name:
@@ -44,6 +47,9 @@ func equip_weapon(weapon_instance: Weapon) -> void:
 			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
 		"Sniper":
 			var cursor := load("uid://l5xfn518qxye")
+			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
+		"Knife":
+			var cursor := load("uid://c1l8q4qmhyv3i")
 			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
 
 
@@ -72,6 +78,10 @@ func change_weapon(weapon_scene: PackedScene) -> void:
 
 
 func cycle_weapon(direction: int) -> void:
+	# Si on n'a que le couteau, ne rien faire
+	if not has_firearm:
+		return
+	
 	if available_weapons.is_empty():
 		return
 	
@@ -93,13 +103,63 @@ func process_weapon(delta: float) -> void:
 
 
 func add_ammo(qte: int):
-	current_weapon.add_ammo(qte)
+	if current_weapon:
+		current_weapon.add_ammo(qte)
+
+
+func pickup_weapon(weapon_scene: PackedScene) -> void:
+	"""Ramasse une arme à feu (remplace le couteau)"""
+	if weapon_scene == null:
+		return
+	
+	change_weapon(weapon_scene)
+	has_firearm = true
+	
+	# Mettre à jour l'index de l'arme dans available_weapons si elle y est
+	_sync_weapon_index_with_scene(weapon_scene)
 
 
 func get_fire_rate() -> float:
 	if current_weapon == null:
 		return 0.0
 	return current_weapon.fire_rate
+
+
+func throw_current_weapon(aim_vector: Vector2):
+	if current_weapon == null:
+		return
+	
+	# Ne peut pas jeter le couteau
+	if current_weapon is Knife:
+		return
+	
+	var thrown := thrown_weapon_scene.instantiate() as WeaponThrown
+	if thrown == null:
+		return
+	
+	var dir := aim_vector.normalized()
+	if dir == Vector2.ZERO:
+		dir = Vector2.RIGHT
+	
+	if current_weapon.barrel_position:
+		thrown.global_position = current_weapon.barrel_position.global_position
+	else:
+		thrown.global_position = weapon_owner.global_position
+	
+	weapon_owner.get_tree().current_scene.add_child(thrown)
+
+	# Appliquer stats de l'arme à l'objet jeté (dégâts & ownership pour éviter auto-dégâts)
+	thrown.set_texture(current_weapon.get_sprite_texture())
+	thrown.set_damage(1)
+	thrown.set_owner_player(weapon_owner)
+
+	if "throw" in thrown:
+		thrown.throw(dir)
+	
+	unequip_weapon()
+	# Retourner au couteau après avoir jeté l'arme
+	change_weapon(knife_scene)
+	has_firearm = false
 
 
 func _sync_weapon_index_with_scene(target_scene: PackedScene) -> void:

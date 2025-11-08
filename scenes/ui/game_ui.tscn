@@ -69,6 +69,8 @@ texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player1HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 12
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player1HBoxContainer/VBoxContainer"]
@@ -129,6 +131,8 @@ texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player2HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 12
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player2HBoxContainer/VBoxContainer"]
@@ -162,7 +166,7 @@ mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player3HBoxContainer/TextureRect/TextureRect"]
-position = Vector2(13, 10)
+position = Vector2(13, 12)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ru5ln")
 hframes = 4
@@ -189,6 +193,8 @@ texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player3HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 12
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player3HBoxContainer/VBoxContainer"]
@@ -222,7 +228,7 @@ mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player4HBoxContainer/TextureRect/TextureRect"]
-position = Vector2(13, 9)
+position = Vector2(13, 6)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ru5ln")
 hframes = 4
@@ -249,6 +255,8 @@ texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player4HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 12
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player4HBoxContainer/VBoxContainer"]

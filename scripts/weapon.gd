@@ -6,6 +6,7 @@ signal reloading
 signal ammo_changed(current_mag: int, total_ammo: int, mag_size: int)
 
 @onready var reloading_timer: Timer = $ReloadingTimer
+@onready var sprite: Sprite2D = $Sprite2D
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
@@ -102,6 +103,10 @@ func on_equipped(new_owner: Player) -> void:
 func on_unequipped() -> void:
 	weapon_owner = null
 	_emit_ammo_changed()
+
+
+func get_sprite_texture():
+	return sprite.texture
 
 
 ## Applique la dispersion à la direction de tir

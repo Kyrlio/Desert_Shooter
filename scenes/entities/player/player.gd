@@ -98,6 +98,12 @@ func heal(amount: int):
 func _input(event: InputEvent) -> void:
 	if input_controller:
 		input_controller.handle_input_event(event, aim_root)
+	
+	# THROW WEAPON
+	var throw_action := GameConfig.get_player_prefix(player_index) + "throw_weapon"
+	if Input.is_action_just_pressed(throw_action):
+		var aim := input_controller.get_effective_aim(aim_root)
+		weapon_manager.throw_current_weapon(aim)
 
 
 func _update_aim_and_visuals() -> void:

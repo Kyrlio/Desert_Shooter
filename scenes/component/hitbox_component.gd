@@ -21,7 +21,7 @@ func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
 
 
 func _on_body_entered(body: Node2D):
-	if body.is_in_group("obstacle"):
+	if body.is_in_group("obstacle"): 
 		var hit_particles: Node2D = ENVIRONMENT_IMPACT_PARTICLES.instantiate()
 		hit_particles.global_position = self.global_position
 		get_parent().get_parent().add_child(hit_particles)

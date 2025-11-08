@@ -52,7 +52,7 @@ func _pickup_weapon() -> void:
 	
 	
 	# Donner l'arme au joueur
-	_player_nearby.weapon_manager.change_weapon(weapon_scene)
+	_player_nearby.weapon_manager.pickup_weapon(weapon_scene)
 	
 	# Détruire le pickup (ou le désactiver temporairement)
 	#animation_player.play("despawn")
