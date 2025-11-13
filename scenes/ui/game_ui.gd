@@ -28,6 +28,8 @@ var _last_player_count: int = -1
 
 # Track current weapon per slot to manage signal connections
 var _slot_weapon: Dictionary = {}
+var _slot_health_component: Dictionary = {}
+var _slot_weapon_manager: Dictionary = {}
 
 
 func _ready() -> void:
@@ -35,8 +37,16 @@ func _ready() -> void:
 	if typeof(ControllerManager) != TYPE_NIL:
 		if not ControllerManager.players_changed.is_connected(_on_players_changed):
 			ControllerManager.players_changed.connect(_on_players_changed)
-	
+	# Also listen for player nodes entering the tree (when scenes change/spawn later)
+	if not get_tree().node_added.is_connected(_on_tree_node_added):
+		get_tree().node_added.connect(_on_tree_node_added)
+
 	_update_visibility(_get_player_count())
+	# Defer once to ensure players spawned this frame get picked up
+	call_deferred("_deferred_initial_refresh")
+
+
+func _deferred_initial_refresh() -> void:
 	_rebind_all_player_slots()
 
 
@@ -83,6 +93,13 @@ func _on_players_changed(new_count: int, _players: Array) -> void:
 	_rebind_all_player_slots()
 
 
+func _on_tree_node_added(n: Node) -> void:
+	# When a Player enters the tree (e.g., after a scene change), refresh bindings
+	if n is Player or (n is Node and n.is_in_group("player")):
+		_update_visibility(_get_player_count())
+		_rebind_all_player_slots()
+
+
 func _rebind_all_player_slots() -> void:
 	# Build a map from index -> Player for quick lookup
 	var by_index: Dictionary = {}
@@ -108,12 +125,26 @@ func _rebind_all_player_slots() -> void:
 func _bind_player_signals(slot_index: int, player: Player) -> void:
 	# Health updates
 	var hc := player.health_component if "health_component" in player else null
-	if hc and not hc.health_changed.is_connected(_on_player_health_changed):
-		hc.health_changed.connect(_on_player_health_changed.bind(slot_index))
+	if hc:
+		# Disconnect previous tracked component if different
+		if _slot_health_component.has(slot_index):
+			var prev_hc: Node = _slot_health_component[slot_index]
+			if is_instance_valid(prev_hc) and prev_hc != hc and prev_hc.health_changed.is_connected(_on_player_health_changed):
+				prev_hc.health_changed.disconnect(_on_player_health_changed)
+		if not hc.health_changed.is_connected(_on_player_health_changed):
+			hc.health_changed.connect(_on_player_health_changed.bind(slot_index))
+		_slot_health_component[slot_index] = hc
 	# Weapon changed updates (to (re)connect ammo signal)
 	var wm := player.weapon_manager if "weapon_manager" in player else null
-	if wm and not wm.weapon_changed.is_connected(_on_player_weapon_changed):
-		wm.weapon_changed.connect(_on_player_weapon_changed.bind(slot_index))
+	if wm:
+		# Disconnect previous tracked manager if different
+		if _slot_weapon_manager.has(slot_index):
+			var prev_wm: Node = _slot_weapon_manager[slot_index]
+			if is_instance_valid(prev_wm) and prev_wm != wm and prev_wm.weapon_changed.is_connected(_on_player_weapon_changed):
+				prev_wm.weapon_changed.disconnect(_on_player_weapon_changed)
+		if not wm.weapon_changed.is_connected(_on_player_weapon_changed):
+			wm.weapon_changed.connect(_on_player_weapon_changed.bind(slot_index))
+		_slot_weapon_manager[slot_index] = wm
 	# Ensure ammo signal connected for current weapon
 	if wm and wm.current_weapon:
 		_connect_weapon_ammo_signal(slot_index, wm.current_weapon)
@@ -126,6 +157,18 @@ func _unbind_slot(slot_index: int) -> void:
 		if is_instance_valid(w) and w.ammo_changed.is_connected(_on_player_ammo_changed):
 			w.ammo_changed.disconnect(_on_player_ammo_changed)
 		_slot_weapon.erase(slot_index)
+	# Disconnect weapon manager signal if tracked
+	if _slot_weapon_manager.has(slot_index):
+		var wm: Node = _slot_weapon_manager[slot_index]
+		if is_instance_valid(wm) and wm.weapon_changed.is_connected(_on_player_weapon_changed):
+			wm.weapon_changed.disconnect(_on_player_weapon_changed)
+		_slot_weapon_manager.erase(slot_index)
+	# Disconnect health component signal if tracked
+	if _slot_health_component.has(slot_index):
+		var hc: Node = _slot_health_component[slot_index]
+		if is_instance_valid(hc) and hc.health_changed.is_connected(_on_player_health_changed):
+			hc.health_changed.disconnect(_on_player_health_changed)
+		_slot_health_component.erase(slot_index)
 
 
 func _connect_weapon_ammo_signal(slot_index: int, weapon: Weapon) -> void:

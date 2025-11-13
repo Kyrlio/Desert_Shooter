@@ -8,6 +8,7 @@ const SINGLEPLAYER_LEVEL: String = "uid://bv3gdo114ov1x"
 @onready var multiplayer_container: MarginContainer = $MultiplayerContainer
 @onready var player_slots_row: HBoxContainer = $MultiplayerContainer/VBoxContainer/HBoxContainer
 @onready var options_container: VBoxContainer = $OptionsVBoxContainer
+@onready var multiplayer_play_button: Button = $MultiplayerContainer/VBoxContainer/MultiplayerPlayButton
 var player_slot_nodes: Array[Control] = []
 
 func _ready() -> void:
@@ -25,6 +26,11 @@ func _ready() -> void:
 	# React to gamepad hotplug
 	if not Input.joy_connection_changed.is_connected(_on_joy_connection_changed):
 		Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	
+	if ControllerManager.get_player_slots_count() <= 1:
+		multiplayer_play_button.disabled = true
+	else:
+		multiplayer_play_button.disabled = false
 
 
 func _initialize_options():
@@ -63,6 +69,11 @@ func _update_multiplayer_slots() -> void:
 	for i in range(player_slot_nodes.size()):
 		var slot := player_slot_nodes[i]
 		slot.visible = i < target_count
+		
+	if ControllerManager.get_player_slots_count() <= 1:
+		multiplayer_play_button.disabled = true
+	else:
+		multiplayer_play_button.disabled = false
 
 
 func _on_joy_connection_changed(_device_id: int, _connected: bool) -> void:

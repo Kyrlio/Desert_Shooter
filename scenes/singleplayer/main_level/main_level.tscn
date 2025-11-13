@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bv3gdo114ov1x"]
+[gd_scene load_steps=20 format=4 uid="uid://bv3gdo114ov1x"]
 
 [ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_0hb8w"]
 [ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_nvuvk"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cnf41vieqjkp5" path="res://scenes/entities/weapon_pickup/weapon_pickup.tscn" id="10_6odgm"]
 [ext_resource type="PackedScene" uid="uid://bnnmu2ycsi5pd" path="res://scenes/entities/weapons/rifle.tscn" id="11_hul3r"]
 [ext_resource type="Texture2D" uid="uid://cycjo43wepnlw" path="res://assets/weapons/rifle.png" id="12_b4unx"]
+[ext_resource type="PackedScene" uid="uid://200v6fk6uoha" path="res://scenes/entities/enemy/enemy.tscn" id="13_b4unx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hul3r"]
 texture = ExtResource("5_6odgm")
@@ -1457,5 +1458,8 @@ position = Vector2(-69, 19)
 position = Vector2(-63, 54)
 weapon_scene = ExtResource("11_hul3r")
 weapon_sprite = ExtResource("12_b4unx")
+
+[node name="Enemy" parent="YSortRoot" instance=ExtResource("13_b4unx")]
+position = Vector2(104, -9)
 
 [node name="ForegroundLayer" type="Node2D" parent="." groups=["foreground_layer"]]
