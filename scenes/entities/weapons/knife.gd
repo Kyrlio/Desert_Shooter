@@ -31,7 +31,7 @@ func can_fire() -> bool:
 	return can_slash and weapon_owner != null
 
 
-func fire(direction: Vector2) -> void:
+func fire(_direction: Vector2) -> void:
 	if not can_fire():
 		return
 	

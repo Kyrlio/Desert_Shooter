@@ -1,4 +1,4 @@
-@icon("res://assets/Tiles/Tiles/tile_0044.png")
+@icon("res://assets/Tiles/New Tiles/tile_0044.png")
 class_name Grass
 extends Area2D
 

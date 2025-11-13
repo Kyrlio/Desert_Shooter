@@ -5,7 +5,7 @@
 
 [node name="Cursor" type="CanvasLayer"]
 process_mode = 3
-layer = 1000
+layer = 100000
 script = ExtResource("1_mp8dx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

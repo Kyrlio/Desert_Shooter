@@ -1,8 +1,6 @@
 @icon("res://scenes/entities/bullet/bullet.png")
 class_name Bullet extends Node2D
 
-var SPEED: int = 400
-
 @onready var life_timer: Timer = $LifeTimer
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 
@@ -11,14 +9,15 @@ var damage_to_apply: int = 1  # Dégâts à appliquer (sera configuré avant _re
 var time_to_apply: float
 var speed_to_apply: int
 var owner_player_index: int = -1
+var SPEED: int = 400
 
 
 func _ready() -> void:
 	life_timer.wait_time = time_to_apply
 	SPEED = speed_to_apply
-	# Appliquer les dégâts une fois que hitbox_component est initialisé
 	hitbox_component.damage = damage_to_apply
-	hitbox_component.owner_player_index = owner_player_index
+	#hitbox_component.owner_player_index = owner_player_index
+	hitbox_component.set_owner_player_index(owner_player_index)
 	hitbox_component.hit_hurtbox.connect(_on_hit_hurtbox)
 	life_timer.timeout.connect(_on_life_timer_timeout)
 
@@ -49,7 +48,8 @@ func set_owner_player(player: Player) -> void:
 	else:
 		owner_player_index = player.player_index
 	if is_inside_tree() and is_instance_valid(hitbox_component):
-		hitbox_component.owner_player_index = owner_player_index
+		# Important: use the setter so the collision mask is refreshed for coop_mode
+		hitbox_component.set_owner_player_index(owner_player_index)
 
 
 ## Configure les dégâts de la balle
@@ -64,7 +64,6 @@ func register_collision():
 
 
 func _on_life_timer_timeout():
-	#call_deferred("queue_free")
 	queue_free.call_deferred()
 
 

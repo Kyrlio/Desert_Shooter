@@ -126,7 +126,7 @@ func get_fire_rate() -> float:
 
 
 func throw_current_weapon(aim_vector: Vector2):
-	if current_weapon == null:
+	if current_weapon == null or current_weapon.is_reloading:
 		return
 	
 	# Ne peut pas jeter le couteau
@@ -146,7 +146,9 @@ func throw_current_weapon(aim_vector: Vector2):
 	else:
 		thrown.global_position = weapon_owner.global_position
 	
-	weapon_owner.get_tree().current_scene.add_child(thrown)
+	#weapon_owner.get_tree().current_scene.add_child(thrown)
+	var target_parent := Main.corpse_layer if Main.corpse_layer else get_parent()
+	target_parent.add_child(thrown)
 
 	# Appliquer stats de l'arme à l'objet jeté (dégâts & ownership pour éviter auto-dégâts)
 	thrown.set_texture(current_weapon.get_sprite_texture())

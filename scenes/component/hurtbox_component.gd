@@ -4,6 +4,10 @@ extends Area2D
 
 signal knockbacked(direction: Vector2, force: float, knockback_duration: float)
 
+const LAYER_PLAYER = 1
+const LAYER_ENEMY = 3
+const LAYER_BULLET = 9
+
 var impact_particles_scene: PackedScene = preload("uid://dtr5lw5ocrg3p")
 var floating_text_scene: PackedScene = preload("uid://d256axv46seu0")
 
@@ -12,6 +16,9 @@ var floating_text_scene: PackedScene = preload("uid://d256axv46seu0")
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	_apply_coop_collision()
+	if GameManager.has_signal("coop_mode_changed"):
+		GameManager.coop_mode_changed.connect(_on_coop_mode_changed)
 
 
 func spawn_hit_particles():
@@ -59,4 +66,17 @@ func _on_area_entered(other_area: Area2D):
 	
 	floating_text.global_position = global_position + (Vector2(spawn_position_x, spawn_position_y))
 	floating_text.start(str(hitbox.damage))
+
+
+func _on_coop_mode_changed(_enabled: bool) -> void:
+	_apply_coop_collision()
+
+
+func _apply_coop_collision() -> void:
+	# Reset mask then enable layers explicitly per coop mode
+	collision_mask = 0
+	# Always collide with enemies
+	set_collision_mask_value(LAYER_ENEMY, true)
+	# Only collide with bullet layer when not in coop
+	set_collision_mask_value(LAYER_BULLET, not GameManager.coop_mode)
 	

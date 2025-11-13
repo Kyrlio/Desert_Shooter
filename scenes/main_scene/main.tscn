@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ccn4qae0xhort" path="res://scenes/component/object_spawn_manager.tscn" id="5_mac6c"]
 [ext_resource type="Texture2D" uid="uid://cx1761j2jc486" path="res://assets/Tiles/Tiles/tile_0039.png" id="6_5kb7d"]
 [ext_resource type="PackedScene" uid="uid://bnnmu2ycsi5pd" path="res://scenes/entities/weapons/rifle.tscn" id="6_loo4n"]
-[ext_resource type="Texture2D" uid="uid://bkp57rsgle8xm" path="res://assets/Tiles/Tiles/tile_0081.png" id="7_7sxug"]
 [ext_resource type="PackedScene" uid="uid://c55fbudaqm7bl" path="res://scenes/entities/weapons/uzi.tscn" id="7_dt8cy"]
 [ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="7_loo4n"]
 [ext_resource type="PackedScene" uid="uid://b0pcogs5dcrso" path="res://scenes/entities/grass/grass.tscn" id="7_owwxs"]
@@ -26,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="19_a52nl"]
 [ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="20_4wbmt"]
 [ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="21_0m7k2"]
+[ext_resource type="Texture2D" uid="uid://3oqkd2us7ju3" path="res://assets/Tiles/New Tiles/tile_0081-export.png" id="24_rg1da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_owwxs"]
 texture = ExtResource("3_ec6ii")
@@ -1266,14 +1266,11 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "FPS: 999"
 
-[node name="StateLabel" type="Label" parent="CanvasLayer/Container/HBoxContainer"]
-visible = false
-layout_mode = 2
-text = "State: IDLE"
-
 [node name="GameCamera" parent="." instance=ExtResource("3_ib4vx")]
-zoom = Vector2(1.5, 1.5)
-enable_auto_zoom = false
+process_priority = 1
+process_physics_priority = 1
+smoothing_speed = 5
+max_zoom = 2.0
 min_zoom = 1.5
 metadata/_edit_lock_ = true
 
@@ -1392,7 +1389,7 @@ sprite = ExtResource("6_5kb7d")
 [node name="Grass11" parent="YSortRoot" instance=ExtResource("7_owwxs")]
 position = Vector2(-46, 94)
 skewvalue = 25.0
-sprite = ExtResource("7_7sxug")
+sprite = ExtResource("24_rg1da")
 
 [node name="Grass2" parent="YSortRoot" instance=ExtResource("7_owwxs")]
 position = Vector2(-54, 9)

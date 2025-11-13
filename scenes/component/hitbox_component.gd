@@ -5,7 +5,7 @@ extends Area2D
 signal hit_hurtbox(hurtbox_component: HurtboxComponent)
 
 const ENVIRONMENT_IMPACT_PARTICLES = preload("uid://dtm267ungrnsi")
-
+const LAYER_ENVIRONMENT: int = 2
 
 var damage: int = 1
 var is_hit_handled: bool
@@ -14,10 +14,20 @@ var owner_player_index: int = -1
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
-
+	# Ensure we collide with environment (obstacles) for impact behavior;
+	# player/enemy filtering is handled on the Hurtbox side.
+	set_collision_mask_value(LAYER_ENVIRONMENT, true)
 
 func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
 	hit_hurtbox.emit(hurtbox_component)
+
+
+func set_owner_player_index(idx: int) -> void:
+	owner_player_index = idx
+
+
+func refresh_collision_mask() -> void:
+	pass # No-op now; mask is defined in the scene and Hurtbox handles filtering
 
 
 func _on_body_entered(body: Node2D):

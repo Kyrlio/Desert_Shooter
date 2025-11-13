@@ -11,6 +11,9 @@ extends CharacterBody2D
 @export var character_spritesheet: Texture2D
 @export var available_skins: Array[PlayerSkin] = []
 
+enum Team { PLAYER, ENEMY }
+@export var team: Team = Team.PLAYER
+
 # Components
 var input_controller: PlayerInputController
 var skin_manager: PlayerSkinManager
@@ -46,6 +49,7 @@ func _ready() -> void:
 	add_to_group("player")
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
+	
 
 
 func _initialize_components() -> void:

@@ -22,7 +22,7 @@ resource_local_to_scene = true
 shader = ExtResource("6_7gxlw")
 shader_parameter/percent = 0.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_1y44r")

@@ -1,6 +1,7 @@
 extends MarginContainer
 
-const MAIN_LEVEL: String = "uid://bjm5f088lj3hb"
+const MULTIPLAYER_LEVEL: String = "uid://bjm5f088lj3hb"
+const SINGLEPLAYER_LEVEL: String = "uid://bv3gdo114ov1x"
 
 @onready var menu_input_manager: MenuInputManager = $MenuInputManager
 @onready var main_menu_container: VBoxContainer = $MainVBoxContainer
@@ -32,7 +33,7 @@ func _initialize_options():
 
 
 func _on_singleplayer_button_pressed() -> void:
-	get_tree().change_scene_to_file(MAIN_LEVEL)
+	get_tree().change_scene_to_file(SINGLEPLAYER_LEVEL)
 
 
 func _on_multiplayer_button_pressed() -> void:
@@ -40,6 +41,10 @@ func _on_multiplayer_button_pressed() -> void:
 	main_menu_container.visible = false
 	# Ensure slots are up to date when opening the menu
 	_update_multiplayer_slots()
+
+
+func _on_multiplayer_play_pressed() -> void:
+	get_tree().change_scene_to_file(MULTIPLAYER_LEVEL)
 
 
 func _on_multiplayer_back_button_pressed() -> void:

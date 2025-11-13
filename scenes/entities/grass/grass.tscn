@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0pcogs5dcrso"]
 
 [ext_resource type="Script" uid="uid://cunp5vapp5ut7" path="res://scenes/entities/grass/grass.gd" id="1_7yh3x"]
-[ext_resource type="Texture2D" uid="uid://bd2s1irjnsyxd" path="res://assets/Tiles/Tiles/tile_0044.png" id="1_u4wct"]
+[ext_resource type="Texture2D" uid="uid://vtj7qtn6n66w" path="res://assets/Tiles/New Tiles/tile_0044.png" id="2_7yh3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yh3x"]
 radius = 4.0
@@ -13,9 +13,10 @@ collision_mask = 261
 script = ExtResource("1_7yh3x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u4wct")
+texture = ExtResource("2_7yh3x")
 centered = false
 offset = Vector2(-8, -14)
+region_rect = Rect2(0, 0, 408, 208)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
