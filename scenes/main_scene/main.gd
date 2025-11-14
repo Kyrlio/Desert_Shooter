@@ -7,10 +7,10 @@ static var corpse_layer: Node2D
 static var coop_mode: bool
 
 @onready var fps_label: Label = $CanvasLayer/Container/HBoxContainer/FpsLabel
-@onready var base_player: Player = $YSortRoot/Player
-@onready var _background_effects: Node2D = $BackgroundEffects
-@onready var _corpse_layer: Node2D = $CorpseLayer
-@onready var player_spawn_manager: Node2D = $PlayerSpawnManager
+@onready var base_player: Player = %Player
+@onready var _background_effects: Node2D = %BackgroundEffects
+@onready var _corpse_layer: Node2D = %CorpseLayer
+@onready var player_spawn_manager: Node2D = %PlayerSpawnManager
 
 @export var _coop_mode: bool = false
 

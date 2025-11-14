@@ -79,7 +79,6 @@ modulate_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
 
 [resource]
 default_font = ExtResource("5_ammsu")
-default_font_size = 32
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(0.83137256, 0.17254902, 0.30980393, 1)

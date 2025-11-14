@@ -55,6 +55,11 @@ func _on_area_entered(other_area: Area2D):
 		var owning_player := get_parent() as Player
 		if owning_player.player_index == hitbox.owner_player_index:
 			return
+
+	# En coop: ignorer toutes les attaques d'origine joueur sur un joueur (friendly-fire off)
+	# NB: owner_player_index >= 0 signifie que le hitbox appartient à un joueur
+	if GameManager.coop_mode and get_parent() is Player and hitbox.owner_player_index != -1:
+		return
 	
 	_handle_hit.call_deferred(hitbox)
 	
@@ -75,8 +80,8 @@ func _on_coop_mode_changed(_enabled: bool) -> void:
 func _apply_coop_collision() -> void:
 	# Reset mask then enable layers explicitly per coop mode
 	collision_mask = 0
-	# Always collide with enemies
+	# Always detect enemy-layer hitboxes (e.g., melee)
 	set_collision_mask_value(LAYER_ENEMY, true)
-	# Only collide with bullet layer when not in coop
-	set_collision_mask_value(LAYER_BULLET, not GameManager.coop_mode)
+	# Always detect bullets; friendly-fire is handled in _on_area_entered by owner check
+	set_collision_mask_value(LAYER_BULLET, true)
 	

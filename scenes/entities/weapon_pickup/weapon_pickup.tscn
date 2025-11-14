@@ -195,6 +195,7 @@ _data = {
 radius = 8.0
 
 [node name="WeaponPickup" type="Area2D"]
+texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_t8w0i")
 

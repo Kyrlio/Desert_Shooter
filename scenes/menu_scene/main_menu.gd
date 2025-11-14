@@ -1,7 +1,7 @@
 extends MarginContainer
 
 const MULTIPLAYER_LEVEL: String = "uid://bjm5f088lj3hb"
-const SINGLEPLAYER_LEVEL: String = "uid://bv3gdo114ov1x"
+const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 
 @onready var menu_input_manager: MenuInputManager = $MenuInputManager
 @onready var main_menu_container: VBoxContainer = $MainVBoxContainer
