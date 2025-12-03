@@ -1,7 +1,7 @@
 extends MarginContainer
 
-const MULTIPLAYER_LEVEL: String = "uid://bjm5f088lj3hb"
-const SINGLEPLAYER_LEVEL: String = "uid://bv3gdo114ov1x"
+const MULTIPLAYER_LEVEL: String = "uid://bj1my63f0v553"
+const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 
 @onready var menu_input_manager: MenuInputManager = $MenuInputManager
 @onready var main_menu_container: VBoxContainer = $MainVBoxContainer
@@ -39,10 +39,12 @@ func _initialize_options():
 
 
 func _on_singleplayer_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	get_tree().change_scene_to_file(SINGLEPLAYER_LEVEL)
 
 
 func _on_multiplayer_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu($MultiplayerContainer, $MainVBoxContainer/MultiplayerButton)
 	main_menu_container.visible = false
 	# Ensure slots are up to date when opening the menu
@@ -50,10 +52,12 @@ func _on_multiplayer_button_pressed() -> void:
 
 
 func _on_multiplayer_play_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	get_tree().change_scene_to_file(MULTIPLAYER_LEVEL)
 
 
 func _on_multiplayer_back_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
 
@@ -81,24 +85,29 @@ func _on_joy_connection_changed(_device_id: int, _connected: bool) -> void:
 
 
 func _on_option_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu($OptionsVBoxContainer, $MainVBoxContainer/OptionButton)
 	main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	main_menu_container.modulate = Color(1, 1, 1, 0.75)
 
 
 func _on_option_back_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	main_menu_container.modulate = Color(1, 1, 1, 1)
 
 
 func _on_quit_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	get_tree().quit()
 
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
+	MusicPlayer.play_button_clicked()
 	GameManager.show_fps = toggled_on
 
 
 func _on_show_damage_check_button_toggled(toggled_on: bool) -> void:
+	MusicPlayer.play_button_clicked()
 	GameManager.show_damage = toggled_on

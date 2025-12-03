@@ -1,33 +1,36 @@
 [gd_scene load_steps=6 format=3 uid="uid://k8rarsiuuclm"]
 
-[ext_resource type="Texture2D" uid="uid://ct2hohhi681sa" path="res://assets/ui/portrait.png" id="1_bma8u"]
+[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="1_bma8u"]
 [ext_resource type="Script" uid="uid://bqqttmo1nc0s6" path="res://scenes/ui/game_ui.gd" id="1_ru5ln"]
-[ext_resource type="Texture2D" uid="uid://bch8jh3ol8b1r" path="res://assets/ui/portrait_clip_mask.png" id="2_fct72"]
-[ext_resource type="Texture2D" uid="uid://ba4vy0rfrn6ag" path="res://scenes/entities/player/test.png" id="3_ru5ln"]
+[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="2_fct72"]
+[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="3_ru5ln"]
 [ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="4_fct72"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_ru5ln")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Player1HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player1HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 8
@@ -36,45 +39,54 @@ texture = ExtResource("1_bma8u")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player1HBoxContainer/TextureRect"]
 clip_children = 1
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 16.0
+offset_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player1HBoxContainer/TextureRect/TextureRect"]
-position = Vector2(13, 10)
-scale = Vector2(3, 3)
+texture_filter = 1
+position = Vector2(16, 9)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_ru5ln")
 hframes = 4
 vframes = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Player1HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = -7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Player1HBoxContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player1HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player1HBoxContainer/VBoxContainer/HBoxContainer/TextureRect"]
+texture_filter = 1
 position = Vector2(15, 14)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player1HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 8
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player1HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 12)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16
@@ -83,12 +95,14 @@ value = 0.5
 show_percentage = false
 
 [node name="Player2HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player2HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 8
@@ -97,6 +111,7 @@ texture = ExtResource("1_bma8u")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player2HBoxContainer/TextureRect"]
 clip_children = 1
+texture_filter = 1
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
@@ -104,6 +119,7 @@ mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player2HBoxContainer/TextureRect/TextureRect"]
+texture_filter = 1
 position = Vector2(13, 10)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ru5ln")
@@ -112,31 +128,37 @@ vframes = 4
 frame = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Player2HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = -7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Player2HBoxContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player2HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player2HBoxContainer/VBoxContainer/HBoxContainer/TextureRect"]
+texture_filter = 1
 position = Vector2(15, 14)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player2HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 8
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player2HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 12)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16
@@ -145,12 +167,14 @@ value = 0.5
 show_percentage = false
 
 [node name="Player3HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player3HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 8
@@ -159,6 +183,7 @@ texture = ExtResource("1_bma8u")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player3HBoxContainer/TextureRect"]
 clip_children = 1
+texture_filter = 1
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
@@ -166,6 +191,7 @@ mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player3HBoxContainer/TextureRect/TextureRect"]
+texture_filter = 1
 position = Vector2(13, 12)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ru5ln")
@@ -174,31 +200,37 @@ vframes = 4
 frame = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Player3HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = -7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Player3HBoxContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player3HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player3HBoxContainer/VBoxContainer/HBoxContainer/TextureRect"]
+texture_filter = 1
 position = Vector2(15, 14)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player3HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 8
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player3HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 12)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16
@@ -207,12 +239,14 @@ value = 0.5
 show_percentage = false
 
 [node name="Player4HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player4HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 8
@@ -221,6 +255,7 @@ texture = ExtResource("1_bma8u")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player4HBoxContainer/TextureRect"]
 clip_children = 1
+texture_filter = 1
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
@@ -228,6 +263,7 @@ mouse_filter = 2
 texture = ExtResource("2_fct72")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player4HBoxContainer/TextureRect/TextureRect"]
+texture_filter = 1
 position = Vector2(13, 6)
 scale = Vector2(3, 3)
 texture = ExtResource("3_ru5ln")
@@ -236,31 +272,37 @@ vframes = 4
 frame = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Player4HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = -7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Player4HBoxContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Player4HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Player4HBoxContainer/VBoxContainer/HBoxContainer/TextureRect"]
+texture_filter = 1
 position = Vector2(15, 14)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_fct72")
 
 [node name="Label" type="Label" parent="MarginContainer/Player4HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 8
 text = "10 / 500"
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Player4HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 12)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16

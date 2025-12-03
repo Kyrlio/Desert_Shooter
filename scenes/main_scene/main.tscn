@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="1_nqgu8"]
 [ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="2_rg1da"]
 [ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_xi16r"]
-[ext_resource type="Texture2D" uid="uid://dggf6odu264hs" path="res://assets/Tiles/Tilemap/tilemap_packed.png" id="3_ec6ii"]
+[ext_resource type="Texture2D" uid="uid://xqaoe846hx6m" path="res://assets/Tiles/Tilemap/tilemap_packed.png" id="3_ec6ii"]
 [ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="3_ib4vx"]
 [ext_resource type="PackedScene" uid="uid://cc5igibyuwshk" path="res://scenes/component/player_spawn_manager.tscn" id="5_6gv1u"]
 [ext_resource type="PackedScene" uid="uid://ccn4qae0xhort" path="res://scenes/component/object_spawn_manager.tscn" id="5_mac6c"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="19_a52nl"]
 [ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="20_4wbmt"]
 [ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="21_0m7k2"]
-[ext_resource type="Texture2D" uid="uid://3oqkd2us7ju3" path="res://assets/Tiles/New Tiles/tile_0081-export.png" id="24_rg1da"]
+[ext_resource type="Texture2D" uid="uid://3oqkd2us7ju3" path="res://assets/Tiles/New Tiles Grass/tile_0081-export.png" id="24_rg1da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_owwxs"]
 texture = ExtResource("3_ec6ii")

@@ -23,16 +23,19 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_resume_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	Cursor.change_cursor(old_cursor)
 	visible = false
 	get_tree().paused = false
 
 
 func _on_quit_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	visible = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("uid://542ov0s7gl6y")
 
 
 func _on_options_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
 	pass # Replace with function body.

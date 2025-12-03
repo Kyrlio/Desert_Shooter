@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0pcogs5dcrso"]
 
 [ext_resource type="Script" uid="uid://cunp5vapp5ut7" path="res://scenes/entities/grass/grass.gd" id="1_7yh3x"]
-[ext_resource type="Texture2D" uid="uid://vtj7qtn6n66w" path="res://assets/Tiles/New Tiles/tile_0044.png" id="2_7yh3x"]
+[ext_resource type="Texture2D" uid="uid://vtj7qtn6n66w" path="res://assets/Tiles/New Tiles Grass/tile_0044.png" id="2_7yh3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yh3x"]
 radius = 4.0

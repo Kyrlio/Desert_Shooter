@@ -10,6 +10,7 @@ extends Area2D
 
 @onready var sprite: Sprite2D = $Sprite2D  # Optionnel: sprite de l'arme au sol
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var pickup_stream_player: AudioStreamPlayer = $PickupStreamPlayer
 
 var _player_nearby: Player = null
 
@@ -50,6 +51,7 @@ func _pickup_weapon() -> void:
 	if _player_nearby == null or weapon_scene == null:
 		return
 	
+	pickup_stream_player.play()
 	
 	# Donner l'arme au joueur
 	_player_nearby.weapon_manager.pickup_weapon(weapon_scene)

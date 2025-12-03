@@ -49,8 +49,8 @@ func equip_weapon(weapon_instance: Weapon) -> void:
 			var cursor := load("uid://l5xfn518qxye")
 			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
 		"Knife":
-			var cursor := load("uid://c1l8q4qmhyv3i")
-			Cursor.change_cursor(cursor, Vector2.ONE, Vector2(-15, -15))
+			var cursor := load("uid://by6xu56h1xb67")
+			Cursor.change_cursor(cursor, Vector2(2,2), Vector2(-15, -15))
 
 
 func unequip_weapon() -> void:

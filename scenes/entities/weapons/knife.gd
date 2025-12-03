@@ -37,6 +37,7 @@ func fire(_direction: Vector2) -> void:
 	
 	can_slash = false
 	_perform_slash()
+	weapon_stream_player.play()
 	
 	# Cooldown
 	#await get_tree().create_timer(slash_cooldown).timeout

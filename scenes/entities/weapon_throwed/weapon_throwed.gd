@@ -10,6 +10,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var throw_stream_player: AudioStreamPlayer = $ThrowStreamPlayer
 
 var direction: Vector2
 var damage_to_apply: int = 1
@@ -25,6 +26,8 @@ func _ready() -> void:
 		speed_to_apply = SPEED_START
 	life_timer.wait_time = time_to_apply
 	life_timer.start()
+	
+	throw_stream_player.play()
 	
 	life_timer.timeout.connect(_on_life_timer_timeout)
 	# Appliquer les paramètres si déjà définis avant l'entrée dans l'arbre

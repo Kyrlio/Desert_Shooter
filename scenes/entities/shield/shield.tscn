@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch7jqdfbu4el4"]
+[gd_scene load_steps=8 format=3 uid="uid://ch7jqdfbu4el4"]
 
 [ext_resource type="Script" uid="uid://corykvcfxne75" path="res://scenes/entities/shield/player_shield.gd" id="1_8pxy6"]
+[ext_resource type="AudioStream" uid="uid://b2es2ndlv0a08" path="res://assets/Sounds/Impact/impactPlate_light_000.ogg" id="2_ht5sv"]
+[ext_resource type="AudioStream" uid="uid://bdkolhqhb0xcg" path="res://assets/Sounds/Impact/impactPlate_light_001.ogg" id="3_qn16r"]
+[ext_resource type="AudioStream" uid="uid://b8rj1mjta1tja" path="res://assets/Sounds/Impact/impactPlate_light_002.ogg" id="4_in4hi"]
+[ext_resource type="AudioStream" uid="uid://d2rg1v30loht3" path="res://assets/Sounds/Impact/impactPlate_light_003.ogg" id="5_ft7m2"]
+[ext_resource type="AudioStream" uid="uid://c44aon35eo8lw" path="res://assets/Sounds/Impact/impactPlate_light_004.ogg" id="6_j65m0"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cmpl0"]
+streams_count = 5
+stream_0/stream = ExtResource("2_ht5sv")
+stream_1/stream = ExtResource("3_qn16r")
+stream_2/stream = ExtResource("4_in4hi")
+stream_3/stream = ExtResource("5_ft7m2")
+stream_4/stream = ExtResource("6_j65m0")
 
 [node name="Shield" type="Node2D"]
 visible = false
@@ -10,6 +23,10 @@ max_hits = 10
 base_arc_angle_degrees = 90.0
 offset_distance = 0.755
 recharge_rate = 10.0
+
+[node name="ImpactStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_cmpl0")
+bus = &"sfx"
 
 [node name="ShieldArea" type="Area2D" parent="."]
 collision_layer = 0

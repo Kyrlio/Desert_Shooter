@@ -22,6 +22,7 @@ signal shield_ready
 @onready var shield_arc: Line2D = $ShieldArc
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var center_marker: Node2D = get_node_or_null(center_marker_path) as Node2D
+@onready var impact_stream_player: AudioStreamPlayer = $ImpactStreamPlayer
 
 var remaining_hits: float
 var _is_active: bool = false
@@ -92,6 +93,7 @@ func _on_area_entered(other_area: Area2D) -> void:
 	if not _is_active:
 		return
 	if other_area is HitboxComponent:
+		impact_stream_player.play()
 		_handle_block_hit(other_area)
 
 

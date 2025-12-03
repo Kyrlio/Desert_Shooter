@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=15 format=3 uid="uid://dkhrnbg06cxqy"]
 
-[ext_resource type="FontFile" uid="uid://dkqrdhqr02vr8" path="res://resources/font/KarenFat.ttf" id="1_d4nwg"]
+[ext_resource type="FontFile" uid="uid://lc4lmp8spn4u" path="res://resources/font/KarenFat.ttf" id="1_d4nwg"]
 [ext_resource type="Texture2D" uid="uid://jxtg8iy5yi0k" path="res://assets/Interface/Tilemap/tilemap_packed.png" id="1_owntx"]
-[ext_resource type="Texture2D" uid="uid://cso3mmw8k2dpu" path="res://assets/ui/panel.png" id="2_886mr"]
-[ext_resource type="Texture2D" uid="uid://cstl1g50rngv8" path="res://assets/ui/progress_bar_outline.png" id="3_owntx"]
-[ext_resource type="Texture2D" uid="uid://cg7b4yf6qc221" path="res://assets/ui/progress_bar_fill.png" id="4_aaf3v"]
+[ext_resource type="Texture2D" uid="uid://dp0fydrh5itq2" path="res://assets/ui/panel.png" id="2_886mr"]
+[ext_resource type="Texture2D" uid="uid://crjvqjswcbtav" path="res://assets/ui/progress_bar_outline.png" id="3_owntx"]
+[ext_resource type="Texture2D" uid="uid://bho6tv34tprit" path="res://assets/ui/progress_bar_fill.png" id="4_aaf3v"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_886mr"]
 load_path = "res://.godot/imported/buttons.png-12fe8cd646fbf8701fc35ae7af4f992b.ctex"

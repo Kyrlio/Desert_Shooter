@@ -4,9 +4,9 @@ extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-var bend_speed: float = 0.35
-var back_speed: float = 7.0
-@export var skewvalue: float = 40
+var bend_speed: float = 0.6
+var back_speed: float = 8.0
+@export var skewvalue: float = 15
 
 @export var sprite: CompressedTexture2D
 

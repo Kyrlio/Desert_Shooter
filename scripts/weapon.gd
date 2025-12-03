@@ -7,6 +7,7 @@ signal ammo_changed(current_mag: int, total_ammo: int, mag_size: int)
 
 @onready var reloading_timer: Timer = $ReloadingTimer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var weapon_stream_player: AudioStreamPlayer = $WeaponStreamPlayer
 
 @export var display_name: String = "Weapon"
 @export var damage: int = 5
@@ -156,6 +157,7 @@ func _play_fire_effects() -> void:
 	if animation_player.is_playing():
 		animation_player.stop()
 	animation_player.play("fire")
+	weapon_stream_player.play()
 	
 	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
 	muzzle_flash.global_position = barrel_position.global_position

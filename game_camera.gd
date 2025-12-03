@@ -18,10 +18,20 @@ const SHAKE_DECAY_RATE: float = 10
 @export var max_zoom: float = 2.3 # Most zoomed-in (shows less world)
 @export var min_zoom: float = 2.0 # Most zoomed-out (shows more world)
 
-@export_category("Camera Mouse Look")
+@export_category("Camera Look")
 @export var enable_mouse_look: bool = true
 @export_range(0.0, 1.0, 0.05) var cursor_influence: float = 0.15 # 0..1 part de la distance vers la souris
 @export var cursor_max_offset: float = 220.0 # décalage max (unités monde)
+@export_range(0.0, 1.0, 0.05) var gamepad_max_offset: float = 0.5
+
+@export_category("Modes")
+# Si activé (pour le mode Versus), la caméra reste à une position fixe et ne suit pas les joueurs
+@export var fixed_camera: bool = false
+@export var fixed_position: Vector2 = Vector2.ZERO
+@export var fixed_zoom: float = 2.0
+
+@export_category("Upscale")
+@export var sub_viewport_container: SubViewportContainer
 
 static var instance: GameCamera
 
@@ -29,13 +39,26 @@ var noise_offset_x: float
 var noise_offset_y: float
 var players := []
 var current_shake_percentage: float
-var camera_position: Vector2
+var actual_cam_pos: Vector2
 
 
 func _ready() -> void:
 	instance = self
+	# Initialise la position réelle de caméra pour éviter un saut au premier frame
+	actual_cam_pos = global_position
 
 func _physics_process(delta: float) -> void:
+	# Mode caméra fixe (ex: Versus) : rien ne bouge, pas de zoom auto, pas de shake
+	if fixed_camera:
+		if sub_viewport_container != null and sub_viewport_container.material != null:
+			sub_viewport_container.material.set_shader_parameter("cam_offset", Vector2.ZERO)
+		# Place et verrouille la caméra
+		global_position = fixed_position.round()
+		zoom = Vector2(fixed_zoom, fixed_zoom)
+		offset = Vector2.ZERO
+		current_shake_percentage = 0.0
+		return
+
 	players = get_tree().get_nodes_in_group("player")
 	if players.is_empty():
 		return
@@ -43,11 +66,19 @@ func _physics_process(delta: float) -> void:
 	var target := _calculate_position()
 	
 	if enable_mouse_look and players.size() == 1:
-		target += _calculate_mouse_offset(target)
+		target += _calculate_look_offset(target)
 	
 	if enable_position_smoothing:
-		var weight:float = 1.0 - exp(-smoothing_speed * delta)
-		global_position = global_position.lerp(target, weight)
+		var weight: float = 1.0 - exp(-smoothing_speed * delta)
+		
+		if sub_viewport_container == null:
+			push_warning("Camera : No SubViewportContainer selected")
+			global_position = global_position.lerp(target, weight)
+		else:
+			actual_cam_pos = actual_cam_pos.lerp(target, weight)
+			var cam_subpixel_offset = actual_cam_pos.round() - actual_cam_pos
+			sub_viewport_container.material.set_shader_parameter("cam_offset", cam_subpixel_offset)
+			global_position = actual_cam_pos.round()
 	else:
 		global_position = target
 	
@@ -92,7 +123,7 @@ func _calculate_position() -> Vector2:
 
 func _calculate_zoom():
 	var max_distance = _get_max_player_distance()
-	var zoom_level = clamp(max_zoom - (max_distance / 150), min_zoom, max_zoom)
+	var zoom_level = clamp(max_zoom - (max_distance / 500), min_zoom, max_zoom)
 	return Vector2(zoom_level, zoom_level)
 
 
@@ -107,6 +138,31 @@ func _get_max_player_distance():
 				max_distance = distance
 		
 	return max_distance
+
+
+func _calculate_look_offset(target: Vector2) -> Vector2:
+	var gamepad_vec := _get_gamepad_aim_vector(0)
+	var deadzone := 0.2
+	if gamepad_vec.length() > deadzone:
+		return _calculate_gamepad_offset(gamepad_vec)
+	return _calculate_mouse_offset(target)
+
+
+func _get_gamepad_aim_vector(player_index: int) -> Vector2:
+	var prefix := GameConfig.get_player_prefix(player_index)
+	var x := Input.get_action_strength(prefix + "weapon_aim_right") - Input.get_action_strength(prefix + "weapon_aim_left")
+	var y := Input.get_action_strength(prefix + "weapon_aim_down") - Input.get_action_strength(prefix + "weapon_aim_up")
+	return Vector2(x, y)
+
+
+func _calculate_gamepad_offset(aim_vec: Vector2) -> Vector2:
+	var cam_offset := aim_vec
+	if cam_offset == Vector2.ZERO:
+		return Vector2.ZERO
+	cam_offset = cam_offset.normalized() * cursor_max_offset * clamp(aim_vec.length(), 0.0, gamepad_max_offset)
+	if zoom.x != 0.0:
+		cam_offset /= zoom.x
+	return cam_offset
 
 
 func _calculate_mouse_offset(target: Vector2) -> Vector2:

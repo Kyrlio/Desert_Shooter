@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm5ha6ujfnjyi"]
 
 [ext_resource type="Script" uid="uid://dvn0j1w14cqev" path="res://scenes/entities/corpse/corpse.gd" id="1_w00rx"]
-[ext_resource type="Texture2D" uid="uid://ba4vy0rfrn6ag" path="res://scenes/entities/player/test.png" id="2_o4lux"]
+[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="2_o4lux"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w00rx"]
 radius = 5.0

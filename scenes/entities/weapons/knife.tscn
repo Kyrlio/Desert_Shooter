@@ -1,7 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1s6h2umj862l"]
+[gd_scene load_steps=10 format=3 uid="uid://d1s6h2umj862l"]
 
 [ext_resource type="Script" uid="uid://dcog2icfpm35s" path="res://scenes/entities/weapons/knife.gd" id="1_qvm3i"]
+[ext_resource type="AudioStream" uid="uid://batx732q4bfv3" path="res://assets/Sounds/Slash/Impact2.wav" id="2_02q4j"]
 [ext_resource type="Texture2D" uid="uid://b4n4onwcqrsyb" path="res://assets/weapons/All Yellow/SPR_Tiles_9.png" id="2_qvm3i"]
+[ext_resource type="AudioStream" uid="uid://4vv2xbqi5r7j" path="res://assets/Sounds/Slash/Impact4.wav" id="3_uhcrn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qvm3i"]
+random_pitch = 1.3
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("2_02q4j")
+stream_1/stream = ExtResource("3_uhcrn")
 
 [sub_resource type="Animation" id="Animation_qvm3i"]
 length = 0.001
@@ -113,6 +122,11 @@ _data = {
 script = ExtResource("1_qvm3i")
 display_name = "Knife"
 damage = 3
+
+[node name="WeaponStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_qvm3i")
+max_polyphony = 3
+bus = &"sfx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qvm3i")

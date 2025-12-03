@@ -54,6 +54,10 @@ func teardown_scene() -> void:
 	_emit_players_changed_if_needed()
 
 
+func get_number_players() -> int:
+	return get_players().size()
+
+
 func get_players() -> Array[Player]:
 	_prune_invalid_players()
 	var result: Array[Player] = []
@@ -200,9 +204,10 @@ func _configure_actions_for_player(player_index: int, device_id: int) -> void:
 		{ "suffix": "dash", "buttons": [JOY_BUTTON_A, JOY_BUTTON_RIGHT_STICK] },
 		{ "suffix": "next_weapon", "buttons": [JOY_BUTTON_DPAD_RIGHT] },
 		{ "suffix": "prev_weapon", "buttons": [JOY_BUTTON_DPAD_LEFT] },
-		{ "suffix": "throw_weapon", "buttons": [JOY_BUTTON_Y]}
+		{ "suffix": "throw_weapon", "buttons": [JOY_BUTTON_Y]},
 		#{ "suffix": "skin_next", "buttons": [JOY_BUTTON_RIGHT_SHOULDER] },
 		#{ "suffix": "skin_prev", "buttons": [JOY_BUTTON_LEFT_SHOULDER] }
+		{ "suffix": "reload", "buttons": [JOY_BUTTON_X]}
 	]
 	for button_def in button_defs:
 		var action_name_button: String = prefix + String(button_def["suffix"])
