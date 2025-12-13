@@ -1301,13 +1301,6 @@ render_target_update_mode = 4
 process_priority = 1
 process_physics_priority = 1
 texture_filter = 1
-enable_position_smoothing = false
-smoothing_speed = 5
-enable_auto_zoom = false
-max_zoom = 1.0
-min_zoom = 1.0
-enable_mouse_look = false
-fixed_zoom = 1.0
 sub_viewport_container = NodePath("../..")
 metadata/_edit_lock_ = true
 
