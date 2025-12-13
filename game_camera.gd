@@ -48,42 +48,42 @@ func _ready() -> void:
 	actual_cam_pos = global_position
 
 func _physics_process(delta: float) -> void:
-	# Mode caméra fixe (ex: Versus) : rien ne bouge, pas de zoom auto, pas de shake
-	if fixed_camera:
-		if sub_viewport_container != null and sub_viewport_container.material != null:
-			sub_viewport_container.material.set_shader_parameter("cam_offset", Vector2.ZERO)
-		# Place et verrouille la caméra
-		global_position = fixed_position.round()
-		zoom = Vector2(fixed_zoom, fixed_zoom)
-		offset = Vector2.ZERO
-		current_shake_percentage = 0.0
-		return
-
-	players = get_tree().get_nodes_in_group("player")
-	if players.is_empty():
-		return
-	
-	var target := _calculate_position()
-	
-	if enable_mouse_look and players.size() == 1:
-		target += _calculate_look_offset(target)
-	
-	if enable_position_smoothing:
-		var weight: float = 1.0 - exp(-smoothing_speed * delta)
-		
-		if sub_viewport_container == null:
-			push_warning("Camera : No SubViewportContainer selected")
-			global_position = global_position.lerp(target, weight)
-		else:
-			actual_cam_pos = actual_cam_pos.lerp(target, weight)
-			var cam_subpixel_offset = actual_cam_pos.round() - actual_cam_pos
-			sub_viewport_container.material.set_shader_parameter("cam_offset", cam_subpixel_offset)
-			global_position = actual_cam_pos.round()
-	else:
-		global_position = target
-	
-	if enable_auto_zoom:
-		zoom = _calculate_zoom() 
+	## Mode caméra fixe (ex: Versus) : rien ne bouge, pas de zoom auto, pas de shake
+	#if fixed_camera:
+		#if sub_viewport_container != null and sub_viewport_container.material != null:
+			#sub_viewport_container.material.set_shader_parameter("cam_offset", Vector2.ZERO)
+		## Place et verrouille la caméra
+		#global_position = fixed_position.round()
+		#zoom = Vector2(fixed_zoom, fixed_zoom)
+		#offset = Vector2.ZERO
+		#current_shake_percentage = 0.0
+		#return
+#
+	#players = get_tree().get_nodes_in_group("player")
+	#if players.is_empty():
+		#return
+	#
+	#var target := _calculate_position()
+	#
+	#if enable_mouse_look and players.size() == 1:
+		#target += _calculate_look_offset(target)
+	#
+	#if enable_position_smoothing:
+		#var weight: float = 1.0 - exp(-smoothing_speed * delta)
+		#
+		#if sub_viewport_container == null:
+			#push_warning("Camera : No SubViewportContainer selected")
+			#global_position = global_position.lerp(target, weight)
+		#else:
+			#actual_cam_pos = actual_cam_pos.lerp(target, weight)
+			#var cam_subpixel_offset = actual_cam_pos.round() - actual_cam_pos
+			#sub_viewport_container.material.set_shader_parameter("cam_offset", cam_subpixel_offset)
+			#global_position = actual_cam_pos.round()
+	#else:
+		#global_position = target
+	#
+	#if enable_auto_zoom:
+		#zoom = _calculate_zoom() 
 	
 	_apply_shake(delta)
 

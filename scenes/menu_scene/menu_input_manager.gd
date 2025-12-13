@@ -126,7 +126,7 @@ func _find_menu_data(menu_node: Control) -> MenuConfigResource:
 	return null
 
 
-func _input(event: InputEvent) -> void:	
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if last_control_type != ControlType.FocusInput:
 			#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://emydr7qrr2iv" path="res://scenes/entities/player/Shadow.png" id="1_fxnwv"]
 [ext_resource type="Script" uid="uid://dv0tf2703qysu" path="res://scenes/entities/ammo_pickup/ammo_pickup.gd" id="1_wsmnl"]
-[ext_resource type="AudioStream" uid="uid://bkavw3ymtivpq" path="res://assets/Sounds/Select/SND_Select_A.ogg" id="2_k3fm2"]
+[ext_resource type="AudioStream" uid="uid://dfukpi3lta2fl" path="res://assets/Sounds/Magic2.wav" id="2_k3fm2"]
 [ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="2_wsmnl"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3qs5a"]

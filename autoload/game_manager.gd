@@ -6,6 +6,7 @@ signal coop_mode_changed(enabled: bool)
 var show_fps: bool = false
 var show_damage: bool = true
 var coop_mode: bool = false
+var fullscreen: bool = false
 var multiplayer_scenes: Array[String] = ["uid://bj1my63f0v553", "uid://ch86xj8ci7f7a", "uid://64sjetxrpab7", "uid://pq8pimrg2nfh"]
 var multiplayer_actual_scene: String= "uid://bj1my63f0v553"
 

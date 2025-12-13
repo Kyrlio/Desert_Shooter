@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://be6k0bx4x642b"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://be6k0bx4x642b"]
 
 [ext_resource type="Texture2D" uid="uid://bv2hnmqsjjjgx" path="res://assets/ui/buttons.png" id="1_nc8u1"]
 [ext_resource type="Texture2D" uid="uid://dp0fydrh5itq2" path="res://assets/ui/panel.png" id="2_5qsot"]
@@ -30,6 +30,17 @@ region_rect = Rect2(16, 2, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b751m"]
 texture = SubResource("CompressedTexture2D_7ct1h")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(16, 2, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nc8u1"]
+load_path = "res://.godot/imported/buttons.png-12fe8cd646fbf8701fc35ae7af4f992b.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qsot"]
+texture = SubResource("CompressedTexture2D_nc8u1")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
@@ -75,7 +86,7 @@ texture_margin_left = 3.0
 texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
-modulate_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
+modulate_color = Color(0.8666667, 0.40392157, 0.29803923, 1)
 
 [resource]
 default_font = ExtResource("5_ammsu")
@@ -86,6 +97,7 @@ Button/colors/font_hover_color = Color(0.83137256, 0.17254902, 0.30980393, 1)
 Button/styles/disabled = SubResource("StyleBoxTexture_owntx")
 Button/styles/focus = SubResource("StyleBoxTexture_udp68")
 Button/styles/hover = SubResource("StyleBoxTexture_b751m")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_5qsot")
 Button/styles/normal = SubResource("StyleBoxTexture_886mr")
 Button/styles/pressed = SubResource("StyleBoxTexture_aaf3v")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_yp2uj")

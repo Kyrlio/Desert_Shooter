@@ -1307,7 +1307,6 @@ enable_auto_zoom = false
 max_zoom = 1.0
 min_zoom = 1.0
 enable_mouse_look = false
-fixed_camera = true
 fixed_zoom = 1.0
 sub_viewport_container = NodePath("../..")
 metadata/_edit_lock_ = true

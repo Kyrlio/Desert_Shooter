@@ -81,9 +81,10 @@ func fire(direction: Vector2) -> void:
 
 
 func reload():
-	if number_bullets_in_magazine >= magazine_length:
+	if number_bullets_in_magazine >= magazine_length or is_reloading:
 		return
 	is_reloading = true
+	MusicPlayer.play_reload()
 	reloading_timer.start()
 	weapon_owner.start_reloading()
 	animation_player.speed_scale = (1 / reloading_timer.wait_time) + 0.2
