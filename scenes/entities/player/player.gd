@@ -208,6 +208,11 @@ func get_current_weapon() -> Weapon:
 func get_movement_vector() -> Vector2:
 	return input_controller.movement_vector if input_controller else Vector2.ZERO
 
+## Return 1 for right
+## -1 for left
+func get_facing_direction():
+	return visuals.scale.x
+
 
 # ========== DASH SYSTEM (Used by State Machine) ==========
 

@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://81occ8372avj"]
+
+[ext_resource type="Texture2D" uid="uid://de2pls2g5iy6r" path="res://assets/Tiles/Tiles/tile_0225.png" id="1_mwjj1"]
+
+[sub_resource type="Animation" id="Animation_mwjj1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2c8me"]
+resource_name = "default"
+length = 7.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_etwbc"]
+_data = {
+&"RESET": SubResource("Animation_mwjj1"),
+&"default": SubResource("Animation_2c8me")
+}
+
+[sub_resource type="Curve" id="Curve_mwjj1"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.0823545, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2c8me"]
+curve = SubResource("Curve_mwjj1")
+
+[sub_resource type="Curve" id="Curve_udoji"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0.027777784, 1.6806793), 0.0, 6.769532, 0, 0, Vector2(0.2936508, 98.90756), 208.84383, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yu834"]
+curve = SubResource("Curve_udoji")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n41nw"]
+particle_flag_disable_z = true
+angle_min = -156.99998
+angle_max = 1.0728835e-05
+direction = Vector3(-1, -2, 0)
+spread = 10.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 800, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+damping_curve = SubResource("CurveTexture_yu834")
+alpha_curve = SubResource("CurveTexture_2c8me")
+
+[node name="CartridgeParticles" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_etwbc")
+}
+autoplay = "default"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("1_mwjj1")
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_n41nw")

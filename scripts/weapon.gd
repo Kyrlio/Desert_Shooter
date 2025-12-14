@@ -24,6 +24,7 @@ signal ammo_changed(current_mag: int, total_ammo: int, mag_size: int)
 
 var bullet_scene: PackedScene = preload("uid://ccqop2oca0tcc")
 var muzzle_flash_scene: PackedScene = preload("uid://we7xx2omqegd")
+var cartridge_scene: PackedScene = preload("uid://81occ8372avj")
 
 var weapon_owner: Player
 var _cooldown := 0.0
@@ -160,15 +161,30 @@ func _play_fire_effects() -> void:
 	animation_player.play("fire")
 	weapon_stream_player.play()
 	
-	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
-	muzzle_flash.global_position = barrel_position.global_position
-	muzzle_flash.rotation = barrel_position.global_rotation
-	weapon_owner.get_parent().add_child(muzzle_flash)
+	_spawn_muzzle_flash()
+	if weapon_owner.get_current_weapon().name == "Shotgun":
+		for i in range(7):
+			_spawn_cartridge_particles()
+	_spawn_cartridge_particles()
 	
 	GameCamera.shake(1)
 
 
-func _on_reloading_timer_timeout():
+func _spawn_muzzle_flash() -> void:
+	var muzzle_flash: Node2D = muzzle_flash_scene.instantiate()
+	muzzle_flash.global_position = barrel_position.global_position
+	muzzle_flash.rotation = barrel_position.global_rotation
+	weapon_owner.get_parent().add_child(muzzle_flash)
+
+
+func _spawn_cartridge_particles() -> void:
+	var cartridgde_particle: Node2D = cartridge_scene.instantiate()
+	cartridgde_particle.global_position = global_position
+	cartridgde_particle.scale.x = weapon_owner.get_facing_direction()
+	weapon_owner.get_parent().add_child(cartridgde_particle)
+
+
+func _on_reloading_timer_timeout() -> void:
 	weapon_owner.finished_reloading()
 	if number_total_ammo >= magazine_length:
 		number_total_ammo += number_bullets_in_magazine
