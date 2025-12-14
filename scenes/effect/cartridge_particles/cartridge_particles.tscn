@@ -87,7 +87,7 @@ curve = SubResource("Curve_mwjj1")
 
 [sub_resource type="Curve" id="Curve_udoji"]
 _limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0.027777784, 1.6806793), 0.0, 6.769532, 0, 0, Vector2(0.2936508, 98.90756), 208.84383, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -15.789322, 0, 0, Vector2(0.13492063, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_yu834"]
@@ -99,10 +99,10 @@ angle_min = -156.99998
 angle_max = 1.0728835e-05
 direction = Vector3(-1, -2, 0)
 spread = 10.0
-initial_velocity_min = 150.0
+initial_velocity_min = 200.0
 initial_velocity_max = 200.0
-gravity = Vector3(0, 800, 0)
-damping_min = 100.00001
+gravity = Vector3(0, 2000, 0)
+damping_min = 85.00001
 damping_max = 100.00001
 damping_curve = SubResource("CurveTexture_yu834")
 alpha_curve = SubResource("CurveTexture_2c8me")

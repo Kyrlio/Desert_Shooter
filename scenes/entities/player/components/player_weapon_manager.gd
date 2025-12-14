@@ -17,8 +17,7 @@ var has_firearm: bool = false  # Track si le joueur a une arme à feu
 
 func initialize(player: Player) -> void:
 	weapon_owner = player
-	# Toujours commencer avec le couteau
-	change_weapon(knife_scene)
+	change_weapon(knife_scene) # Toujours commencer avec le couteau
 	has_firearm = false
 
 
@@ -31,7 +30,6 @@ func equip_weapon(weapon_instance: Weapon) -> void:
 	current_weapon.on_equipped(weapon_owner)
 	weapon_changed.emit(current_weapon)
 	
-	# Déterminer si c'est une arme à feu ou le couteau
 	has_firearm = not (current_weapon is Knife)
 	
 	# WEAPON CURSOR

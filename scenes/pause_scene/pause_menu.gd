@@ -9,11 +9,10 @@ func _ready() -> void:
 	visible = false
 	get_tree().paused = false
 
-
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("player0_escape"):
 		if get_tree().paused:
-			Cursor.change_cursor(old_cursor, Vector2(2,2))
+			Cursor.change_cursor(old_cursor, Vector2.ONE)
 			visible = false
 			get_tree().paused = false
 		else:
@@ -21,11 +20,12 @@ func _input(_event: InputEvent) -> void:
 			Cursor.change_cursor(load("uid://cvpl0vkt81dco"))
 			visible = true
 			get_tree().paused = true
+			%ResumeButton.grab_focus()
 
 
 func _on_resume_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
-	Cursor.change_cursor(old_cursor, Vector2(2,2))
+	Cursor.change_cursor(old_cursor, Vector2.ONE)
 	visible = false
 	get_tree().paused = false
 

@@ -73,9 +73,9 @@ func close_menu() -> void:
 	cur_default_button = current_config.default_button
 	last_hovered_node = get_node(cur_default_button)
 	if last_control_type == ControlType.FocusInput:
-		if closing_menu_opener_button:
+		if closing_menu_opener_button and closing_menu_opener_button.focus_mode != Control.FOCUS_NONE:
 			closing_menu_opener_button.grab_focus()
-		else:
+		elif cur_default_button and get_node(cur_default_button).focus_mode != Control.FOCUS_NONE:
 			get_node(cur_default_button).grab_focus()
 
 

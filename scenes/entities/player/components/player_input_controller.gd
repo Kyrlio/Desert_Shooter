@@ -105,20 +105,10 @@ func _check_skin_cycle() -> void:
 	var skin_next_action := input_prefix + "skin_next"
 	var skin_prev_action := input_prefix + "skin_prev"
 	
-	var skin_changed := false
 	if InputMap.has_action(skin_next_action) and Input.is_action_just_pressed(skin_next_action):
 		skin_cycled.emit(1)
-		skin_changed = true
 	if InputMap.has_action(skin_prev_action) and Input.is_action_just_pressed(skin_prev_action):
 		skin_cycled.emit(-1)
-		skin_changed = true
-	
-	# Debug keyboard shortcuts retained for player 0 only
-	#if not skin_changed and input_prefix == "player0_":
-		#if Input.is_action_just_pressed("player0_next_skin"):
-			#skin_cycled.emit(1)
-		#if Input.is_action_just_pressed("player0_prev_skin"):
-			#skin_cycled.emit(-1)
 
 
 func handle_input_event(event: InputEvent, aim_root: Node2D) -> void:
@@ -156,10 +146,8 @@ func _set_mouse_visibility(should_be_visible: bool) -> void:
 	if not allow_mouse_aim:
 		return
 	if should_be_visible and _mouse_hidden:
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		Cursor.show_cursor(true)
 		_mouse_hidden = false
 	elif not should_be_visible and not _mouse_hidden:
-		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		Cursor.show_cursor(false)
 		_mouse_hidden = true

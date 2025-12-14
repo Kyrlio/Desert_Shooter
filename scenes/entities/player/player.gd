@@ -11,9 +11,6 @@ extends CharacterBody2D
 @export var character_spritesheet: Texture2D
 @export var available_skins: Array[PlayerSkin] = []
 
-enum Team { PLAYER, ENEMY }
-@export var team: Team = Team.PLAYER
-
 # Components
 var input_controller: PlayerInputController
 var skin_manager: PlayerSkinManager

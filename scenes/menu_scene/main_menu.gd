@@ -168,3 +168,17 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		GameManager.fullscreen = false
+
+
+func _on_command_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
+	menu_input_manager.open_menu(%CommandContainer, %CommandBack)
+	main_menu_container.visible = false
+	title_label.visible = false
+
+
+func _on_command_back_pressed() -> void:
+	MusicPlayer.play_button_clicked()
+	menu_input_manager.close_menu()
+	main_menu_container.visible = true
+	title_label.visible = true

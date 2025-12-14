@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://542ov0s7gl6y"]
+[gd_scene load_steps=25 format=3 uid="uid://542ov0s7gl6y"]
 
 [ext_resource type="Script" uid="uid://dhhh8ybx1ttcw" path="res://scenes/menu_scene/main_menu.gd" id="1_1ysjf"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="1_fbj1f"]
@@ -6,11 +6,25 @@
 [ext_resource type="Script" uid="uid://c0tag3crunvtu" path="res://resources/menu_config.gd" id="2_1ysjf"]
 [ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_swh3s"]
 [ext_resource type="Script" uid="uid://codxfvevgbnk3" path="res://scenes/menu_scene/options_menu.gd" id="6_vylqo"]
+[ext_resource type="Texture2D" uid="uid://ccxqn7u574wwm" path="res://assets/ui/xbox layout/controller_xboxseries.png" id="7_1v0a0"]
+[ext_resource type="Texture2D" uid="uid://dwni207bupeif" path="res://assets/ui/xbox layout/xbox_button_a_outline.png" id="8_xgd10"]
+[ext_resource type="Texture2D" uid="uid://dcg8ab5gx8eca" path="res://assets/ui/xbox layout/xbox_lb_outline.png" id="9_8imix"]
+[ext_resource type="Texture2D" uid="uid://ctwptat7ty0r8" path="res://assets/ui/xbox layout/xbox_button_x_outline.png" id="10_22pv8"]
+[ext_resource type="Texture2D" uid="uid://b5nralckn56w6" path="res://assets/ui/xbox layout/xbox_button_y_outline.png" id="11_sosyx"]
+[ext_resource type="Texture2D" uid="uid://dsk0j2douvlp" path="res://assets/ui/xbox layout/xbox_rt_outline.png" id="12_ax1eh"]
+[ext_resource type="Texture2D" uid="uid://cjd6bncun0m1f" path="res://assets/ui/xbox layout/xbox_stick_l.png" id="13_k1drc"]
+[ext_resource type="Texture2D" uid="uid://des5vwy7cgwt7" path="res://assets/ui/xbox layout/xbox_stick_r.png" id="14_cv0uo"]
+[ext_resource type="Texture2D" uid="uid://42y5clyn0vel" path="res://assets/ui/playstation layout/playstation_button_cross_outline.png" id="15_2mkre"]
+[ext_resource type="Texture2D" uid="uid://c0imp47ipex7s" path="res://assets/ui/playstation layout/playstation_trigger_l1_alternative_outline.png" id="16_3yjq3"]
+[ext_resource type="Texture2D" uid="uid://dicpoetkoro5x" path="res://assets/ui/playstation layout/playstation_button_square_outline.png" id="17_pi2ce"]
+[ext_resource type="Texture2D" uid="uid://c2psuu8xdhbgc" path="res://assets/ui/playstation layout/playstation_button_triangle_outline.png" id="18_blpu8"]
+[ext_resource type="Texture2D" uid="uid://cmgcv3u5mfsc3" path="res://assets/ui/playstation layout/playstation_trigger_r2_outline.png" id="19_osqdg"]
+[ext_resource type="Texture2D" uid="uid://du5od75xahklm" path="res://assets/ui/playstation layout/controller_playstation5.png" id="20_xoctn"]
 
 [sub_resource type="Resource" id="Resource_swh3s"]
 script = ExtResource("2_1ysjf")
 menu_parent = NodePath("../MainVBoxContainer")
-default_button = NodePath("../MainVBoxContainer/SingleplayerButton")
+default_button = NodePath("../MainVBoxContainer/MultiplayerButton")
 button_parents = Array[NodePath]([NodePath("../MainVBoxContainer")])
 metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
@@ -28,6 +42,13 @@ default_button = NodePath("../OptionsVBoxContainer/OptionBack")
 button_parents = Array[NodePath]([NodePath("../OptionsVBoxContainer"), NodePath("../OptionsVBoxContainer/SfxHBoxContainer"), NodePath("../OptionsVBoxContainer/MusicHBoxContainer")])
 metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
+[sub_resource type="Resource" id="Resource_xgd10"]
+script = ExtResource("2_1ysjf")
+menu_parent = NodePath("../CommandContainer")
+default_button = NodePath("../CommandContainer/HBoxContainer/VBoxContainer/CommandBack")
+button_parents = Array[NodePath]([NodePath("../CommandContainer/HBoxContainer/VBoxContainer")])
+metadata/_custom_type_script = "uid://c0tag3crunvtu"
+
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +64,7 @@ script = ExtResource("1_1ysjf")
 [node name="MenuInputManager" type="Node" parent="."]
 script = ExtResource("1_xqrp2")
 base_menu = SubResource("Resource_swh3s")
-popup_menus = Array[ExtResource("2_1ysjf")]([SubResource("Resource_vylqo"), SubResource("Resource_1v0a0")])
+popup_menus = Array[ExtResource("2_1ysjf")]([SubResource("Resource_vylqo"), SubResource("Resource_1v0a0"), SubResource("Resource_xgd10")])
 metadata/_custom_type_script = "uid://bqtisf0gn5jyq"
 
 [node name="Background" parent="." instance=ExtResource("1_fbj1f")]
@@ -81,6 +102,10 @@ text = "VERSUS"
 [node name="OptionButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
 text = "OPTIONS"
+
+[node name="CommandButton" type="Button" parent="MainVBoxContainer"]
+layout_mode = 2
+text = "COMMANDS"
 
 [node name="QuitButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
@@ -312,9 +337,158 @@ button_pressed = true
 text = "SHOW DAMAGE"
 alignment = 1
 
+[node name="CommandContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CommandContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CommandContainer/HBoxContainer"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CommandBack" type="Button" parent="CommandContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BACK"
+
+[node name="XboxVBoxContainer" type="VBoxContainer" parent="CommandContainer/HBoxContainer"]
+custom_minimum_size = Vector2(79, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ControllerXboxseries" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-27, 9.5)
+texture = ExtResource("7_1v0a0")
+
+[node name="XboxLabel" type="Label" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "XBOX CONTROLLER :
+
+
+DASH 
+
+RELOAD
+
+THROW WEAPON
+
+SHOOT
+
+MOVE
+
+ORIENTE WEAPON
+"
+
+[node name="XboxButtonAOutline" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-43, 64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_xgd10")
+
+[node name="XboxButtonAOutline7" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-16, 64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_8imix")
+
+[node name="XboxButtonAOutline2" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-20, 101)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_22pv8")
+
+[node name="XboxButtonAOutline3" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-20, 139)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_sosyx")
+
+[node name="XboxButtonAOutline4" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-20, 177)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_ax1eh")
+
+[node name="XboxButtonAOutline5" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-20, 215)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_k1drc")
+
+[node name="XboxButtonAOutline6" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
+position = Vector2(-20, 253)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_cv0uo")
+
+[node name="PlaystationVBoxContainer" type="VBoxContainer" parent="CommandContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="XboxLabel" type="Label" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "PLAYSTATION CONTROLLER :
+
+
+DASH 
+
+RELOAD
+
+THROW WEAPON
+
+SHOOT
+
+MOVE
+
+ORIENTE WEAPON
+"
+
+[node name="XboxButtonAOutline" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-44, 66)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_2mkre")
+
+[node name="XboxButtonAOutline7" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-16, 66)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_3yjq3")
+
+[node name="XboxButtonAOutline2" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-20, 103)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_pi2ce")
+
+[node name="XboxButtonAOutline3" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-20, 141)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_blpu8")
+
+[node name="XboxButtonAOutline4" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-20, 179)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_osqdg")
+
+[node name="XboxButtonAOutline5" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-20, 217)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_k1drc")
+
+[node name="XboxButtonAOutline6" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
+position = Vector2(-20, 255)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_cv0uo")
+
+[node name="ControllerPlaystation5" type="Sprite2D" parent="CommandContainer/HBoxContainer"]
+position = Vector2(346, 9.5)
+texture = ExtResource("20_xoctn")
+
 [connection signal="pressed" from="MainVBoxContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/OptionButton" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/CommandButton" to="." method="_on_command_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerBackButton" to="." method="_on_multiplayer_back_button_pressed"]
 [connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerPlayButton" to="." method="_on_multiplayer_play_pressed"]
@@ -322,3 +496,4 @@ alignment = 1
 [connection signal="toggled" from="OptionsVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
+[connection signal="pressed" from="CommandContainer/HBoxContainer/VBoxContainer/CommandBack" to="." method="_on_command_back_pressed"]

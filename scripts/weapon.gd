@@ -60,7 +60,6 @@ func fire(direction: Vector2) -> void:
 	_emit_ammo_changed()
 	
 	for i in number_bullets:
-		# Appliquer la dispersion (spread)
 		var final_direction = _apply_spread(direction)
 		
 		# Créer et configurer la balle
@@ -119,27 +118,18 @@ func _apply_spread(direction: Vector2) -> Vector2:
 	if spread <= 0.0:
 		return direction.normalized()
 	
-	# Convertir la dispersion en radians
 	var spread_radians = deg_to_rad(spread)
 	
-	# Générer un angle aléatoire selon le type de distribution
 	var random_angle: float
 	if use_normal_distribution:
-		# Distribution normale (gaussienne) - la plupart des balles au centre
 		random_angle = _randfn(0.0, spread_radians / 3.0)
-		# Limiter à ±spread pour éviter les valeurs extrêmes
 		random_angle = clamp(random_angle, -spread_radians, spread_radians)
 	else:
-		# Distribution uniforme - toutes les directions équiprobables
 		random_angle = randf_range(-spread_radians, spread_radians)
 	
-	# Obtenir l'angle de la direction de base
 	var base_angle = direction.angle()
-	
-	# Ajouter la dispersion aléatoire
 	var final_angle = base_angle + random_angle
 	
-	# Créer la nouvelle direction
 	return Vector2(cos(final_angle), sin(final_angle))
 
 
@@ -163,7 +153,7 @@ func _play_fire_effects() -> void:
 	
 	_spawn_muzzle_flash()
 	if weapon_owner.get_current_weapon().name == "Shotgun":
-		for i in range(7):
+		for i in range(2):
 			_spawn_cartridge_particles()
 	_spawn_cartridge_particles()
 	
