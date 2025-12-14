@@ -26,6 +26,7 @@ var weapon_manager: PlayerWeaponManager
 @onready var reload_sprite: Sprite2D = $ReloadSprite
 @onready var shield := $Shield
 @onready var run_particles: GPUParticles2D = $Visuals/GPUParticles2D
+@onready var aim_cursor: Sprite2D = %SprCursors1
 
 # DASH
 var dash_timer: float = 0.0
@@ -46,7 +47,7 @@ func _ready() -> void:
 	add_to_group("player")
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
-	
+	aim_cursor.visible = GameManager.show_aiming
 
 
 func _initialize_components() -> void:

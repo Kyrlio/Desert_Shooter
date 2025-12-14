@@ -327,14 +327,23 @@ focus_neighbor_top = NodePath("../../SfxHBoxContainer/SfxUpButton")
 text = "+"
 
 [node name="CheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+visible = false
 layout_mode = 2
 text = "SHOW FPS"
 alignment = 1
 
 [node name="ShowDamageCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 text = "SHOW DAMAGE"
+alignment = 1
+
+[node name="ShowAimCursorCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "SHOW AIMING"
 alignment = 1
 
 [node name="CommandContainer" type="MarginContainer" parent="."]
@@ -496,4 +505,5 @@ texture = ExtResource("20_xoctn")
 [connection signal="toggled" from="OptionsVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/ShowAimCursorCheckButton" to="." method="_on_show_aim_cursor_check_button_toggled"]
 [connection signal="pressed" from="CommandContainer/HBoxContainer/VBoxContainer/CommandBack" to="." method="_on_command_back_pressed"]

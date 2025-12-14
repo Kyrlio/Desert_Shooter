@@ -22,6 +22,8 @@ var player_slot_nodes: Array[Control] = []
 
 func _ready() -> void:
 	Cursor.change_cursor(load("uid://cvpl0vkt81dco"))
+	%ShowDamageCheckButton.button_pressed = GameManager.show_damage
+	%ShowAimCursorCheckButton.button_pressed = GameManager.show_aiming
 	
 	_initialize_options()
 	
@@ -182,3 +184,8 @@ func _on_command_back_pressed() -> void:
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
 	title_label.visible = true
+
+
+func _on_show_aim_cursor_check_button_toggled(toggled_on: bool) -> void:
+	MusicPlayer.play_button_clicked()
+	GameManager.show_aiming = toggled_on

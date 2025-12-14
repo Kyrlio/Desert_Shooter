@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=35 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://emydr7qrr2iv" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7jqdfbu4el4" path="res://scenes/entities/shield/shield.tscn" id="12_knby6"]
 [ext_resource type="Shader" uid="uid://cio4dge6agb86" path="res://resources/shaders/hit_flash_sprite_component.gdshader" id="12_w3p2j"]
 [ext_resource type="Texture2D" uid="uid://bwh2ta0ci1n2i" path="res://assets/particles/particles.png" id="13_knby6"]
+[ext_resource type="Texture2D" uid="uid://c5js8bf0v4p0g" path="res://assets/Interface/Tiles/Cursors/SPR_Cursors_1.png" id="17_fg2wu"]
 [ext_resource type="Texture2D" uid="uid://bw1e2f5e8uyh8" path="res://assets/icons/tile_0676.png" id="18_w3p2j"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fg2wu"]
@@ -246,6 +247,14 @@ position = Vector2(0, -2)
 
 [node name="WeaponAnimationRoot" type="Node2D" parent="Visuals/WeaponRoot"]
 position = Vector2(3, -2)
+
+[node name="SprCursors1" type="Sprite2D" parent="Visuals/WeaponRoot/WeaponAnimationRoot"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.78431374)
+z_index = 10
+position = Vector2(18, 0)
+rotation = 1.5707964
+texture = ExtResource("17_fg2wu")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_nh4ur")
