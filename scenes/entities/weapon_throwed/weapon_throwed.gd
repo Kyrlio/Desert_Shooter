@@ -13,7 +13,7 @@ extends Node2D
 @onready var throw_stream_player: AudioStreamPlayer = $ThrowStreamPlayer
 
 var direction: Vector2
-var damage_to_apply: int = 1
+var damage_to_apply: int = 20
 var time_to_apply: float
 var speed_to_apply: float
 var owner_player_index: int = -1
@@ -26,11 +26,10 @@ func _ready() -> void:
 		speed_to_apply = SPEED_START
 	life_timer.wait_time = time_to_apply
 	life_timer.start()
-	
 	throw_stream_player.play()
 	
 	life_timer.timeout.connect(_on_life_timer_timeout)
-	# Appliquer les paramètres si déjà définis avant l'entrée dans l'arbre
+	
 	hitbox_component.damage = damage_to_apply
 	hitbox_component.owner_player_index = owner_player_index
 	hitbox_component.hit_hurtbox.connect(_on_hit_hurtbox)
@@ -62,10 +61,7 @@ func set_damage(dmg: int) -> void:
 		hitbox_component.damage = damage_to_apply
 
 func set_owner_player(player: Player) -> void:
-	if player == null:
-		owner_player_index = -1
-	else:
-		owner_player_index = player.player_index
+	owner_player_index = player.player_index if player != null else -1
 	if is_inside_tree() and is_instance_valid(hitbox_component):
 		hitbox_component.owner_player_index = owner_player_index
 

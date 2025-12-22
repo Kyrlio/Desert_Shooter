@@ -7,9 +7,9 @@ const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 @onready var main_menu_container: VBoxContainer = $MainVBoxContainer
 @onready var multiplayer_container: MarginContainer = $MultiplayerContainer
 @onready var player_slots_row: HBoxContainer = $MultiplayerContainer/VBoxContainer/HBoxContainer
-@onready var options_container: VBoxContainer = $OptionsVBoxContainer
+@onready var options_container: HBoxContainer = $OptionsVBoxContainer
 @onready var multiplayer_play_button: Button = $MultiplayerContainer/VBoxContainer/MultiplayerPlayButton
-@onready var title_label: Label = $TitleLabel
+@onready var title_label: Label = %TitleLabel
 @onready var sfx_down_button: Button = %SfxDownButton
 @onready var sfx_progress_bar: ProgressBar = %SfxProgressBar
 @onready var sfx_up_button: Button = %SfxUpButton
@@ -17,6 +17,7 @@ const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 @onready var music_progress_bar: ProgressBar = %MusicProgressBar
 @onready var music_up_button: Button = %MusicUpButton
 @onready var fullscreen_check_button: CheckButton = %FullscreenCheckButton
+@onready var health_progress_bar: ProgressBar = %HealthProgressBar
 
 var player_slot_nodes: Array[Control] = []
 
@@ -55,13 +56,15 @@ func _ready() -> void:
 
 func _initialize_options():
 	options_container.modulate = Color(1, 1, 1, 0)
-	$OptionsVBoxContainer/CheckButton.button_pressed = GameManager.show_fps
+	%CheckButton.button_pressed = GameManager.show_fps
 	fullscreen_check_button.button_pressed = GameManager.fullscreen
 
 
 func update_display():
 	sfx_progress_bar.value = get_bus_volume("sfx")
 	music_progress_bar.value = get_bus_volume("music")
+	health_progress_bar.value = GameManager.player_max_health
+	%HealthLabel2.text = str(int(health_progress_bar.value))
 
 
 func get_bus_volume(bus_name: String) -> float:
@@ -137,15 +140,19 @@ func _on_joy_connection_changed(_device_id: int, _connected: bool) -> void:
 func _on_option_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu($OptionsVBoxContainer, $MainVBoxContainer/OptionButton)
-	main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	main_menu_container.modulate = Color(1, 1, 1, 0.75)
+	#main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	#main_menu_container.modulate = Color(1, 1, 1, 0.75)
+	main_menu_container.visible = false
+	%HealthLabel2.visible = true
 
 
 func _on_option_back_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
-	main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	main_menu_container.modulate = Color(1, 1, 1, 1)
+	#main_menu_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	#main_menu_container.modulate = Color(1, 1, 1, 1)
+	main_menu_container.visible = true
+	%HealthLabel2.visible = false
 
 
 func _on_quit_button_pressed() -> void:
@@ -189,3 +196,17 @@ func _on_command_back_pressed() -> void:
 func _on_show_aim_cursor_check_button_toggled(toggled_on: bool) -> void:
 	MusicPlayer.play_button_clicked()
 	GameManager.show_aiming = toggled_on
+
+
+func _on_health_down_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
+	GameManager.player_max_health -= 5
+	GameManager.player_max_health = clamp(GameManager.player_max_health, 1, 100)
+	update_display()
+
+
+func _on_health_up_button_pressed() -> void:
+	MusicPlayer.play_button_clicked()
+	GameManager.player_max_health += 5
+	GameManager.player_max_health = clamp(GameManager.player_max_health, 1, 100)
+	update_display()

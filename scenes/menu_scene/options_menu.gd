@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 @onready var sfx_down_button: Button = %SfxDownButton
 @onready var sfx_progress_bar: ProgressBar = %SfxProgressBar

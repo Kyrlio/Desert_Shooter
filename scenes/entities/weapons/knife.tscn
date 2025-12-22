@@ -119,9 +119,10 @@ _data = {
 }
 
 [node name="Knife" type="Node2D"]
+light_mask = 0
 script = ExtResource("1_qvm3i")
 display_name = "Knife"
-damage = 3
+damage = 15
 
 [node name="WeaponStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qvm3i")
@@ -129,6 +130,7 @@ max_polyphony = 3
 bus = &"sfx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("2_qvm3i")
 offset = Vector2(5, -9)
 

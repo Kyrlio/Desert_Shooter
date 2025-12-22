@@ -99,6 +99,7 @@ autostart = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_n4odw")]
 collision_mask = 7
+damage = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_n4odw")

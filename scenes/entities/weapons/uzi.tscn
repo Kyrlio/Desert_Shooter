@@ -125,6 +125,7 @@ _data = {
 }
 
 [node name="Uzi" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
+light_mask = 0
 script = ExtResource("1_qlr4j")
 display_name = "Uzi"
 damage = 2
@@ -153,6 +154,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_jacty")
 centered = false

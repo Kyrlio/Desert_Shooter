@@ -125,6 +125,7 @@ _data = {
 }
 
 [node name="Shotgun" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
+light_mask = 0
 script = ExtResource("1_5bb75")
 display_name = "Shotgun"
 damage = 2
@@ -154,6 +155,7 @@ wait_time = 1.2
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_hn68x")
 centered = false

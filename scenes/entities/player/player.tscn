@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://diol0b6nt06in"]
+[gd_scene load_steps=37 format=3 uid="uid://diol0b6nt06in"]
 
 [ext_resource type="Script" uid="uid://cqbr6x8e1mgus" path="res://scenes/entities/player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://emydr7qrr2iv" path="res://scenes/entities/player/Shadow.png" id="2_g1dw6"]
@@ -153,6 +153,17 @@ resource_local_to_scene = true
 shader = ExtResource("12_w3p2j")
 shader_parameter/percent = 0.0
 
+[sub_resource type="Gradient" id="Gradient_fg2wu"]
+offsets = PackedFloat32Array(0, 0.4074074)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7dqom"]
+gradient = SubResource("Gradient_fg2wu")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("aim_root") groups=["player"]]
 texture_filter = 1
 collision_mask = 2
@@ -178,7 +189,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_r4dfn")]
-max_health = 50
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_70kwc")]
 position = Vector2(0, -6)
@@ -205,11 +215,13 @@ shape = SubResource("CircleShape2D_oul6g")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.54901963)
+light_mask = 0
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_g1dw6")
 
 [node name="ReloadSprite" type="Sprite2D" parent="."]
 visible = false
+light_mask = 0
 position = Vector2(13, -18)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("18_w3p2j")
@@ -235,6 +247,7 @@ position = Vector2(0, -6)
 gizmo_extents = 5.0
 
 [node name="HitFlashSpriteComponent" parent="Visuals" node_paths=PackedStringArray("health_component") instance=ExtResource("11_yywfu")]
+light_mask = 0
 material = SubResource("ShaderMaterial_18p7g")
 texture = ExtResource("2_w3p2j")
 offset = Vector2(0, -12)
@@ -251,6 +264,7 @@ position = Vector2(3, -2)
 [node name="SprCursors1" type="Sprite2D" parent="Visuals/WeaponRoot/WeaponAnimationRoot"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.78431374)
+light_mask = 0
 z_index = 10
 position = Vector2(18, 0)
 rotation = 1.5707964
@@ -267,3 +281,10 @@ script = ExtResource("6_bj7e2")
 
 [node name="DashingState" type="Node" parent="StateMachine"]
 script = ExtResource("7_bj7e2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_7dqom")

@@ -10,6 +10,7 @@ var fullscreen: bool = false
 var show_aiming: bool = true
 var multiplayer_scenes: Array[String] = ["uid://bj1my63f0v553", "uid://ch86xj8ci7f7a", "uid://64sjetxrpab7", "uid://pq8pimrg2nfh"]
 var multiplayer_actual_scene: String= "uid://bj1my63f0v553"
+var player_max_health: int = 100
 
 func set_coop_mode(enabled: bool) -> void:
 	if coop_mode == enabled:

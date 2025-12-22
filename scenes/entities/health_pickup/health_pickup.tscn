@@ -168,6 +168,7 @@ _data = {
 radius = 10.049875
 
 [node name="HealthPickup" type="Area2D"]
+light_mask = 0
 collision_layer = 2
 script = ExtResource("1_l01w0")
 
@@ -187,8 +188,10 @@ shape = SubResource("CircleShape2D_wsmnl")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.42745098)
+light_mask = 0
 position = Vector2(0, 8)
 texture = ExtResource("1_32uk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("2_l01w0")

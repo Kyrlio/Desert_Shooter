@@ -202,6 +202,7 @@ _data = {
 radius = 8.0
 
 [node name="WeaponPickup" type="Area2D"]
+light_mask = 0
 texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_t8w0i")
@@ -222,8 +223,10 @@ shape = SubResource("CircleShape2D_t4hff")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.42745098)
+light_mask = 0
 position = Vector2(0, 8)
 texture = ExtResource("2_767qy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("3_rv6jk")

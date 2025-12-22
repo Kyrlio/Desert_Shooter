@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://81occ8372avj"]
+[gd_scene load_steps=11 format=3 uid="uid://81occ8372avj"]
 
 [ext_resource type="Texture2D" uid="uid://de2pls2g5iy6r" path="res://assets/Tiles/Tiles/tile_0225.png" id="1_mwjj1"]
 
@@ -85,9 +85,11 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_2c8me"]
 curve = SubResource("Curve_mwjj1")
 
+[sub_resource type="CurveTexture" id="CurveTexture_mwjj1"]
+
 [sub_resource type="Curve" id="Curve_udoji"]
 _limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, -15.789322, 0, 0, Vector2(0.13492063, 100), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -15.789322, 0, 0, Vector2(0.07936508, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_yu834"]
@@ -100,8 +102,9 @@ angle_max = 1.0728835e-05
 direction = Vector3(-1, -2, 0)
 spread = 10.0
 initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-gravity = Vector3(0, 2000, 0)
+initial_velocity_max = 250.0
+angular_velocity_curve = SubResource("CurveTexture_mwjj1")
+gravity = Vector3(0, 3000, 0)
 damping_min = 85.00001
 damping_max = 100.00001
 damping_curve = SubResource("CurveTexture_yu834")

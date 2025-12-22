@@ -18,7 +18,6 @@ var slash_cooldown: float = 0.5
 func _ready() -> void:
 	barrel_position = $BarrelPosition
 	display_name = "Knife"
-	damage = 3
 	fire_rate = slash_cooldown
 	
 	# Le couteau n'utilise pas de munitions

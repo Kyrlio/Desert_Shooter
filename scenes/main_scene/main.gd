@@ -15,6 +15,7 @@ static var coop_mode: bool
 @onready var win_label: Label = %WinLabel
 
 @export var _coop_mode: bool = false
+@export var can_end_round: bool = true
 
 var _round_ended: bool = false
 
@@ -52,6 +53,8 @@ func show_fps():
 
 
 func end_round() -> void:
+	if not can_end_round:
+		return
 	if _round_ended:
 		return
 	

@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://c0tag3crunvtu"
 script = ExtResource("2_1ysjf")
 menu_parent = NodePath("../OptionsVBoxContainer")
 default_button = NodePath("../OptionsVBoxContainer/OptionBack")
-button_parents = Array[NodePath]([NodePath("../OptionsVBoxContainer"), NodePath("../OptionsVBoxContainer/SfxHBoxContainer"), NodePath("../OptionsVBoxContainer/MusicHBoxContainer")])
+button_parents = Array[NodePath]([NodePath("../OptionsVBoxContainer"), NodePath("../OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer"), NodePath("../OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer"), NodePath("../OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer"), NodePath("../OptionsVBoxContainer/VBoxContainer2")])
 metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
 [sub_resource type="Resource" id="Resource_xgd10"]
@@ -70,9 +70,20 @@ metadata/_custom_type_script = "uid://bqtisf0gn5jyq"
 [node name="Background" parent="." instance=ExtResource("1_fbj1f")]
 position = Vector2(437.00003, 322)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
 texture_filter = 1
-layout_mode = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 34.0
+offset_right = 248.0
+offset_bottom = 98.0
+grow_horizontal = 2
+pivot_offset = Vector2(248, 30)
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
@@ -225,30 +236,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "PLAY"
 
-[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
-visible = false
+[node name="OptionsVBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(135, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 8
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 32
 script = ExtResource("6_vylqo")
 
 [node name="OptionBack" type="Button" parent="OptionsVBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "BACK"
 
-[node name="FullscreenCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer"]
 layout_mode = 2
-text = "FULLSCREEN"
-alignment = 1
+theme_override_constants/separation = 8
 
-[node name="SfxHBoxContainer" type="HBoxContainer" parent="OptionsVBoxContainer"]
+[node name="SfxHBoxContainer" type="HBoxContainer" parent="OptionsVBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="SfxDownButton" type="Button" parent="OptionsVBoxContainer/SfxHBoxContainer"]
+[node name="SfxDownButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -257,18 +268,18 @@ focus_neighbor_right = NodePath("../SfxUpButton")
 focus_neighbor_bottom = NodePath("../../MusicHBoxContainer/MusicDownButton")
 text = "-"
 
-[node name="SfxVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer/SfxHBoxContainer"]
+[node name="SfxVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SfxLabel" type="Label" parent="OptionsVBoxContainer/SfxHBoxContainer/SfxVBoxContainer"]
+[node name="SfxLabel" type="Label" parent="OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer/SfxVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
 theme_override_constants/outline_size = 4
 text = "SFX VOLUME"
 horizontal_alignment = 1
 
-[node name="SfxProgressBar" type="ProgressBar" parent="OptionsVBoxContainer/SfxHBoxContainer/SfxVBoxContainer"]
+[node name="SfxProgressBar" type="ProgressBar" parent="OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer/SfxVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -276,7 +287,7 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="SfxUpButton" type="Button" parent="OptionsVBoxContainer/SfxHBoxContainer"]
+[node name="SfxUpButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/SfxHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -285,11 +296,11 @@ focus_neighbor_left = NodePath("../SfxDownButton")
 focus_neighbor_bottom = NodePath("../../MusicHBoxContainer/MusicUpButton")
 text = "+"
 
-[node name="MusicHBoxContainer" type="HBoxContainer" parent="OptionsVBoxContainer"]
+[node name="MusicHBoxContainer" type="HBoxContainer" parent="OptionsVBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="MusicDownButton" type="Button" parent="OptionsVBoxContainer/MusicHBoxContainer"]
+[node name="MusicDownButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -298,18 +309,18 @@ focus_neighbor_top = NodePath("../../SfxHBoxContainer/SfxDownButton")
 focus_neighbor_right = NodePath("../MusicUpButton")
 text = "-"
 
-[node name="MusicVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer/MusicHBoxContainer"]
+[node name="MusicVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MusicLabel" type="Label" parent="OptionsVBoxContainer/MusicHBoxContainer/MusicVBoxContainer"]
+[node name="MusicLabel" type="Label" parent="OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer/MusicVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
 theme_override_constants/outline_size = 4
 text = "MUSIC VOLUME"
 horizontal_alignment = 1
 
-[node name="MusicProgressBar" type="ProgressBar" parent="OptionsVBoxContainer/MusicHBoxContainer/MusicVBoxContainer"]
+[node name="MusicProgressBar" type="ProgressBar" parent="OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer/MusicVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -317,7 +328,7 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="MusicUpButton" type="Button" parent="OptionsVBoxContainer/MusicHBoxContainer"]
+[node name="MusicUpButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/MusicHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -326,24 +337,92 @@ focus_neighbor_left = NodePath("../MusicDownButton")
 focus_neighbor_top = NodePath("../../SfxHBoxContainer/SfxUpButton")
 text = "+"
 
-[node name="CheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+[node name="HealthHBoxContainer" type="HBoxContainer" parent="OptionsVBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthDownButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_vertical = 12
+focus_neighbor_top = NodePath("../../MusicHBoxContainer/MusicDownButton")
+focus_neighbor_right = NodePath("../HealthUpButton")
+text = "-"
+
+[node name="HealthVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthLabel" type="Label" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 4
+text = "MAX HEALTH"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthVBoxContainer"]
+
+[node name="HealthLabel2" type="Label" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthVBoxContainer/CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 194.0
+offset_top = 245.0
+offset_right = 217.0
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 4
+text = "50"
+horizontal_alignment = 1
+
+[node name="HealthProgressBar" type="ProgressBar" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+min_value = 1.0
+step = 1.0
+value = 51.0
+show_percentage = false
+
+[node name="HealthUpButton" type="Button" parent="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_vertical = 12
+focus_neighbor_left = NodePath("../HealthDownButton")
+focus_neighbor_top = NodePath("../../MusicHBoxContainer/MusicUpButton")
+text = "+"
+
+[node name="CheckButton" type="CheckButton" parent="OptionsVBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "SHOW FPS"
 alignment = 1
 
-[node name="ShowDamageCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="OptionsVBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-button_pressed = true
-text = "SHOW DAMAGE"
+text = "FULLSCREEN"
 alignment = 1
 
-[node name="ShowAimCursorCheckButton" type="CheckButton" parent="OptionsVBoxContainer"]
+[node name="ShowAimCursorCheckButton" type="CheckButton" parent="OptionsVBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 text = "SHOW AIMING"
+alignment = 1
+
+[node name="ShowDamageCheckButton" type="CheckButton" parent="OptionsVBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "SHOW DAMAGE"
 alignment = 1
 
 [node name="CommandContainer" type="MarginContainer" parent="."]
@@ -502,8 +581,10 @@ texture = ExtResource("20_xoctn")
 [connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerBackButton" to="." method="_on_multiplayer_back_button_pressed"]
 [connection signal="pressed" from="MultiplayerContainer/VBoxContainer/MultiplayerPlayButton" to="." method="_on_multiplayer_play_pressed"]
 [connection signal="pressed" from="OptionsVBoxContainer/OptionBack" to="." method="_on_option_back_pressed"]
-[connection signal="toggled" from="OptionsVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_toggled"]
-[connection signal="toggled" from="OptionsVBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
-[connection signal="toggled" from="OptionsVBoxContainer/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
-[connection signal="toggled" from="OptionsVBoxContainer/ShowAimCursorCheckButton" to="." method="_on_show_aim_cursor_check_button_toggled"]
+[connection signal="pressed" from="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthDownButton" to="." method="_on_health_down_button_pressed"]
+[connection signal="pressed" from="OptionsVBoxContainer/VBoxContainer/HealthHBoxContainer/HealthUpButton" to="." method="_on_health_up_button_pressed"]
+[connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/FullscreenCheckButton" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/ShowAimCursorCheckButton" to="." method="_on_show_aim_cursor_check_button_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
 [connection signal="pressed" from="CommandContainer/HBoxContainer/VBoxContainer/CommandBack" to="." method="_on_command_back_pressed"]

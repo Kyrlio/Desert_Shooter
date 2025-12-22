@@ -7,7 +7,7 @@ signal hit_hurtbox(hurtbox_component: HurtboxComponent)
 const ENVIRONMENT_IMPACT_PARTICLES = preload("uid://dtm267ungrnsi")
 const LAYER_ENVIRONMENT: int = 2
 
-var damage: int = 1
+@export var damage: int = 20
 var is_hit_handled: bool
 var owner_player_index: int = -1
 
@@ -17,6 +17,7 @@ func _ready() -> void:
 	# Ensure we collide with environment (obstacles) for impact behavior;
 	# player/enemy filtering is handled on the Hurtbox side.
 	set_collision_mask_value(LAYER_ENVIRONMENT, true)
+
 
 func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
 	hit_hurtbox.emit(hurtbox_component)

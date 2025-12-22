@@ -150,7 +150,7 @@ func throw_current_weapon(aim_vector: Vector2):
 
 	# Appliquer stats de l'arme à l'objet jeté (dégâts & ownership pour éviter auto-dégâts)
 	thrown.set_texture(current_weapon.get_sprite_texture())
-	thrown.set_damage(1)
+	#thrown.set_damage(20)
 	thrown.set_owner_player(weapon_owner)
 
 	if "throw" in thrown:

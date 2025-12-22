@@ -48,6 +48,8 @@ func _ready() -> void:
 	reload_sprite.visible = false
 	health_component.died.connect(_on_died)
 	aim_cursor.visible = GameManager.show_aiming
+	health_component.max_health = GameManager.player_max_health
+	health_component.current_health = GameManager.player_max_health
 
 
 func _initialize_components() -> void:
