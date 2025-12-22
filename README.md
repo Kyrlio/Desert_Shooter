@@ -2,6 +2,8 @@
 
 Top-down shooter développé avec Godot 4.5. Support multi-joueur local avec gestion des manettes.
 
+![Capture d’écran – Desert Shooter](assets/screenshots/image.png)
+
 ## Fonctionnalités
 
 - Multi-joueur local (connexion/déconnexion manettes à chaud)
