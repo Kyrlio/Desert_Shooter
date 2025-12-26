@@ -1,12 +1,15 @@
-[gd_scene load_steps=53 format=4 uid="uid://bj1my63f0v553"]
+[gd_scene load_steps=57 format=4 uid="uid://bj1my63f0v553"]
 
 [ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_hqnd3"]
 [ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_v5fpq"]
 [ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_v5fpq"]
 [ext_resource type="Shader" uid="uid://c6j003b4rq47d" path="res://resources/shaders/subpixel.gdshader" id="3_ck8qc"]
 [ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="4_1nr4t"]
+[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="4_276he"]
+[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="5_1b6pp"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="5_4k6r5"]
 [ext_resource type="PackedScene" uid="uid://cc5igibyuwshk" path="res://scenes/component/player_spawn_manager.tscn" id="6_276he"]
+[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="6_gbxb7"]
 [ext_resource type="Texture2D" uid="uid://xqaoe846hx6m" path="res://assets/Tiles/Tilemap/tilemap_packed.png" id="7_1b6pp"]
 [ext_resource type="PackedScene" uid="uid://ccn4qae0xhort" path="res://scenes/component/object_spawn_manager.tscn" id="8_gbxb7"]
 [ext_resource type="PackedScene" uid="uid://cnf41vieqjkp5" path="res://scenes/entities/weapon_pickup/weapon_pickup.tscn" id="9_xbim4"]
@@ -26,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cx1761j2jc486" path="res://assets/Tiles/Tiles/tile_0039.png" id="23_vfecu"]
 [ext_resource type="Texture2D" uid="uid://3oqkd2us7ju3" path="res://assets/Tiles/New Tiles Grass/tile_0081-export.png" id="24_p4n4f"]
 [ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="25_turdh"]
+[ext_resource type="PackedScene" uid="uid://bwytma0wq871e" path="res://scenes/hurt_zone/hurt_zone.tscn" id="27_ck8qc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aorxq"]
 shader = ExtResource("3_ck8qc")
@@ -1399,6 +1403,38 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "FPS: 999"
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+offset_left = 291.0
+offset_top = 208.0
+offset_right = 355.0
+offset_bottom = 272.0
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("4_276he")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TextureRect"]
+unique_name_in_owner = true
+clip_children = 1
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("5_1b6pp")
+
+[node name="WinnerHeadSprite" type="Sprite2D" parent="CanvasLayer/TextureRect/TextureRect2"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(30, 19)
+scale = Vector2(5, 5)
+texture = ExtResource("6_gbxb7")
+hframes = 4
+vframes = 4
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_aorxq")
@@ -1601,6 +1637,12 @@ position = Vector2(-31, 1)
 unique_name_in_owner = true
 position = Vector2(226, 265)
 
+[node name="HurtZone" parent="SubViewportContainer/SubViewport" instance=ExtResource("27_ck8qc")]
+unique_name_in_owner = true
+
 [node name="ForegroundLayer" type="Node2D" parent="SubViewportContainer/SubViewport" groups=["foreground_layer"]]
 unique_name_in_owner = true
 texture_filter = 1
+
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/HurtZone" to="." method="_on_hurt_zone_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/HurtZone" to="." method="_on_hurt_zone_body_exited"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwytma0wq871e"]
+
+[ext_resource type="Script" uid="uid://bwr8mw5tpftks" path="res://scenes/hurt_zone/hurt_zone.gd" id="1_ibksn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqyr8"]
+radius = 500.0
+
+[sub_resource type="Gradient" id="Gradient_6yuru"]
+offsets = PackedFloat32Array(0, 0.03982301, 0.5663717, 0.8141593, 1)
+colors = PackedColorArray(1, 0.91764706, 0.16470589, 0, 1, 0.91764706, 0.16470589, 1, 1, 0.23921569, 0, 1, 1, 0.23921569, 0, 1, 1, 0.23921569, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ltnud"]
+gradient = SubResource("Gradient_6yuru")
+width = 100
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ibksn"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 600.0
+emission_ring_inner_radius = 500.0
+emission_ring_cone_angle = 90.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_ltnud")
+
+[node name="HurtZone" type="Area2D"]
+script = ExtResource("1_ibksn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oqyr8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 2)
+amount = 25000
+lifetime = 2.0
+explosiveness = 0.1
+fixed_fps = 0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_ibksn")

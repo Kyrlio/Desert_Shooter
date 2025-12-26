@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch86xj8ci7f7a"]
+[gd_scene load_steps=7 format=3 uid="uid://ch86xj8ci7f7a"]
 
 [ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_jpsk4"]
 [ext_resource type="PackedScene" uid="uid://cmcwxap6ohasg" path="res://scenes/multiplayer/Level2/multiplayer_map2.tscn" id="1_v7skj"]
 [ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_54xvk"]
+[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="3_desi5"]
+[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="4_tw1q5"]
+[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_v7v3j"]
 
 [node name="MultiplayerLevel2" type="Node2D"]
 
@@ -47,6 +50,38 @@ size_flags_horizontal = 4
 unique_name_in_owner = true
 layout_mode = 2
 text = "FPS: 999"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+offset_left = 291.0
+offset_top = 208.0
+offset_right = 355.0
+offset_bottom = 272.0
+size_flags_vertical = 8
+mouse_filter = 2
+texture = ExtResource("3_desi5")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TextureRect"]
+unique_name_in_owner = true
+clip_children = 1
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("4_tw1q5")
+
+[node name="WinnerHeadSprite" type="Sprite2D" parent="CanvasLayer/TextureRect/TextureRect2"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(30, 19)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v7v3j")
+hframes = 4
+vframes = 4
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(640, 360)

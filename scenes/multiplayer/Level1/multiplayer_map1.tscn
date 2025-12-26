@@ -1,31 +1,30 @@
-[gd_scene load_steps=30 format=4 uid="uid://f2a4ce0ss1y5"]
+[gd_scene load_steps=48 format=4 uid="uid://dh7g36l58rfva"]
 
-[ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_1qa53"]
-[ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="2_76lse"]
-[ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="3_xvwe8"]
-[ext_resource type="PackedScene" uid="uid://cc5igibyuwshk" path="res://scenes/component/player_spawn_manager.tscn" id="4_6tthc"]
-[ext_resource type="Texture2D" uid="uid://xqaoe846hx6m" path="res://assets/Tiles/Tilemap/tilemap_packed.png" id="5_qx1pf"]
-[ext_resource type="PackedScene" uid="uid://ccn4qae0xhort" path="res://scenes/component/object_spawn_manager.tscn" id="6_k4xox"]
-[ext_resource type="PackedScene" uid="uid://cnf41vieqjkp5" path="res://scenes/entities/weapon_pickup/weapon_pickup.tscn" id="7_fvl56"]
-[ext_resource type="PackedScene" uid="uid://bnnmu2ycsi5pd" path="res://scenes/entities/weapons/rifle.tscn" id="8_opp8v"]
-[ext_resource type="PackedScene" uid="uid://c55fbudaqm7bl" path="res://scenes/entities/weapons/uzi.tscn" id="9_5ap6f"]
-[ext_resource type="PackedScene" uid="uid://r4fu7s6dkih4" path="res://scenes/entities/weapons/shotgun.tscn" id="10_6esp5"]
-[ext_resource type="PackedScene" uid="uid://did8iv6uy01c" path="res://scenes/entities/weapons/sniper.tscn" id="11_sc1cg"]
-[ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="12_nmy8v"]
-[ext_resource type="Texture2D" uid="uid://dwyilrk3kkfyj" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_3.png" id="13_7pytf"]
-[ext_resource type="Texture2D" uid="uid://buirw8a0smry5" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_8.png" id="14_867l8"]
-[ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="15_lnr3d"]
-[ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="16_5hsxx"]
-[ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="17_e6ao6"]
-[ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="18_mu5pn"]
-[ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="19_cdc6v"]
-[ext_resource type="PackedScene" uid="uid://b0pcogs5dcrso" path="res://scenes/entities/grass/grass.tscn" id="20_g761q"]
-[ext_resource type="Texture2D" uid="uid://bq2bq3p4n0bls" path="res://assets/Tiles/New Tiles Grass/tile_00399.png" id="21_umc3i"]
-[ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="22_7l50d"]
-[ext_resource type="PackedScene" uid="uid://bwytma0wq871e" path="res://scenes/hurt_zone/hurt_zone.tscn" id="23_umc3i"]
+[ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_qvtei"]
+[ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="2_3d0vl"]
+[ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="3_g4arv"]
+[ext_resource type="PackedScene" uid="uid://cc5igibyuwshk" path="res://scenes/component/player_spawn_manager.tscn" id="4_pb7kq"]
+[ext_resource type="Texture2D" uid="uid://xqaoe846hx6m" path="res://assets/Tiles/Tilemap/tilemap_packed.png" id="5_v0t2c"]
+[ext_resource type="PackedScene" uid="uid://ccn4qae0xhort" path="res://scenes/component/object_spawn_manager.tscn" id="6_8vk45"]
+[ext_resource type="PackedScene" uid="uid://cnf41vieqjkp5" path="res://scenes/entities/weapon_pickup/weapon_pickup.tscn" id="7_y45od"]
+[ext_resource type="PackedScene" uid="uid://bnnmu2ycsi5pd" path="res://scenes/entities/weapons/rifle.tscn" id="8_77r32"]
+[ext_resource type="PackedScene" uid="uid://c55fbudaqm7bl" path="res://scenes/entities/weapons/uzi.tscn" id="9_bk68g"]
+[ext_resource type="PackedScene" uid="uid://r4fu7s6dkih4" path="res://scenes/entities/weapons/shotgun.tscn" id="10_op8tn"]
+[ext_resource type="PackedScene" uid="uid://did8iv6uy01c" path="res://scenes/entities/weapons/sniper.tscn" id="11_h2ckk"]
+[ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="12_f8woo"]
+[ext_resource type="Texture2D" uid="uid://dwyilrk3kkfyj" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_3.png" id="13_7ijum"]
+[ext_resource type="Texture2D" uid="uid://buirw8a0smry5" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_8.png" id="14_bkcqa"]
+[ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="15_m70eb"]
+[ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="16_warqy"]
+[ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="17_idbcy"]
+[ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="18_4k2ul"]
+[ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="19_x0kk2"]
+[ext_resource type="PackedScene" uid="uid://b0pcogs5dcrso" path="res://scenes/entities/grass/grass.tscn" id="20_pr3ej"]
+[ext_resource type="Texture2D" uid="uid://bq2bq3p4n0bls" path="res://assets/Tiles/New Tiles Grass/tile_00399.png" id="21_gxsgf"]
+[ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="22_c0dl5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llfi7"]
-texture = ExtResource("5_qx1pf")
+texture = ExtResource("5_v0t2c")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -778,12 +777,58 @@ terrain_set_2/terrain_0/name = "Purple Terrain"
 terrain_set_2/terrain_0/color = Color(0.5019608, 0, 0.2509804, 1)
 sources/0 = SubResource("TileSetAtlasSource_llfi7")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qvtei"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3d0vl"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4arv"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pb7kq"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v0t2c"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8vk45"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y45od"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_77r32"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bk68g"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_op8tn"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_h2ckk"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f8woo"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ijum"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bkcqa"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m70eb"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1u37"]
-texture = ExtResource("5_qx1pf")
+texture = ExtResource("5_v0t2c")
 0:0/0 = 0
 0:0/0/y_sort_origin = 32
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_qvtei")
 0:0/0/terrains_peering_bit/right_side = 0
 0:0/0/terrains_peering_bit/bottom_right_corner = 0
 0:0/0/terrains_peering_bit/bottom_side = 0
@@ -793,6 +838,7 @@ texture = ExtResource("5_qx1pf")
 0:1/0/y_sort_origin = 23
 0:1/0/terrain_set = 0
 0:1/0/terrain = 0
+0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_3d0vl")
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 0:1/0/terrains_peering_bit/right_side = 0
 0:1/0/terrains_peering_bit/bottom_right_corner = 0
@@ -805,6 +851,7 @@ texture = ExtResource("5_qx1pf")
 1:1/0/y_sort_origin = 23
 1:1/0/terrain_set = 0
 1:1/0/terrain = 0
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_op8tn")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 1:1/0/terrains_peering_bit/right_side = 0
 1:1/0/terrains_peering_bit/bottom_right_corner = 0
@@ -820,6 +867,7 @@ texture = ExtResource("5_qx1pf")
 2:1/0/y_sort_origin = 23
 2:1/0/terrain_set = 0
 2:1/0/terrain = 0
+2:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_f8woo")
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 2:1/0/terrains_peering_bit/bottom_side = 0
 2:1/0/terrains_peering_bit/bottom_left_corner = 0
@@ -830,6 +878,7 @@ texture = ExtResource("5_qx1pf")
 2:0/0/y_sort_origin = 32
 2:0/0/terrain_set = 0
 2:0/0/terrain = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_h2ckk")
 2:0/0/terrains_peering_bit/bottom_side = 0
 2:0/0/terrains_peering_bit/bottom_left_corner = 0
 2:0/0/terrains_peering_bit/left_side = 0
@@ -837,6 +886,7 @@ texture = ExtResource("5_qx1pf")
 1:0/0/y_sort_origin = 32
 1:0/0/terrain_set = 0
 1:0/0/terrain = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bk68g")
 1:0/0/terrains_peering_bit/right_side = 0
 1:0/0/terrains_peering_bit/bottom_right_corner = 0
 1:0/0/terrains_peering_bit/bottom_side = 0
@@ -858,6 +908,7 @@ texture = ExtResource("5_qx1pf")
 5:0/0/y_sort_origin = 32
 5:0/0/terrain_set = 0
 5:0/0/terrain = 1
+5:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7ijum")
 5:0/0/terrains_peering_bit/right_side = 1
 5:0/0/terrains_peering_bit/bottom_right_corner = 1
 5:0/0/terrains_peering_bit/bottom_side = 1
@@ -865,6 +916,7 @@ texture = ExtResource("5_qx1pf")
 6:0/0/y_sort_origin = 32
 6:0/0/terrain_set = 0
 6:0/0/terrain = 1
+6:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7ijum")
 6:0/0/terrains_peering_bit/right_side = 1
 6:0/0/terrains_peering_bit/bottom_right_corner = 1
 6:0/0/terrains_peering_bit/bottom_side = 1
@@ -874,6 +926,7 @@ texture = ExtResource("5_qx1pf")
 7:0/0/y_sort_origin = 32
 7:0/0/terrain_set = 0
 7:0/0/terrain = 1
+7:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7ijum")
 7:0/0/terrains_peering_bit/bottom_side = 1
 7:0/0/terrains_peering_bit/bottom_left_corner = 1
 7:0/0/terrains_peering_bit/left_side = 1
@@ -883,6 +936,7 @@ texture = ExtResource("5_qx1pf")
 7:1/0/y_sort_origin = 28
 7:1/0/terrain_set = 0
 7:1/0/terrain = 1
+7:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bkcqa")
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 24, -8, 24, -8, -8)
 7:1/0/terrains_peering_bit/bottom_side = 1
 7:1/0/terrains_peering_bit/bottom_left_corner = 1
@@ -895,6 +949,7 @@ texture = ExtResource("5_qx1pf")
 6:1/0/y_sort_origin = 28
 6:1/0/terrain_set = 0
 6:1/0/terrain = 1
+6:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bkcqa")
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 24, -8, 24)
 6:1/0/terrains_peering_bit/right_side = 1
 6:1/0/terrains_peering_bit/bottom_right_corner = 1
@@ -910,6 +965,7 @@ texture = ExtResource("5_qx1pf")
 5:1/0/y_sort_origin = 28
 5:1/0/terrain_set = 0
 5:1/0/terrain = 1
+5:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bkcqa")
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, 24, -8, 24)
 5:1/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0/terrains_peering_bit/right_side = 1
@@ -929,6 +985,7 @@ texture = ExtResource("5_qx1pf")
 10:1/0/y_sort_origin = 23
 10:1/0/terrain_set = 0
 10:1/0/terrain = 2
+10:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_v0t2c")
 10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 10:1/0/terrains_peering_bit/right_side = 2
 10:1/0/terrains_peering_bit/bottom_right_corner = 2
@@ -941,6 +998,7 @@ texture = ExtResource("5_qx1pf")
 11:1/0/y_sort_origin = 23
 11:1/0/terrain_set = 0
 11:1/0/terrain = 2
+11:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_v0t2c")
 11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 11:1/0/terrains_peering_bit/right_side = 2
 11:1/0/terrains_peering_bit/bottom_right_corner = 2
@@ -956,6 +1014,7 @@ texture = ExtResource("5_qx1pf")
 12:1/0/y_sort_origin = 23
 12:1/0/terrain_set = 0
 12:1/0/terrain = 2
+12:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_v0t2c")
 12:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 12:1/0/terrains_peering_bit/bottom_side = 2
 12:1/0/terrains_peering_bit/bottom_left_corner = 2
@@ -974,6 +1033,7 @@ texture = ExtResource("5_qx1pf")
 15:1/0/y_sort_origin = 23
 15:1/0/terrain_set = 0
 15:1/0/terrain = 3
+15:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_y45od")
 15:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 15:1/0/terrains_peering_bit/right_side = 3
 15:1/0/terrains_peering_bit/bottom_right_corner = 3
@@ -986,6 +1046,7 @@ texture = ExtResource("5_qx1pf")
 16:1/0/y_sort_origin = 23
 16:1/0/terrain_set = 0
 16:1/0/terrain = 3
+16:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_y45od")
 16:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 16:1/0/terrains_peering_bit/right_side = 3
 16:1/0/terrains_peering_bit/bottom_right_corner = 3
@@ -1001,6 +1062,7 @@ texture = ExtResource("5_qx1pf")
 17:1/0/y_sort_origin = 23
 17:1/0/terrain_set = 0
 17:1/0/terrain = 3
+17:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_y45od")
 17:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8.093643, 24.10107, -7.733926, 23.921211)
 17:1/0/terrains_peering_bit/bottom_side = 3
 17:1/0/terrains_peering_bit/bottom_left_corner = 3
@@ -1011,6 +1073,7 @@ texture = ExtResource("5_qx1pf")
 17:0/0/y_sort_origin = 32
 17:0/0/terrain_set = 0
 17:0/0/terrain = 3
+17:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8vk45")
 17:0/0/terrains_peering_bit/bottom_side = 3
 17:0/0/terrains_peering_bit/bottom_left_corner = 3
 17:0/0/terrains_peering_bit/left_side = 3
@@ -1018,6 +1081,7 @@ texture = ExtResource("5_qx1pf")
 16:0/0/y_sort_origin = 32
 16:0/0/terrain_set = 0
 16:0/0/terrain = 3
+16:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8vk45")
 16:0/0/terrains_peering_bit/right_side = 3
 16:0/0/terrains_peering_bit/bottom_right_corner = 3
 16:0/0/terrains_peering_bit/bottom_side = 3
@@ -1027,6 +1091,7 @@ texture = ExtResource("5_qx1pf")
 15:0/0/y_sort_origin = 32
 15:0/0/terrain_set = 0
 15:0/0/terrain = 3
+15:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8vk45")
 15:0/0/terrains_peering_bit/right_side = 3
 15:0/0/terrains_peering_bit/bottom_right_corner = 3
 15:0/0/terrains_peering_bit/bottom_side = 3
@@ -1040,6 +1105,7 @@ texture = ExtResource("5_qx1pf")
 12:0/0/y_sort_origin = 32
 12:0/0/terrain_set = 0
 12:0/0/terrain = 2
+12:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pb7kq")
 12:0/0/terrains_peering_bit/bottom_side = 2
 12:0/0/terrains_peering_bit/bottom_left_corner = 2
 12:0/0/terrains_peering_bit/left_side = 2
@@ -1047,6 +1113,7 @@ texture = ExtResource("5_qx1pf")
 11:0/0/y_sort_origin = 32
 11:0/0/terrain_set = 0
 11:0/0/terrain = 2
+11:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pb7kq")
 11:0/0/terrains_peering_bit/right_side = 2
 11:0/0/terrains_peering_bit/bottom_right_corner = 2
 11:0/0/terrains_peering_bit/bottom_side = 2
@@ -1056,6 +1123,7 @@ texture = ExtResource("5_qx1pf")
 10:0/0/y_sort_origin = 32
 10:0/0/terrain_set = 0
 10:0/0/terrain = 2
+10:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pb7kq")
 10:0/0/terrains_peering_bit/right_side = 2
 10:0/0/terrains_peering_bit/bottom_right_corner = 2
 10:0/0/terrains_peering_bit/bottom_side = 2
@@ -1069,6 +1137,7 @@ texture = ExtResource("5_qx1pf")
 0:3/0/y_sort_origin = 5
 0:3/0/terrain_set = 1
 0:3/0/terrain = 0
+0:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0/terrains_peering_bit/right_side = 0
 0:3/0/terrains_peering_bit/bottom_right_corner = 0
@@ -1079,6 +1148,7 @@ texture = ExtResource("5_qx1pf")
 1:3/0/y_sort_origin = 5
 1:3/0/terrain_set = 1
 1:3/0/terrain = 0
+1:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0/terrains_peering_bit/right_side = 0
 1:3/0/terrains_peering_bit/bottom_right_corner = 0
@@ -1092,6 +1162,7 @@ texture = ExtResource("5_qx1pf")
 2:3/0/y_sort_origin = 5
 2:3/0/terrain_set = 1
 2:3/0/terrain = 0
+2:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0/terrains_peering_bit/bottom_side = 0
 2:3/0/terrains_peering_bit/bottom_left_corner = 0
@@ -1102,6 +1173,7 @@ texture = ExtResource("5_qx1pf")
 2:4/0/y_sort_origin = 5
 2:4/0/terrain_set = 1
 2:4/0/terrain = 0
+2:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0/terrains_peering_bit/left_side = 0
 2:4/0/terrains_peering_bit/top_left_corner = 0
@@ -1110,6 +1182,7 @@ texture = ExtResource("5_qx1pf")
 1:4/0/y_sort_origin = 5
 1:4/0/terrain_set = 1
 1:4/0/terrain = 0
+1:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0/terrains_peering_bit/right_side = 0
 1:4/0/terrains_peering_bit/left_side = 0
@@ -1120,6 +1193,7 @@ texture = ExtResource("5_qx1pf")
 0:4/0/y_sort_origin = 5
 0:4/0/terrain_set = 1
 0:4/0/terrain = 0
+0:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_g4arv")
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0/terrains_peering_bit/right_side = 0
 0:4/0/terrains_peering_bit/top_side = 0
@@ -1129,6 +1203,7 @@ texture = ExtResource("5_qx1pf")
 5:3/0/terrain_set = 1
 5:3/0/terrain = 0
 5:3/0/probability = 0.3
+5:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_m70eb")
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:3/0/terrains_peering_bit/right_side = 0
 5:3/0/terrains_peering_bit/bottom_right_corner = 0
@@ -1143,6 +1218,7 @@ texture = ExtResource("5_qx1pf")
 6:3/0/terrain_set = 1
 6:3/0/terrain = 0
 6:3/0/probability = 0.5
+6:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_m70eb")
 6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:3/0/terrains_peering_bit/right_side = 0
 6:3/0/terrains_peering_bit/bottom_right_corner = 0
@@ -1157,6 +1233,7 @@ texture = ExtResource("5_qx1pf")
 7:3/0/terrain_set = 1
 7:3/0/terrain = 0
 7:3/0/probability = 0.4
+7:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_m70eb")
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:3/0/terrains_peering_bit/right_side = 0
 7:3/0/terrains_peering_bit/left_side = 0
@@ -1167,6 +1244,7 @@ texture = ExtResource("5_qx1pf")
 15:3/0/y_sort_origin = -8
 15:3/0/terrain_set = 1
 15:3/0/terrain = 1
+15:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 15:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:3/0/terrains_peering_bit/right_side = 1
 15:3/0/terrains_peering_bit/bottom_right_corner = 1
@@ -1177,6 +1255,7 @@ texture = ExtResource("5_qx1pf")
 16:3/0/y_sort_origin = -8
 16:3/0/terrain_set = 1
 16:3/0/terrain = 1
+16:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 16:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:3/0/terrains_peering_bit/right_side = 1
 16:3/0/terrains_peering_bit/bottom_right_corner = 1
@@ -1190,6 +1269,7 @@ texture = ExtResource("5_qx1pf")
 17:3/0/y_sort_origin = -8
 17:3/0/terrain_set = 1
 17:3/0/terrain = 1
+17:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 17:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 17:3/0/terrains_peering_bit/bottom_side = 1
 17:3/0/terrains_peering_bit/bottom_left_corner = 1
@@ -1200,6 +1280,7 @@ texture = ExtResource("5_qx1pf")
 17:4/0/y_sort_origin = -8
 17:4/0/terrain_set = 1
 17:4/0/terrain = 1
+17:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 17:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 17:4/0/terrains_peering_bit/left_side = 1
 17:4/0/terrains_peering_bit/top_left_corner = 1
@@ -1208,6 +1289,7 @@ texture = ExtResource("5_qx1pf")
 16:4/0/y_sort_origin = -8
 16:4/0/terrain_set = 1
 16:4/0/terrain = 1
+16:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 16:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:4/0/terrains_peering_bit/right_side = 1
 16:4/0/terrains_peering_bit/left_side = 1
@@ -1218,6 +1300,7 @@ texture = ExtResource("5_qx1pf")
 15:4/0/y_sort_origin = -8
 15:4/0/terrain_set = 1
 15:4/0/terrain = 1
+15:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_77r32")
 15:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:4/0/terrains_peering_bit/right_side = 1
 15:4/0/terrains_peering_bit/top_side = 1
@@ -1248,6 +1331,7 @@ texture = ExtResource("5_qx1pf")
 14:7/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSet" id="TileSet_anjw2"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 10
 physics_layer_0/collision_mask = 269
 terrain_set_0/mode = 0
@@ -1269,11 +1353,21 @@ terrain_set_2/terrain_0/name = "Shadows"
 terrain_set_2/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_b1u37")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_warqy"]
+polygon = PackedVector2Array(-8, -26.666668, 8, -26.666668, 8, 5.333334, -8, 5.333334)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_idbcy"]
+polygon = PackedVector2Array(-5.333333, -26.666668, 5.333334, -26.666668, 8, -8, 0, 2.666667, -8, -8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4k2ul"]
+polygon = PackedVector2Array(-5.333333, -24, 0, -29.333334, 5.333334, -24, 8, -8, 0, 2.666667, -8, -8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llegx"]
-texture = ExtResource("5_qx1pf")
+texture = ExtResource("5_v0t2c")
 8:3/size_in_atlas = Vector2i(1, 2)
 8:3/0 = 0
 8:3/0/texture_origin = Vector2i(0, 14)
+8:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_4k2ul")
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 4.8, -4.8, 4.8, -1.5999999, 1.6000004, 1.6000004, -1.5999999, 1.6000004, -4.8, -1.5999999, -4.8, -4.8)
 12:3/size_in_atlas = Vector2i(2, 2)
 12:3/0 = 0
@@ -1282,10 +1376,12 @@ texture = ExtResource("5_qx1pf")
 14:3/size_in_atlas = Vector2i(1, 2)
 14:3/0 = 0
 14:3/0/texture_origin = Vector2i(0, 11)
+14:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_warqy")
 14:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.8, -1.5999999, -1.5999999, 4.8, 1.6000004, 4.8, 4.8, -1.5999999)
 3:3/size_in_atlas = Vector2i(1, 2)
 3:3/0 = 0
 3:3/0/texture_origin = Vector2i(0, 13)
+3:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_idbcy")
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 0, 4, 8, -4)
 11:4/0 = 0
 11:4/0/texture_origin = Vector2i(0, 7)
@@ -1448,6 +1544,7 @@ texture = ExtResource("5_qx1pf")
 17:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_olkwc"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 10
 physics_layer_0/collision_mask = 269
 terrain_set_0/mode = 0
@@ -1457,23 +1554,29 @@ terrain_set_0/terrain_1/name = "Fences2"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_llegx")
 
-[node name="MultiplayerMap3" type="Node2D"]
-script = ExtResource("1_1qa53")
+[sub_resource type="Environment" id="Environment_4lnu5"]
+background_mode = 3
+tonemap_mode = 1
+tonemap_exposure = 0.7
+tonemap_white = 0.8
 
-[node name="GameCamera" parent="." instance=ExtResource("2_76lse")]
+[node name="MultiplayerMap3" type="Node2D"]
+script = ExtResource("1_qvtei")
+
+[node name="GameCamera" parent="." instance=ExtResource("2_3d0vl")]
 process_priority = 1
 process_physics_priority = 1
 texture_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="Background" parent="." instance=ExtResource("3_xvwe8")]
+[node name="Background" parent="." instance=ExtResource("3_g4arv")]
 z_index = -4096
 texture_filter = 1
 position = Vector2(8.9999695, 2)
 region_rect = Rect2(0, 0, 7388.707, 6997.6475)
 metadata/_edit_lock_ = true
 
-[node name="PlayerSpawnManager" parent="." instance=ExtResource("4_6tthc")]
+[node name="PlayerSpawnManager" parent="." instance=ExtResource("4_pb7kq")]
 unique_name_in_owner = true
 texture_filter = 1
 metadata/_edit_lock_ = true
@@ -1502,11 +1605,11 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAHAAQAAAABAAYAAAAHAAMAAAADAAYAAAAHAAIAAAACAAYAAAAHAAEAAAACAAYAAAAHAAAAAAACAAYAAAAHAP//AAACAAUAAAAGAAQAAAAEAAUAAAAGAAMAAAABAAYAAAAGAAIAAAADAAcAAAAGAAEAAAADAAcAAAAGAAAAAAABAAYAAAAGAP//AAABAAUAAAAFAAQAAAABAAcAAAAFAAMAAAABAAYAAAAFAAIAAAADAAcAAAAFAAEAAAADAAcAAAAFAAAAAAABAAYAAAAFAP//AAADAAYAAAAFAP7/AAACAAYAAAAFAP3/AAACAAYAAAAFAPz/AAACAAUAAAAEAAQAAAABAAcAAAAEAAMAAAADAAcAAAAEAAIAAAABAAYAAAAEAAEAAAADAAcAAAAEAAAAAAADAAcAAAAEAP//AAADAAcAAAAEAP7/AAABAAYAAAAEAP3/AAADAAcAAAAEAPz/AAABAAUAAAADAAQAAAABAAcAAAADAAMAAAABAAYAAAADAAIAAAABAAYAAAADAAEAAAABAAYAAAADAAAAAAABAAYAAAADAP//AAADAAcAAAADAP7/AAABAAYAAAADAP3/AAADAAcAAAADAPz/AAADAAYAAAADAPv/AAACAAUAAAACAAQAAAABAAcAAAACAAMAAAABAAYAAAACAAIAAAADAAcAAAACAAEAAAABAAYAAAACAAAAAAADAAcAAAACAP//AAABAAYAAAACAP7/AAADAAcAAAACAP3/AAADAAcAAAACAPz/AAABAAYAAAACAPv/AAABAAUAAAABAAQAAAABAAcAAAABAAMAAAADAAcAAAABAAIAAAABAAYAAAABAAEAAAABAAYAAAABAAAAAAABAAYAAAABAP//AAADAAcAAAABAP7/AAABAAYAAAABAP3/AAADAAcAAAABAPz/AAABAAYAAAABAPv/AAADAAYAAAAAAAQAAAABAAcAAAAAAAMAAAADAAcAAAAAAAIAAAADAAcAAAAAAAEAAAADAAcAAAAAAAAAAAADAAcAAAAAAP//AAADAAcAAAAAAP7/AAABAAYAAAAAAP3/AAADAAcAAAAAAPz/AAADAAcAAAAAAPv/AAADAAcAAAD//wQAAAABAAcAAAD//wMAAAABAAYAAAD//wIAAAADAAcAAAD//wEAAAABAAYAAAD//wAAAAADAAcAAAD/////AAADAAcAAAD///7/AAADAAcAAAD///3/AAADAAcAAAD///z/AAADAAcAAAD///v/AAADAAcAAAD+/wQAAAABAAcAAAD+/wMAAAABAAYAAAD+/wIAAAABAAYAAAD+/wEAAAADAAcAAAD+/wAAAAABAAYAAAD+////AAADAAcAAAD+//7/AAABAAYAAAD+//3/AAABAAYAAAD+//z/AAABAAYAAAD+//v/AAAEAAYAAAD9/wQAAAABAAcAAAD9/wMAAAADAAcAAAD9/wIAAAABAAYAAAD9/wEAAAADAAcAAAD9/wAAAAABAAYAAAD9////AAABAAYAAAD9//7/AAADAAcAAAD9//3/AAABAAYAAAD9//z/AAADAAcAAAD9//v/AAABAAUAAAD8/wQAAAABAAcAAAD8/wMAAAADAAcAAAD8/wIAAAABAAYAAAD8/wEAAAABAAYAAAD8/wAAAAABAAYAAAD8////AAABAAYAAAD8//7/AAADAAcAAAD8//3/AAABAAYAAAD8//z/AAABAAYAAAD8//v/AAABAAUAAAD7/wQAAAABAAcAAAD7/wMAAAADAAcAAAD7/wIAAAABAAYAAAD7/wEAAAADAAcAAAD7/wAAAAADAAcAAAD7////AAADAAcAAAD7//7/AAABAAYAAAD7//3/AAABAAYAAAD7//z/AAADAAcAAAD7//v/AAABAAUAAAD6/wQAAAABAAcAAAD6/wMAAAABAAYAAAD6/wIAAAADAAcAAAD6/wEAAAADAAcAAAD6/wAAAAADAAcAAAD6////AAADAAcAAAD6//7/AAADAAcAAAD6//3/AAABAAYAAAD6//z/AAABAAYAAAD6//v/AAABAAUAAAD5/wQAAAABAAcAAAD5/wMAAAADAAcAAAD5/wIAAAADAAcAAAD5/wEAAAADAAcAAAD5/wAAAAABAAYAAAD5////AAADAAcAAAD5//7/AAABAAYAAAD5//3/AAADAAcAAAD5//z/AAABAAYAAAD5//v/AAABAAUAAAD4/wQAAAAAAAcAAAD4/wMAAAAEAAUAAAD4/wIAAAABAAYAAAD4/wEAAAABAAYAAAD4/wAAAAABAAYAAAD4////AAADAAcAAAD4//7/AAABAAYAAAD4//3/AAABAAYAAAD4//z/AAADAAcAAAD4//v/AAABAAUAAAD3/wMAAAAAAAcAAAD3/wIAAAAAAAYAAAD3/wEAAAAAAAYAAAD3/wAAAAAAAAYAAAD3////AAAAAAYAAAD3//7/AAAEAAUAAAD3//3/AAABAAYAAAD3//z/AAAEAAYAAAD3//v/AAAAAAUAAAD2//7/AAABAAcAAAD2//3/AAAEAAYAAAD1//7/AAABAAcAAAD1//3/AAABAAUAAAD0//7/AAAAAAcAAAD0//3/AAAAAAUAAAD2//z/AAAAAAUAAAAIAAUAAAADAAcAAAAIAAQAAAADAAcAAAAHAAUAAAAEAAUAAAAGAAUAAAAAAAcAAAAIAAYAAAABAAcAAAAJAAUAAAACAAYAAAAJAAYAAAACAAcAAAAJAAQAAAACAAYAAAAIAAMAAAABAAUAAAAJAAMAAAACAAUAAAAHAAYAAAAAAAcAAAABAPr/AAACAAUAAAAAAPr/AAABAAUAAAD///r/AAABAAUAAAD+//r/AAAAAAUAAADx//f/AAAHAAUAAADx//T/AAAHAAcAAADx//P/AAAHAAYAAADx//L/AAAHAAUAAADw//j/AAAIAAUAAADw//f/AAAIAAYAAADw//b/AAAHAAYAAADw//X/AAAHAAYAAADw//T/AAAIAAUAAADw//P/AAAGAAYAAADw//L/AAAGAAUAAADv//j/AAAUAAgAAADv//f/AAAUAAYAAADv//b/AAAGAAYAAADv//X/AAAGAAYAAADv//T/AAAGAAYAAADv//P/AAAGAAYAAADv//L/AAAGAAUAAADu//j/AAASAAgAAADu//f/AAASAAYAAADu//b/AAAGAAYAAADu//X/AAAGAAEAAADu//T/AAAGAAYAAADu//P/AAAGAAEAAADu//L/AAAGAAUAAADt//j/AAAJAAUAAADt//f/AAAGAAYAAADt//b/AAAGAAYAAADt//X/AAAGAAEAAADt//T/AAAGAAYAAADt//P/AAAGAAYAAADt//L/AAAGAAUAAADs//j/AAAGAAcAAADs//f/AAAGAAYAAADs//b/AAAGAAYAAADs//X/AAAGAAEAAADs//T/AAAGAAYAAADs//P/AAAGAAYAAADs//L/AAAGAAUAAADr//j/AAAGAAcAAADr//f/AAAGAAYAAADr//b/AAAGAAYAAADr//X/AAAGAAYAAADr//T/AAAGAAYAAADr//P/AAAGAAYAAADr//L/AAAGAAUAAADq//j/AAAGAAcAAADq//f/AAAGAAYAAADq//b/AAAGAAYAAADq//X/AAAGAAYAAADq//T/AAAGAAYAAADq//P/AAAGAAYAAADq//L/AAAGAAUAAADp//j/AAAFAAcAAADp//f/AAAFAAYAAADp//b/AAAFAAYAAADp//X/AAAFAAYAAADp//T/AAAFAAYAAADp//P/AAAFAAYAAADp//L/AAAFAAUAAADu//n/AAAGAAcAAADt//n/AAAFAAcAAAAVAPn/AAAHAAcAAAAVAPj/AAAHAAYAAAAVAPf/AAAHAAYAAAAVAPb/AAAHAAYAAAAVAPX/AAAHAAYAAAAVAPT/AAAHAAYAAAAVAPP/AAAHAAYAAAAVAPL/AAAHAAUAAAAUAPn/AAAGAAcAAAAUAPj/AAAGAAYAAAAUAPf/AAAGAAYAAAAUAPb/AAAGAAYAAAAUAPX/AAAGAAYAAAAUAPT/AAAGAAEAAAAUAPP/AAAGAAYAAAAUAPL/AAAGAAUAAAATAPn/AAAGAAcAAAATAPj/AAAGAAEAAAATAPf/AAAGAAYAAAATAPb/AAAGAAYAAAATAPX/AAAGAAYAAAATAPT/AAAGAAYAAAATAPP/AAAGAAYAAAATAPL/AAAGAAUAAAASAPn/AAAGAAcAAAASAPj/AAAGAAYAAAASAPf/AAAGAAYAAAASAPb/AAAGAAYAAAASAPX/AAAGAAYAAAASAPT/AAAGAAYAAAASAPP/AAAGAAYAAAASAPL/AAAGAAUAAAARAPn/AAAGAAcAAAARAPj/AAAUAAgAAAARAPf/AAAUAAYAAAARAPb/AAAIAAcAAAARAPX/AAAGAAEAAAARAPT/AAAGAAYAAAARAPP/AAAGAAYAAAARAPL/AAAGAAUAAAAQAPn/AAAGAAcAAAAQAPj/AAASAAgAAAAQAPf/AAASAAYAAAAQAPb/AAAGAAEAAAAQAPX/AAAGAAYAAAAQAPT/AAAGAAYAAAAQAPP/AAAIAAcAAAAQAPL/AAAGAAUAAAAPAPn/AAAGAAcAAAAPAPj/AAAGAAEAAAAPAPf/AAAGAAEAAAAPAPb/AAAGAAYAAAAPAPX/AAAGAAYAAAAPAPT/AAAIAAcAAAAPAPP/AAAGAAYAAAAPAPL/AAAGAAUAAAAOAPn/AAAIAAUAAAAOAPj/AAAGAAYAAAAOAPf/AAAGAAYAAAAOAPb/AAAGAAYAAAAOAPX/AAAGAAYAAAAOAPT/AAAGAAYAAAAOAPP/AAAGAAYAAAAOAPL/AAAGAAUAAAANAPn/AAAGAAEAAAANAPj/AAAJAAYAAAANAPf/AAAFAAYAAAANAPb/AAAFAAYAAAANAPX/AAAFAAYAAAANAPT/AAAFAAYAAAANAPP/AAAFAAYAAAANAPL/AAAFAAUAAAANAPr/AAAGAAcAAAAMAPr/AAAGAAcAAAAMAPn/AAAGAAYAAAAMAPj/AAAGAAUAAAALAPr/AAAFAAcAAAALAPn/AAAFAAYAAAALAPj/AAAFAAUAAAAOAPr/AAAHAAcAAAAUAAwAAAAHAAcAAAAUAAsAAAAHAAYAAAAUAAoAAAAHAAYAAAAUAAkAAAAHAAYAAAAUAAgAAAAHAAYAAAAUAAcAAAAHAAYAAAAUAAYAAAAHAAYAAAATAAwAAAAGAAcAAAATAAsAAAAGAAYAAAATAAoAAAAGAAYAAAATAAkAAAAGAAYAAAATAAgAAAAGAAYAAAATAAcAAAAGAAYAAAATAAYAAAAGAAEAAAASAAwAAAAGAAcAAAASAAsAAAAGAAYAAAASAAoAAAAGAAYAAAASAAkAAAAGAAYAAAASAAgAAAAGAAYAAAASAAcAAAAGAAYAAAASAAYAAAAJAAYAAAARAAwAAAAGAAcAAAARAAsAAAAGAAYAAAARAAoAAAAGAAYAAAARAAkAAAAGAAYAAAARAAgAAAAUAAgAAAARAAcAAAAUAAYAAAARAAYAAAAGAAUAAAAQAAwAAAAGAAcAAAAQAAsAAAAGAAYAAAAQAAoAAAAGAAYAAAAQAAkAAAAGAAYAAAAQAAgAAAASAAgAAAAQAAcAAAASAAYAAAAQAAYAAAAGAAUAAAAPAAwAAAAGAAcAAAAPAAsAAAAGAAYAAAAPAAoAAAAGAAYAAAAPAAkAAAAGAAYAAAAPAAgAAAAIAAcAAAAPAAcAAAAGAAYAAAAPAAYAAAAGAAUAAAAOAAwAAAAFAAcAAAAOAAsAAAAFAAYAAAAOAAoAAAAFAAYAAAAOAAkAAAAFAAYAAAAOAAgAAAAFAAYAAAAOAAcAAAAJAAUAAAAOAAYAAAAGAAYAAAAUAAUAAAAHAAYAAAAUAAQAAAAHAAYAAAAUAAMAAAAHAAUAAAATAAUAAAAJAAYAAAATAAQAAAAFAAYAAAATAAMAAAAFAAUAAAASAAUAAAAFAAUAAAANAAYAAAAFAAYAAAANAAUAAAAFAAUAAAAOAAUAAAAHAAUAAAANAAcAAAAFAAcAAADx/wgAAAAGAAYAAADx/wcAAAAIAAYAAADw/wkAAAAIAAUAAADw/wgAAAAIAAcAAADw/wcAAAAGAAYAAADv/w0AAAAHAAcAAADv/wwAAAAHAAYAAADv/wsAAAAHAAYAAADv/woAAAAIAAUAAADv/wkAAAAUAAgAAADv/wgAAAAUAAYAAADv/wcAAAAJAAYAAADu/w0AAAAGAAcAAADu/wwAAAAGAAYAAADu/wsAAAAGAAYAAADu/woAAAAGAAYAAADu/wkAAAASAAgAAADu/wgAAAASAAYAAADu/wcAAAAGAAUAAADt/w0AAAAGAAcAAADt/wwAAAAGAAYAAADt/wsAAAAGAAYAAADt/woAAAAGAAEAAADt/wkAAAAGAAYAAADt/wgAAAAGAAEAAADt/wcAAAAGAAUAAADs/w0AAAAGAAcAAADs/wwAAAAGAAYAAADs/wsAAAAGAAYAAADs/woAAAAIAAcAAADs/wkAAAAGAAYAAADs/wgAAAAGAAYAAADs/wcAAAAIAAYAAADr/w0AAAAGAAcAAADr/wwAAAAGAAYAAADr/wsAAAAGAAYAAADr/woAAAAGAAYAAADr/wkAAAAGAAYAAADr/wgAAAAGAAYAAADr/wcAAAAGAAYAAADq/w0AAAAFAAcAAADq/wwAAAAFAAYAAADq/wsAAAAFAAYAAADq/woAAAAFAAYAAADq/wkAAAAFAAYAAADq/wgAAAAFAAYAAADq/wcAAAAFAAYAAADx/wYAAAAHAAUAAADw/wYAAAAGAAUAAADv/wYAAAAFAAUAAADr/wYAAAAGAAUAAADs/wYAAAAHAAUAAADq/wYAAAAFAAUAAADw/woAAAAHAAcAAADx/wkAAAAGAAcAAADy/wgAAAAHAAYAAADy/wkAAAAHAAcAAADy/wcAAAAHAAUAAADv//n/AAAGAAcAAADw//n/AAAHAAcAAADx//j/AAAHAAcAAAA=")
 tile_set = SubResource("TileSet_ebi6b")
 
-[node name="WeaponSpawnManager" parent="." instance=ExtResource("6_k4xox")]
+[node name="WeaponSpawnManager" parent="." instance=ExtResource("6_8vk45")]
 texture_filter = 1
-object_pickup_scene = ExtResource("7_fvl56")
-available_objects = Array[PackedScene]([ExtResource("8_opp8v"), ExtResource("9_5ap6f"), ExtResource("10_6esp5"), ExtResource("11_sc1cg")])
-available_sprites = Array[Texture2D]([ExtResource("12_nmy8v"), ExtResource("13_7pytf"), ExtResource("14_867l8"), ExtResource("15_lnr3d")])
+object_pickup_scene = ExtResource("7_y45od")
+available_objects = Array[PackedScene]([ExtResource("8_77r32"), ExtResource("9_bk68g"), ExtResource("10_op8tn"), ExtResource("11_h2ckk")])
+available_sprites = Array[Texture2D]([ExtResource("12_f8woo"), ExtResource("13_7ijum"), ExtResource("14_bkcqa"), ExtResource("15_m70eb")])
 pickup_parent_path = NodePath("../YSortRoot")
 spawn_interval = 35.0
 metadata/_edit_lock_ = true
@@ -1517,11 +1620,11 @@ position = Vector2(0, -51)
 [node name="Marker2" type="Marker2D" parent="WeaponSpawnManager"]
 position = Vector2(0, 52)
 
-[node name="AmmoSpawnManager" parent="." instance=ExtResource("6_k4xox")]
+[node name="AmmoSpawnManager" parent="." instance=ExtResource("6_8vk45")]
 texture_filter = 1
-object_pickup_scene = ExtResource("16_5hsxx")
-available_objects = Array[PackedScene]([ExtResource("16_5hsxx")])
-available_sprites = Array[Texture2D]([ExtResource("17_e6ao6")])
+object_pickup_scene = ExtResource("16_warqy")
+available_objects = Array[PackedScene]([ExtResource("16_warqy")])
+available_sprites = Array[Texture2D]([ExtResource("17_idbcy")])
 pickup_parent_path = NodePath("../YSortRoot")
 spawn_interval = 10.0
 spawn_interval_jitter = 2.0
@@ -1533,12 +1636,12 @@ position = Vector2(0, -143)
 [node name="Marker2D2" type="Marker2D" parent="AmmoSpawnManager"]
 position = Vector2(0, 128)
 
-[node name="HealthSpawnManager" parent="." instance=ExtResource("6_k4xox")]
+[node name="HealthSpawnManager" parent="." instance=ExtResource("6_8vk45")]
 texture_filter = 1
 position = Vector2(0, -4)
-object_pickup_scene = ExtResource("18_mu5pn")
-available_objects = Array[PackedScene]([ExtResource("18_mu5pn")])
-available_sprites = Array[Texture2D]([ExtResource("19_cdc6v")])
+object_pickup_scene = ExtResource("18_4k2ul")
+available_objects = Array[PackedScene]([ExtResource("18_4k2ul")])
+available_sprites = Array[Texture2D]([ExtResource("19_x0kk2")])
 pickup_parent_path = NodePath("../YSortRoot")
 spawn_interval = 50.0
 spawn_interval_jitter = 10.0
@@ -1579,145 +1682,145 @@ tile_set = SubResource("TileSet_olkwc")
 [node name="Grass" type="Node2D" parent="YSortRoot"]
 y_sort_enabled = true
 
-[node name="Grass" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-114, -28)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass2" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass2" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-98, -28)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass3" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass3" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-130, -28)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass4" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass4" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-122, -22)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass5" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass5" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-106, -22)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass6" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass6" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-114, -15)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass7" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass7" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-114, -15)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass8" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass8" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass9" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass9" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-67, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass10" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass10" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-99, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass11" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass11" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-91, -33)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass12" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass12" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-75, -33)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass13" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass13" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -26)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass14" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass14" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -26)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass22" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass22" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-106, -34)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass23" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass23" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-121, -34)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass24" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass24" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-113, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass25" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass25" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-92, -19)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass26" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass26" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-98, -14)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass27" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass27" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-98, -14)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass15" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass15" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass16" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass16" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-67, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass17" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass17" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-99, -39)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass18" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass18" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-91, -33)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass19" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass19" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-75, -33)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass20" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass20" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -26)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass21" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass21" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(-83, -26)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass28" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass28" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(103, 52)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass29" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass29" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(95, 58)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass30" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass30" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(113, 60)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass31" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass31" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(113, 43)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass32" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass32" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(92, 43)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Grass33" parent="YSortRoot/Grass" instance=ExtResource("20_g761q")]
+[node name="Grass33" parent="YSortRoot/Grass" instance=ExtResource("20_pr3ej")]
 position = Vector2(82, 51)
-sprite = ExtResource("21_umc3i")
+sprite = ExtResource("21_gxsgf")
 
-[node name="Player" parent="YSortRoot" instance=ExtResource("22_7l50d")]
+[node name="Player" parent="YSortRoot" instance=ExtResource("22_c0dl5")]
 unique_name_in_owner = true
-position = Vector2(-256, 237)
+position = Vector2(-126, 51)
 
 [node name="ForegroundLayer" type="Node2D" parent="." groups=["foreground_layer"]]
 unique_name_in_owner = true
 texture_filter = 1
 
-[node name="HurtZone" parent="." instance=ExtResource("23_umc3i")]
-unique_name_in_owner = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4lnu5")

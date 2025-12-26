@@ -425,6 +425,13 @@ button_pressed = true
 text = "SHOW DAMAGE"
 alignment = 1
 
+[node name="ZoneCheckButton" type="CheckButton" parent="OptionsVBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "ZONE"
+alignment = 1
+
 [node name="CommandContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -587,4 +594,5 @@ texture = ExtResource("20_xoctn")
 [connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/FullscreenCheckButton" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/ShowAimCursorCheckButton" to="." method="_on_show_aim_cursor_check_button_toggled"]
 [connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/ShowDamageCheckButton" to="." method="_on_show_damage_check_button_toggled"]
+[connection signal="toggled" from="OptionsVBoxContainer/VBoxContainer2/ZoneCheckButton" to="." method="_on_zone_check_button_toggled"]
 [connection signal="pressed" from="CommandContainer/HBoxContainer/VBoxContainer/CommandBack" to="." method="_on_command_back_pressed"]

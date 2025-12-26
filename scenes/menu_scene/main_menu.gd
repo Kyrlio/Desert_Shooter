@@ -25,7 +25,7 @@ func _ready() -> void:
 	Cursor.change_cursor(load("uid://cvpl0vkt81dco"))
 	%ShowDamageCheckButton.button_pressed = GameManager.show_damage
 	%ShowAimCursorCheckButton.button_pressed = GameManager.show_aiming
-	
+	%ZoneCheckButton.button_pressed = GameManager.activate_zone
 	_initialize_options()
 	
 	menu_input_manager.closing_menu.connect(_on_menu_closed)
@@ -210,3 +210,8 @@ func _on_health_up_button_pressed() -> void:
 	GameManager.player_max_health += 5
 	GameManager.player_max_health = clamp(GameManager.player_max_health, 1, 100)
 	update_display()
+
+
+func _on_zone_check_button_toggled(toggled_on: bool) -> void:
+	MusicPlayer.play_button_clicked()
+	GameManager.activate_zone = toggled_on

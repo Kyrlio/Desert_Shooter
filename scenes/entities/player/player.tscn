@@ -154,7 +154,7 @@ shader = ExtResource("12_w3p2j")
 shader_parameter/percent = 0.0
 
 [sub_resource type="Gradient" id="Gradient_fg2wu"]
-offsets = PackedFloat32Array(0, 0.4074074)
+offsets = PackedFloat32Array(0, 0.5703704)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7dqom"]
@@ -182,6 +182,9 @@ bus = &"sfx"
 libraries = {
 &"": SubResource("AnimationLibrary_g1dw6")
 }
+
+[node name="HurtZoneTimer" type="Timer" parent="."]
+process_callback = 0
 
 [node name="FireRateTimer" type="Timer" parent="."]
 process_callback = 0
@@ -284,7 +287,10 @@ script = ExtResource("7_bj7e2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
-energy = 0.2
+position = Vector2(0, -9)
+energy = 0.15
 shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_7dqom")
+
+[connection signal="timeout" from="HurtZoneTimer" to="." method="_on_hurt_zone_timer_timeout"]

@@ -7,9 +7,12 @@ extends CharacterBody2D
 @export var aim_root: Node2D
 @export_range(0, 3) var player_index: int = 0
 
-# Skin configuration
+@export_group("Skin Configuration")
 @export var character_spritesheet: Texture2D
 @export var available_skins: Array[PlayerSkin] = []
+
+@export_group("Hurt Zone")
+@export var hurt_zone_damage: int = 10
 
 # Components
 var input_controller: PlayerInputController
@@ -27,6 +30,7 @@ var weapon_manager: PlayerWeaponManager
 @onready var shield := $Shield
 @onready var run_particles: GPUParticles2D = $Visuals/GPUParticles2D
 @onready var aim_cursor: Sprite2D = %SprCursors1
+@onready var hurt_zone_timer: Timer = $HurtZoneTimer
 
 # DASH
 var dash_timer: float = 0.0
@@ -97,6 +101,18 @@ func add_ammo(amount: int):
 
 func heal(amount: int):
 	health_component.heal(amount)
+
+
+func hurt_zone():
+	hurt_zone_timer.start()
+
+
+func _on_hurt_zone_timer_timeout() -> void:
+	health_component.damage(hurt_zone_damage)
+
+
+func stop_hurt_zone():
+	hurt_zone_timer.stop()
 
 
 func _input(event: InputEvent) -> void:

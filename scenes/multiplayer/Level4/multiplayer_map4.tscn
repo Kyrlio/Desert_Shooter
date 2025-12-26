@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqjt3486k4f3f"]
+[gd_scene load_steps=30 format=4 uid="uid://cqjt3486k4f3f"]
 
 [ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_cgobr"]
 [ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="2_6w46m"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="18_ghy3q"]
 [ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="19_f2mbl"]
 [ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="20_j6yxn"]
+[ext_resource type="PackedScene" uid="uid://bwytma0wq871e" path="res://scenes/hurt_zone/hurt_zone.tscn" id="21_fqtjy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llfi7"]
 texture = ExtResource("5_d450p")
@@ -2041,14 +2042,6 @@ script = ExtResource("1_cgobr")
 process_priority = 1
 process_physics_priority = 1
 texture_filter = 1
-enable_position_smoothing = false
-smoothing_speed = 5
-enable_auto_zoom = false
-max_zoom = 1.0
-min_zoom = 1.0
-enable_mouse_look = false
-fixed_camera = true
-fixed_zoom = 1.0
 metadata/_edit_lock_ = true
 
 [node name="Background" parent="." instance=ExtResource("3_t2eo1")]
@@ -2174,3 +2167,6 @@ position = Vector2(-256, 237)
 [node name="ForegroundLayer" type="Node2D" parent="." groups=["foreground_layer"]]
 unique_name_in_owner = true
 texture_filter = 1
+
+[node name="HurtZone" parent="." instance=ExtResource("21_fqtjy")]
+unique_name_in_owner = true

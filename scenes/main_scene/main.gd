@@ -13,6 +13,7 @@ static var coop_mode: bool
 @onready var player_spawn_manager: Node2D = %PlayerSpawnManager
 @onready var y_sort_root: Node2D = %YSortRoot
 @onready var win_label: Label = %WinLabel
+@onready var hurt_zone: Area2D = %HurtZone
 
 @export var _coop_mode: bool = false
 @export var can_end_round: bool = true
@@ -21,6 +22,7 @@ var _round_ended: bool = false
 
 func _ready() -> void:
 	show_fps()
+	hide_winner()
 	if %WinLabel:
 		%WinLabel.visible = false
 	coop_mode = _coop_mode
@@ -31,6 +33,9 @@ func _ready() -> void:
 	if y_sort_root:
 		ControllerManager.setup_scene(base_player, y_sort_root)
 	player_spawn_manager.spawn_players()
+	
+	hurt_zone.body_exited.connect(_on_hurt_zone_body_exited)
+	hurt_zone.body_entered.connect(_on_hurt_zone_body_entered)
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,6 +48,30 @@ func _physics_process(_delta: float) -> void:
 	
 	if ControllerManager.get_number_players() <= 1 and not coop_mode and not _round_ended:
 		end_round()
+
+
+func hide_winner():
+	%TextureRect.visible = false
+	%TextureRect2.visible = false
+	%WinnerHeadSprite.visible = false
+
+
+func show_winner():
+	var winner = ControllerManager.get_players()[0].player_index
+	print(winner)
+	%TextureRect.visible = true
+	%TextureRect2.visible = true
+	%WinnerHeadSprite.visible = true
+	
+	match winner:
+		0:
+			%WinnerHeadSprite.frame = 0
+		1:
+			%WinnerHeadSprite.frame = 4
+		2:
+			%WinnerHeadSprite.frame = 8
+		3:
+			%WinnerHeadSprite.frame = 12
 
 
 func show_fps():
@@ -67,6 +96,8 @@ func end_round() -> void:
 		tween.tween_property(win_label, "scale", Vector2.ONE, .3).from(Vector2.ZERO).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		win_label.text = "PLAYER " + str(ControllerManager.get_players()[0].player_index + 1) + " WON"
 	
+	show_winner()
+	
 	await get_tree().create_timer(3).timeout
 	_exit_tree()
 	get_tree().change_scene_to_packed(GameManager.next_round())
@@ -75,3 +106,15 @@ func end_round() -> void:
 
 func _exit_tree() -> void:
 	ControllerManager.teardown_scene()
+
+
+func _on_hurt_zone_body_exited(body: Node2D) -> void:
+	if body is Player:
+		var player = body as Player
+		player.hurt_zone()
+
+
+func _on_hurt_zone_body_entered(body: Node2D) -> void:
+	if body is Player:
+		var player = body as Player
+		player.stop_hurt_zone()

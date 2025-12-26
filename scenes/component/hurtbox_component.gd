@@ -28,8 +28,8 @@ func spawn_hit_particles():
 	get_parent().get_parent().add_child(hit_particles)
 
 
-func play_hit_effects():
-	hit_stream_player.play()
+#func play_hit_effects():
+	#hit_stream_player.play()
 
 
 func _handle_hit(hitbox_component: HitboxComponent):
@@ -39,7 +39,7 @@ func _handle_hit(hitbox_component: HitboxComponent):
 	hitbox_component.register_hurtbox_hit(self)
 	health_component.damage(hitbox_component.damage)
 	spawn_hit_particles()
-	play_hit_effects()
+	#play_hit_effects()
 	
 	var raw_direction := (global_position - hitbox_component.global_position)
 	var knockback_direction := raw_direction.normalized() if raw_direction.length_squared() > 0.0001 else Vector2.ZERO
