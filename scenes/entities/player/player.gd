@@ -104,7 +104,7 @@ func heal(amount: int):
 
 
 func hurt_zone():
-	if hurt_zone_timer:
+	if is_inside_tree():
 		hurt_zone_timer.start()
 
 

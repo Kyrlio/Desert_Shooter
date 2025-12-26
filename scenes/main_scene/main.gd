@@ -110,7 +110,8 @@ func _exit_tree() -> void:
 func _on_hurt_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		var player = body as Player
-		player.hurt_zone()
+		if not player.is_dead:
+			player.hurt_zone()
 
 
 func _on_hurt_zone_body_entered(body: Node2D) -> void:

@@ -2042,6 +2042,7 @@ script = ExtResource("1_lsdu5")
 
 [node name="HurtZone" parent="." instance=ExtResource("21_8b3hv")]
 unique_name_in_owner = true
+visible = false
 z_index = 2
 
 [node name="GameCamera" parent="." instance=ExtResource("2_mkkfx")]
@@ -2096,7 +2097,7 @@ spawn_interval = 35.0
 metadata/_edit_lock_ = true
 
 [node name="Marker1" type="Marker2D" parent="WeaponSpawnManager"]
-position = Vector2(79, 180)
+position = Vector2(69, 156)
 
 [node name="Marker2" type="Marker2D" parent="WeaponSpawnManager"]
 position = Vector2(-247, -12)
@@ -2105,7 +2106,7 @@ position = Vector2(-247, -12)
 position = Vector2(-220, 30)
 
 [node name="Marker4" type="Marker2D" parent="WeaponSpawnManager"]
-position = Vector2(185, -148)
+position = Vector2(139, -90)
 
 [node name="AmmoSpawnManager" parent="." instance=ExtResource("6_5d7wr")]
 texture_filter = 1
@@ -2124,7 +2125,7 @@ position = Vector2(-174, 53)
 position = Vector2(26, -89)
 
 [node name="Marker2D3" type="Marker2D" parent="AmmoSpawnManager"]
-position = Vector2(-50, 185)
+position = Vector2(40, 141)
 
 [node name="HealthSpawnManager" parent="." instance=ExtResource("6_5d7wr")]
 texture_filter = 1
