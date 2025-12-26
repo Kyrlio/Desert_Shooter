@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if current_radius > 125.0:
-		current_radius -= 102.5 * delta
+		current_radius -= 2.5 * delta
 	
 	collision_shape.shape.radius = current_radius
 	

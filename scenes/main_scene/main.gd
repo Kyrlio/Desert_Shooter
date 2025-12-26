@@ -58,7 +58,6 @@ func hide_winner():
 
 func show_winner():
 	var winner = ControllerManager.get_players()[0].player_index
-	print(winner)
 	%TextureRect.visible = true
 	%TextureRect2.visible = true
 	%WinnerHeadSprite.visible = true

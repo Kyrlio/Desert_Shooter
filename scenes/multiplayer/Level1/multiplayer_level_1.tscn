@@ -1643,6 +1643,3 @@ unique_name_in_owner = true
 [node name="ForegroundLayer" type="Node2D" parent="SubViewportContainer/SubViewport" groups=["foreground_layer"]]
 unique_name_in_owner = true
 texture_filter = 1
-
-[connection signal="body_entered" from="SubViewportContainer/SubViewport/HurtZone" to="." method="_on_hurt_zone_body_entered"]
-[connection signal="body_exited" from="SubViewportContainer/SubViewport/HurtZone" to="." method="_on_hurt_zone_body_exited"]

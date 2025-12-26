@@ -104,7 +104,8 @@ func heal(amount: int):
 
 
 func hurt_zone():
-	hurt_zone_timer.start()
+	if hurt_zone_timer:
+		hurt_zone_timer.start()
 
 
 func _on_hurt_zone_timer_timeout() -> void:

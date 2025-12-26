@@ -11,8 +11,8 @@ extends Area2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
-	
 	animation_player.play("spawn")
+	heal_amount = GameManager.player_max_health / 4
 
 
 func _on_body_entered(body: Node2D) -> void:

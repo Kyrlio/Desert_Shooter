@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://blq81prqmljm0"]
+[gd_scene load_steps=7 format=3 uid="uid://pklrei6nqtbh"]
 
-[ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_n0ss7"]
-[ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_kw1ij"]
-[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="3_jtj0u"]
-[ext_resource type="PackedScene" uid="uid://da81iba4bjblq" path="res://scenes/multiplayer/Level5/multiplayer_map5.tscn" id="3_tjgfr"]
-[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="4_2wx04"]
-[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_krsmq"]
+[ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_c4287"]
+[ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_3yjty"]
+[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="3_k3kdw"]
+[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="4_ng2bn"]
+[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_b1d3j"]
+[ext_resource type="PackedScene" uid="uid://w8obi5tax0" path="res://scenes/multiplayer/Level6/multiplayer_map6.tscn" id="6_tyaq0"]
 
-[node name="MultiplayerLevel5" type="Node2D"]
+[node name="MultiplayerLevel6" type="Node2D"]
 
-[node name="GameUI" parent="." instance=ExtResource("1_n0ss7")]
+[node name="GameUI" parent="." instance=ExtResource("1_c4287")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_kw1ij")]
+[node name="PauseMenu" parent="." instance=ExtResource("2_3yjty")]
 layer = 1000
 visible = false
 
@@ -46,7 +46,7 @@ offset_right = 355.0
 offset_bottom = 272.0
 size_flags_vertical = 8
 mouse_filter = 2
-texture = ExtResource("3_jtj0u")
+texture = ExtResource("3_k3kdw")
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TextureRect"]
 unique_name_in_owner = true
@@ -57,14 +57,14 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 mouse_filter = 2
-texture = ExtResource("4_2wx04")
+texture = ExtResource("4_ng2bn")
 
 [node name="WinnerHeadSprite" type="Sprite2D" parent="CanvasLayer/TextureRect/TextureRect2"]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(30, 19)
 scale = Vector2(5, 5)
-texture = ExtResource("5_krsmq")
+texture = ExtResource("5_b1d3j")
 hframes = 4
 vframes = 4
 
@@ -93,4 +93,4 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(642, 362)
 render_target_update_mode = 4
 
-[node name="MultiplayerMap5" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_tjgfr")]
+[node name="MultiplayerMap6" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_tyaq0")]

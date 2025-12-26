@@ -9,7 +9,8 @@ var coop_mode: bool = false
 var fullscreen: bool = false
 var show_aiming: bool = true
 var activate_zone: bool = true
-var multiplayer_scenes: Array[String] = ["uid://bj1my63f0v553", "uid://ch86xj8ci7f7a", "uid://64sjetxrpab7", "uid://pq8pimrg2nfh"]
+var multiplayer_scenes: Array[String] = ["uid://bj1my63f0v553", "uid://ch86xj8ci7f7a",
+"uid://64sjetxrpab7", "uid://pq8pimrg2nfh", "uid://blq81prqmljm0", "uid://pklrei6nqtbh"]
 var multiplayer_actual_scene: String= "uid://bj1my63f0v553"
 var player_max_health: int = 100
 
