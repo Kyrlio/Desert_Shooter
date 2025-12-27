@@ -10,6 +10,7 @@ const LAYER_ENVIRONMENT: int = 2
 @export var damage: int = 20
 var is_hit_handled: bool
 var owner_player_index: int = -1
+var is_environment_hitted: bool = false
 
 
 func _ready() -> void:
@@ -20,7 +21,11 @@ func _ready() -> void:
 
 
 func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
-	hit_hurtbox.emit(hurtbox_component)
+	if not is_environment_hitted:
+		print("yes")
+		hit_hurtbox.emit(hurtbox_component)
+	else:
+		print("no")
 
 
 func set_owner_player_index(idx: int) -> void:
@@ -32,11 +37,14 @@ func refresh_collision_mask() -> void:
 
 
 func _on_body_entered(body: Node2D):
-	if body.is_in_group("obstacle"): 
+	if body.is_in_group("obstacle"):
+		print("hé")
+		is_environment_hitted = true
 		MusicPlayer.play_environment_impact()
 		var hit_particles: Node2D = ENVIRONMENT_IMPACT_PARTICLES.instantiate()
 		hit_particles.global_position = self.global_position
 		get_parent().get_parent().add_child(hit_particles)
 		hit_particles.z_index = 1
 		get_parent().queue_free.call_deferred()
+		is_environment_hitted = false
 	

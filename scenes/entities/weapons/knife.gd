@@ -55,9 +55,9 @@ func spawn_slash():
 		if hb:
 			hb.owner_player_index = weapon_owner.player_index
 			hb.damage = damage
-
+	
 	spawn_parent.add_child(sword_slash)
-
+	
 	# Point d'origine: barrel_position si présent, sinon le knife lui-même, sinon le joueur
 	var origin: Node2D = barrel_position if is_instance_valid(barrel_position) else self
 	var base_pos := origin.global_position

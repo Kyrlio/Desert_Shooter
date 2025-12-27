@@ -30,6 +30,7 @@ var weapon_owner: Player
 var _cooldown := 0.0
 var number_bullets_in_magazine: int
 var is_reloading: bool = false
+var is_environment_hitted: bool = false
 
 
 func _ready() -> void:
