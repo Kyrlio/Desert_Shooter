@@ -22,10 +22,7 @@ func _ready() -> void:
 
 func register_hurtbox_hit(hurtbox_component: HurtboxComponent):
 	if not is_environment_hitted:
-		print("yes")
 		hit_hurtbox.emit(hurtbox_component)
-	else:
-		print("no")
 
 
 func set_owner_player_index(idx: int) -> void:
@@ -38,7 +35,6 @@ func refresh_collision_mask() -> void:
 
 func _on_body_entered(body: Node2D):
 	if body.is_in_group("obstacle"):
-		print("hé")
 		is_environment_hitted = true
 		MusicPlayer.play_environment_impact()
 		var hit_particles: Node2D = ENVIRONMENT_IMPACT_PARTICLES.instantiate()

@@ -21,6 +21,7 @@ ControllerManager="*res://autoload/controller_manager.gd"
 Cursor="*res://autoload/cursor.tscn"
 GameManager="*res://autoload/game_manager.gd"
 MusicPlayer="*res://autoload/music_player.tscn"
+ScoreManager="*res://autoload/score_manager.gd"
 
 [display]
 

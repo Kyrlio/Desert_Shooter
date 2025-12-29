@@ -122,7 +122,7 @@ _data = {
 light_mask = 0
 script = ExtResource("1_qvm3i")
 display_name = "Knife"
-damage = 15
+damage = 10
 
 [node name="WeaponStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qvm3i")

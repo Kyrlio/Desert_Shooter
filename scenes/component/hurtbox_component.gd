@@ -37,6 +37,12 @@ func _handle_hit(hitbox_component: HitboxComponent):
 		return
 	
 	hitbox_component.register_hurtbox_hit(self)
+	
+	# Tracker le dernier joueur qui a fait des dégâts (pour les kills)
+	if get_parent() is Player and hitbox_component.owner_player_index != -1:
+		var victim_player := get_parent() as Player
+		victim_player.set_killer(hitbox_component.owner_player_index)
+	
 	health_component.damage(hitbox_component.damage)
 	spawn_hit_particles()
 	#play_hit_effects()

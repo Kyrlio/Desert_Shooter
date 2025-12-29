@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfwmlte627nn3"]
+[gd_scene load_steps=19 format=3 uid="uid://bfwmlte627nn3"]
 
 [ext_resource type="Script" uid="uid://dq6iso7240rx0" path="res://autoload/music_player.gd" id="1_g0o5r"]
 [ext_resource type="AudioStream" uid="uid://c1h74i3ymcxfw" path="res://assets/Sounds/Music/One Man Symphony - In The Blink Of An Eye (Free Version, 4 Songs, Attribution Required) - 02 An Instant Burst (Action 02).mp3" id="3_owtah"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dahida4d3cjol" path="res://assets/Sounds/Impact/impactPlate_heavy_003.ogg" id="11_qoswp"]
 [ext_resource type="AudioStream" uid="uid://c260pyg1oslvd" path="res://assets/Sounds/Impact/impactPlate_heavy_004.ogg" id="12_ai0sd"]
 [ext_resource type="AudioStream" uid="uid://b1xohnwcj2fga" path="res://assets/Sounds/Bonus2.wav" id="12_lvi5o"]
+[ext_resource type="AudioStream" uid="uid://bcdanrdpcclcc" path="res://assets/Sounds/Fall/SND_Fall_A.ogg" id="13_i053y"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w6hn3"]
 random_pitch = 1.2
@@ -39,6 +40,11 @@ stream_2/stream = ExtResource("10_lvi5o")
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("12_lvi5o")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rcq7d"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("13_i053y")
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_g0o5r")
@@ -72,3 +78,11 @@ bus = &"sfx"
 stream = SubResource("AudioStreamRandomizer_l0t02")
 volume_db = 2.0
 pitch_scale = 0.8
+max_polyphony = 4
+bus = &"sfx"
+
+[node name="FallStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_rcq7d")
+pitch_scale = 0.8
+max_polyphony = 4
+bus = &"sfx"

@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://64sjetxrpab7"]
+[gd_scene load_steps=5 format=3 uid="uid://64sjetxrpab7"]
 
 [ext_resource type="PackedScene" uid="uid://k8rarsiuuclm" path="res://scenes/ui/game_ui.tscn" id="1_yukp4"]
 [ext_resource type="PackedScene" uid="uid://c51glal1c18jw" path="res://scenes/pause_scene/pause_menu.tscn" id="2_4785r"]
+[ext_resource type="PackedScene" uid="uid://bh5pe42vd1td7" path="res://scenes/player_scores/player_scores.tscn" id="3_5wl8l"]
 [ext_resource type="PackedScene" uid="uid://f2a4ce0ss1y5" path="res://scenes/multiplayer/Level3/multiplayer_map3.tscn" id="3_jm82n"]
-[ext_resource type="Texture2D" uid="uid://cn8tigo73ejtp" path="res://assets/ui/portrait.png" id="3_m68hw"]
-[ext_resource type="Texture2D" uid="uid://b2xdoqnffm188" path="res://assets/ui/portrait_clip_mask.png" id="4_mm107"]
-[ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_5t5va"]
 
 [node name="MultiplayerLevel3" type="Node2D"]
 
@@ -15,72 +13,8 @@
 layer = 1000
 visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="WinLabel" type="Label" parent="CanvasLayer"]
+[node name="PlayerScores" parent="." instance=ExtResource("3_5wl8l")]
 unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -51.0
-offset_top = -8.0
-offset_right = 51.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(204, 32)
-theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 64
-text = "PLAYER 0 WON"
-
-[node name="Container" type="Container" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="FpsLabel" type="Label" parent="CanvasLayer/Container/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "FPS: 999"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
-offset_left = 291.0
-offset_top = 208.0
-offset_right = 355.0
-offset_bottom = 272.0
-size_flags_vertical = 8
-mouse_filter = 2
-texture = ExtResource("3_m68hw")
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TextureRect"]
-unique_name_in_owner = true
-clip_children = 1
-texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-mouse_filter = 2
-texture = ExtResource("4_mm107")
-
-[node name="WinnerHeadSprite" type="Sprite2D" parent="CanvasLayer/TextureRect/TextureRect2"]
-unique_name_in_owner = true
-texture_filter = 1
-position = Vector2(30, 19)
-scale = Vector2(5, 5)
-texture = ExtResource("5_5t5va")
-hframes = 4
-vframes = 4
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(640, 360)

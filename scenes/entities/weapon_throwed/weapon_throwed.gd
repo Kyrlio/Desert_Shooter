@@ -13,7 +13,7 @@ extends Node2D
 @onready var throw_stream_player: AudioStreamPlayer = $ThrowStreamPlayer
 
 var direction: Vector2
-var damage_to_apply: int = 20
+var damage_to_apply: int = 10
 var time_to_apply: float
 var speed_to_apply: float
 var owner_player_index: int = -1

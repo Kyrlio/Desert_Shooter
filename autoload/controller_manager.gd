@@ -62,7 +62,7 @@ func get_players() -> Array[Player]:
 	_prune_invalid_players()
 	var result: Array[Player] = []
 	for player in players:
-		if is_instance_valid(player):
+		if is_instance_valid(player) and not player.is_dead:
 			result.append(player)
 	result.sort_custom(func(a: Player, b: Player) -> bool: return a.player_index < b.player_index)
 	return result
@@ -285,7 +285,8 @@ func _cleanup_invalid_state() -> void:
 
 func _prune_invalid_players() -> void:
 	for i in range(players.size() - 1, -1, -1):
-		if not is_instance_valid(players[i]):
+		var p := players[i]
+		if (not is_instance_valid(p)) or p.is_dead:
 			players.remove_at(i)
 
 

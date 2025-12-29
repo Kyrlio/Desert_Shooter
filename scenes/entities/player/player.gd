@@ -44,6 +44,9 @@ var sniper_scene: PackedScene = preload("uid://did8iv6uy01c")
 var corpse_scene: PackedScene = preload("uid://bm5ha6ujfnjyi")
 
 var is_dead: bool = false
+var is_falling_in_void: bool = false
+var kill_count: int = 0  # Nombre de kills dans la round actuelle
+var killer_player_index: int = -1  # Index du joueur qui a tué ce joueur
 
 
 func _ready() -> void:
@@ -88,6 +91,9 @@ func _initialize_components() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_falling_in_void:
+		# Movement is locked while the fall animation plays
+		return
 	weapon_manager.process_weapon(delta)
 	input_controller.gather_input()
 	_update_aim_and_visuals()
@@ -116,7 +122,26 @@ func stop_hurt_zone():
 	hurt_zone_timer.stop()
 
 
+func falling_in_void() -> void:
+	if is_falling_in_void or is_dead:
+		return
+	is_falling_in_void = true
+	weapon_root.visible = false
+	MusicPlayer.play_fall()
+	velocity = Vector2.ZERO
+	if input_controller:
+		input_controller.movement_vector = Vector2.ZERO
+	if state_machine:
+		state_machine.set_physics_process(false)
+	run_particles.emitting = false
+	animation_player.play("falling")
+	await animation_player.animation_finished
+	is_dead = true
+
+
 func _input(event: InputEvent) -> void:
+	if is_falling_in_void:
+		return
 	if input_controller:
 		input_controller.handle_input_event(event, aim_root)
 	
@@ -231,6 +256,14 @@ func get_facing_direction():
 	return visuals.scale.x
 
 
+func get_kill_count() -> int:
+	return kill_count
+
+
+func set_killer(killer_index: int) -> void:
+	killer_player_index = killer_index
+
+
 # ========== DASH SYSTEM (Used by State Machine) ==========
 
 func is_dash_pressed() -> bool:
@@ -249,6 +282,16 @@ func _on_died() -> void:
 		return
 	
 	is_dead = true
+	
+	# Incrémenter le kill count du tueur et ajouter les points IMMÉDIATEMENT
+	if killer_player_index != -1 and killer_player_index != player_index:
+		var killer = ControllerManager.player_nodes.get(killer_player_index)
+		if killer and is_instance_valid(killer):
+			killer.kill_count += 1
+			# Ajouter 1 point au tueur immédiatement
+			get_node("/root/ScoreManager").add_points(killer_player_index, 1)
+			print("KILL REGISTERED: Player %d killed Player %d! +1 point" % [killer_player_index+1, player_index+1])
+	
 	if shield:
 		shield.deactivate()
 	# Spawn corpse at current position and keep some momentum

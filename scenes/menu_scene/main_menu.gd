@@ -56,7 +56,6 @@ func _ready() -> void:
 
 func _initialize_options():
 	options_container.modulate = Color(1, 1, 1, 0)
-	%CheckButton.button_pressed = GameManager.show_fps
 	fullscreen_check_button.button_pressed = GameManager.fullscreen
 
 
