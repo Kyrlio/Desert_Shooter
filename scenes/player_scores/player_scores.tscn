@@ -49,6 +49,7 @@ theme_override_constants/separation = 24
 alignment = 1
 
 [node name="Player1HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Player1HBoxContainer"]
@@ -92,6 +93,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player2HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Player2HBoxContainer"]
@@ -133,6 +135,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player3HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Player3HBoxContainer"]
@@ -174,6 +177,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player4HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="HBoxContainer/Player4HBoxContainer"]
