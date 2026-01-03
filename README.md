@@ -6,14 +6,14 @@ Top-down shooter développé avec Godot 4.5. Support multi-joueur local avec ges
 
 ## Fonctionnalités
 
-- Multi-joueur local (connexion/déconnexion manettes à chaud)
+- Multi-joueur local
 - Système d'armes et de tir
 - Bouclier directionnel avec système de charges
 - Effets visuels et particules
 
 ## Installation
 
-1. Ouvrir `project.godot` avec Godot 4.5+
+1. Ouvrir `project.godot` avec Godot
 2. Lancer avec F5
 
 ## Commandes
@@ -35,10 +35,12 @@ Top-down shooter développé avec Godot 4.5. Support multi-joueur local avec ges
 
 ## Inspirations
 
-Enter The Gungeon
-Boomerang Fu
-StickFight: The Game
+Enter The Gungeon 
+Boomerang Fu 
+StickFight: The Game 
 
 ## Crédits
 
-Assets: [Kenney's Desert Shooter Pack](https://kenney.nl/assets/desert-shooter-pack)
+Assets: 
+- [Kenney's Desert Shooter Pack](https://kenney.nl/assets/desert-shooter-pack)
+- [One Man Symphony](https://onemansymphony.bandcamp.com/album/in-the-blink-of-an-eye-free-version-4-songs-attribution-required)
