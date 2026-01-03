@@ -1,45 +1,45 @@
 # Desert Shooter
 
-Top-down shooter développé avec Godot 4.5. Support multi-joueur local avec gestion des manettes.
+Top-down shooter developed with Godot 4.5. Local multiplayer support with gamepad management.
 
-![Capture d’écran – Desert Shooter](assets/screenshots/image.png)
+![Screenshot – Desert Shooter](assets/screenshots/image.png)
 
-## Fonctionnalités
+## Features
 
-- Multi-joueur local
-- Système d'armes et de tir
-- Bouclier directionnel avec système de charges
-- Effets visuels et particules
+- Local multiplayer
+- Weapon and shooting system
+- Directional shield with charge system
+- Visual effects and particles
 
 ## Installation
 
-1. Ouvrir `project.godot` avec Godot
-2. Lancer avec F5
+1. Open `project.godot` with Godot
+2. Run with F5
 
-## Commandes
+## Controls
 
-**Clavier/Souris:**
-- Déplacement: ZQSD
-- Dash: Espace
-- Tir: Clic gauche
-- Bouclier: Clic droit
-- Changer d'arme: Boutons latéraux souris
-- Recharger: R
+**Keyboard/Mouse:**
+- Movement: ZQSD (WASD on QWERTY keyboards)
+- Dash: Space
+- Shoot: Left click
+- Shield: Right click
+- Change weapon: Mouse side buttons
+- Reload: R
 
-**Manette:**
-- Déplacement: Stick gauche
-- Viser: Stick droit
-- Tir: RT
-- Bouclier: LT
+**Gamepad:**
+- Movement: Left stick
+- Aim: Right stick
+- Shoot: RT
+- Shield: LT
 - Dash: A / LB
 
 ## Inspirations
 
-Enter The Gungeon 
-Boomerang Fu 
-StickFight: The Game 
+- Enter The Gungeon 
+- Boomerang Fu 
+- StickFight: The Game 
 
-## Crédits
+## Credits
 
 Assets: 
 - [Kenney's Desert Shooter Pack](https://kenney.nl/assets/desert-shooter-pack)
