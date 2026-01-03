@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://clnt5qks3e1ju"]
+[gd_scene load_steps=6 format=3 uid="uid://clnt5qks3e1ju"]
 
 [ext_resource type="Script" uid="uid://pwqcpq2k5bvj" path="res://scenes/end_game/final_scores.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="2_be16e"]
+[ext_resource type="Script" uid="uid://bqtisf0gn5jyq" path="res://scenes/menu_scene/menu_input_manager.gd" id="2_iicy6"]
+[ext_resource type="Script" uid="uid://c0tag3crunvtu" path="res://resources/menu_config.gd" id="3_frv43"]
+
+[sub_resource type="Resource" id="Resource_xu5i5"]
+script = ExtResource("3_frv43")
+menu_parent = NodePath("../Panel/VBox")
+default_button = NodePath("../Panel/VBox/MenuButton")
+metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
 [node name="FinalScores" type="Control"]
 layout_mode = 3
@@ -11,6 +19,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
+
+[node name="MenuInputManager" type="Node" parent="."]
+script = ExtResource("2_iicy6")
+base_menu = SubResource("Resource_xu5i5")
+metadata/_custom_type_script = "uid://bqtisf0gn5jyq"
 
 [node name="Background" parent="." instance=ExtResource("2_be16e")]
 

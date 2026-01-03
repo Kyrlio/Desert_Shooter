@@ -13,9 +13,11 @@ extends CanvasLayer
 @onready var player_3_box_container: HBoxContainer = %Player3HBoxContainer
 @onready var player_4_box_container: HBoxContainer = %Player4HBoxContainer
 
+var number_players: int = 1
+
 
 func update_scores() -> void:
-	match ControllerManager.get_number_players():
+	match number_players:
 		1:
 			player_1_point_label.text = str(ScoreManager.get_points(0)) + "\nPTS"
 			player_2_box_container.visible = false

@@ -5,7 +5,7 @@ extends Node
 signal points_changed(player_index: int, points: int)
 signal victory(player_index: int)
 
-const POINTS_TO_WIN: int = 3
+const POINTS_TO_WIN: int = 10
 const MAX_PLAYERS: int = 4
 
 var player_points: Array[int] = [0, 0, 0, 0]  # Points de chaque joueur

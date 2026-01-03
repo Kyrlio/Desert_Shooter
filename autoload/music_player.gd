@@ -5,6 +5,7 @@ extends Node
 @onready var win_stream_player: AudioStreamPlayer = $WinStreamPlayer
 @onready var reload_stream_player: AudioStreamPlayer = $ReloadStreamPlayer
 @onready var fall_stream_player: AudioStreamPlayer = $FallStreamPlayer
+@onready var teleporter_stream_player: AudioStreamPlayer = $TeleporterStreamPlayer
 
 
 func play_environment_impact():
@@ -26,3 +27,7 @@ func play_reload():
 
 func play_fall():
 	fall_stream_player.play()
+
+
+func play_teleport():
+	teleporter_stream_player.play()

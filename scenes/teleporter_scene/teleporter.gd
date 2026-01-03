@@ -2,16 +2,33 @@ class_name Teleporter
 extends Area2D
 
 @export var destination_teleporter: Teleporter
+@export var color: Color = Color(1, 1, 1, 1):
+	set(new_value):
+		color = new_value
+		_update_sprite_color()
 
 @onready var timer: Timer = $Timer
+@onready var bullet_timer: Timer = $BulletTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
+
+
+func _ready() -> void:
+	_update_sprite_color()
+
+
+func _update_sprite_color() -> void:
+	if sprite and sprite.material:
+		sprite.material.set_shader_parameter("target_color", color)
+
 
 func _on_body_entered(body: Node2D) -> void:
-	if not timer.is_stopped():
-		return
 	if body is Player:
+		if not timer.is_stopped():
+			return
 		var player: Player = body
 		player.global_position = destination_teleporter.global_position
+		MusicPlayer.play_teleport()
 		animation_player.play("enter")
 		timer.start()
 		

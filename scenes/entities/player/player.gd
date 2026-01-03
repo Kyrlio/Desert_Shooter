@@ -44,7 +44,6 @@ var sniper_scene: PackedScene = preload("uid://did8iv6uy01c")
 var corpse_scene: PackedScene = preload("uid://bm5ha6ujfnjyi")
 
 var is_dead: bool = false
-var is_falling_in_void: bool = false
 var kill_count: int = 0  # Nombre de kills dans la round actuelle
 var killer_player_index: int = -1  # Index du joueur qui a tué ce joueur
 
@@ -91,9 +90,6 @@ func _initialize_components() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_falling_in_void:
-		# Movement is locked while the fall animation plays
-		return
 	weapon_manager.process_weapon(delta)
 	input_controller.gather_input()
 	_update_aim_and_visuals()
@@ -123,25 +119,22 @@ func stop_hurt_zone():
 
 
 func falling_in_void() -> void:
-	if is_falling_in_void or is_dead:
-		return
-	is_falling_in_void = true
-	weapon_root.visible = false
-	MusicPlayer.play_fall()
-	velocity = Vector2.ZERO
-	if input_controller:
-		input_controller.movement_vector = Vector2.ZERO
-	if state_machine:
-		state_machine.set_physics_process(false)
-	run_particles.emitting = false
-	animation_player.play("falling")
-	await animation_player.animation_finished
-	is_dead = true
+	state_machine.change_state("FallingState")
+	#is_falling_in_void = true
+	#weapon_root.visible = false
+	#MusicPlayer.play_fall()
+	#velocity = Vector2.ZERO
+	#if input_controller:
+		#input_controller.movement_vector = Vector2.ZERO
+	#if state_machine:
+		#state_machine.set_physics_process(false)
+	#run_particles.emitting = false
+	#animation_player.play("falling")
+	#await animation_player.animation_finished
+	#is_dead = true
 
 
 func _input(event: InputEvent) -> void:
-	if is_falling_in_void:
-		return
 	if input_controller:
 		input_controller.handle_input_event(event, aim_root)
 	

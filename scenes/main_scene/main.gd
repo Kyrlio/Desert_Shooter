@@ -31,6 +31,7 @@ func _ready() -> void:
 	if y_sort_root:
 		ControllerManager.setup_scene(base_player, y_sort_root)
 	player_spawn_manager.spawn_players()
+	player_scores.number_players = ControllerManager.get_number_players()
 	
 	# Réinitialiser les kill_count de tous les joueurs pour cette nouvelle round
 	for player in ControllerManager.get_players():
@@ -48,6 +49,7 @@ func _ready() -> void:
 	
 	if safe_area:
 		safe_area.body_exited.connect(_player_fall_in_void)
+	
 
 
 func _physics_process(_delta: float) -> void:

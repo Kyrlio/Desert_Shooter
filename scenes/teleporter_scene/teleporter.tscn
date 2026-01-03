@@ -1,50 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cejsfnteh56v6"]
+[gd_scene load_steps=11 format=3 uid="uid://cejsfnteh56v6"]
 
 [ext_resource type="Script" uid="uid://co5twfinwnh0d" path="res://scenes/teleporter_scene/teleporter.gd" id="1_4uuka"]
 [ext_resource type="Texture2D" uid="uid://ciqx1lnlb8h2k" path="res://assets/Tiles/Tiles/tile_0124.png" id="1_ceocb"]
 [ext_resource type="Texture2D" uid="uid://emydr7qrr2iv" path="res://scenes/entities/player/Shadow.png" id="2_wivkl"]
+[ext_resource type="Shader" uid="uid://85p8p14oh1h3" path="res://scenes/teleporter_scene/teleporter_color.gdshader" id="3_kmt6d"]
 
-[sub_resource type="Animation" id="Animation_kmt6d"]
-resource_name = "idle"
-length = 4.0
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.2617993877991494, -3.4033920413889427]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shadow:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uuka"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_tmhco"]
 length = 0.001
@@ -126,6 +88,48 @@ tracks/2/keys = {
 "values": [0.0, -0.17453292519943295]
 }
 
+[sub_resource type="Animation" id="Animation_kmt6d"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.2617993877991494, -3.4033920413889427]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qikr"]
 _data = {
 &"RESET": SubResource("Animation_tmhco"),
@@ -133,11 +137,20 @@ _data = {
 &"idle": SubResource("Animation_kmt6d")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4uuka"]
-radius = 12.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tmhco"]
+resource_local_to_scene = true
+shader = ExtResource("3_kmt6d")
+shader_parameter/target_color = Color(1, 0, 0, 1)
+shader_parameter/tolerance = 0.1
 
 [node name="Teleporter" type="Area2D"]
+collision_layer = 16
+collision_mask = 257
 script = ExtResource("1_4uuka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4uuka")
+debug_color = Color(0.8894623, 0.0002652967, 0.79761755, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -152,15 +165,18 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_wivkl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tmhco")
 scale = Vector2(2, 2)
 texture = ExtResource("1_ceocb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4uuka")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.5
+one_shot = true
+
+[node name="BulletTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
