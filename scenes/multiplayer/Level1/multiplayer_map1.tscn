@@ -2345,7 +2345,6 @@ script = ExtResource("1_0eo8p")
 
 [node name="HurtZone" parent="." instance=ExtResource("2_1bq1u")]
 unique_name_in_owner = true
-visible = false
 z_index = 2
 metadata/_edit_lock_ = true
 
@@ -2421,7 +2420,7 @@ position = Vector2(-120, 20)
 position = Vector2(78, 100)
 
 [node name="Marker3" type="Marker2D" parent="WeaponSpawnManager"]
-position = Vector2(207, -146)
+position = Vector2(42, -141)
 
 [node name="Marker4" type="Marker2D" parent="WeaponSpawnManager"]
 position = Vector2(189, 84)

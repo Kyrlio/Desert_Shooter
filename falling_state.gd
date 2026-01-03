@@ -6,6 +6,7 @@ class_name FallingState extends State
 @onready var gpu_particles: GPUParticles2D = $"../../Visuals/GPUParticles2D"
 
 func enter() -> void:
+	ScoreManager.remove_points(player.player_index, 1)
 	weapon_root.visible = false
 	shadow.visible = false
 	reload_sprite.visible = false

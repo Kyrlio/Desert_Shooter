@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func add_points(player_index: int, points: int) -> void:
-	"""Ajouter des points à un joueur et vérifier la victoire"""
+	"""Ajouter des points à un joueur"""
 	if player_index < 0 or player_index >= MAX_PLAYERS:
 		return
 	
@@ -26,7 +26,20 @@ func add_points(player_index: int, points: int) -> void:
 	points_changed.emit(player_index, player_points[player_index])
 	
 	print("Player %d now has %d points" % [player_index+1, player_points[player_index]])
-	# La verification de la victoire est desormais faite a la fin du round (Main.end_round)
+
+
+func remove_points(player_index: int, points: int) -> void:
+	"""Enlever des points à un joueur"""
+	if player_index < 0 or player_index >= MAX_PLAYERS:
+		return
+	
+	if player_points[player_index] <= 0:
+		return
+	
+	player_points[player_index] -= points
+	points_changed.emit(player_index, player_points[player_index])
+	
+	print("Player %d now has %d points" % [player_index+1, player_points[player_index]])
 
 
 func get_points(player_index: int) -> int:

@@ -20,6 +20,7 @@ static var coop_mode: bool
 @export var can_end_round: bool = true
 
 var _round_ended: bool = false
+var _wait_score_time: float = 3
 
 func _ready() -> void:
 	hide_scores()
@@ -32,6 +33,9 @@ func _ready() -> void:
 		ControllerManager.setup_scene(base_player, y_sort_root)
 	player_spawn_manager.spawn_players()
 	player_scores.number_players = ControllerManager.get_number_players()
+	
+	# Capturer les scores actuels AVANT qu'ils ne changent pendant le round
+	player_scores.initialize_previous_scores()
 	
 	# Réinitialiser les kill_count de tous les joueurs pour cette nouvelle round
 	for player in ControllerManager.get_players():
@@ -98,7 +102,7 @@ func end_round() -> void:
 		await _on_global_victory(victorious_player)
 		return
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(_wait_score_time).timeout
 	_exit_tree()
 	get_tree().change_scene_to_packed(GameManager.next_round())
 
@@ -114,7 +118,7 @@ func _exit_tree() -> void:
 func _on_hurt_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		var player = body as Player
-		if not player.is_dead:
+		if not player.is_dead and not _round_ended:
 			player.hurt_zone()
 
 
@@ -140,7 +144,7 @@ func _on_global_victory(winner_player_index: int) -> void:
 	
 	show_scores()
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(_wait_score_time).timeout
 	# Aller vers l'écran de fin qui affichera les scores et le bouton menu
 	_exit_tree()
 	get_tree().change_scene_to_packed(GameManager.get_end_game_scene())
@@ -148,4 +152,5 @@ func _on_global_victory(winner_player_index: int) -> void:
 func _player_fall_in_void(body: Node2D) -> void:
 	if body is Player:
 		var player = body as Player
-		player.falling_in_void()
+		if not _round_ended:
+			player.falling_in_void()
