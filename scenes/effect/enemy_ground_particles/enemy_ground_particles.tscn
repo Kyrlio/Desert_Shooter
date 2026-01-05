@@ -16,7 +16,7 @@ colors = PackedColorArray(0.83137256, 0.17254902, 0.30980393, 1)
 gradient = SubResource("Gradient_b7ste")
 
 [sub_resource type="Curve" id="Curve_ee7wq"]
-_data = [Vector2(0, 0.530827), 0.0, 54.5414, 0, 0, Vector2(0.00301205, 1), 0.0, 0.0, 0, 0, Vector2(0.7936962, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.9016807), 0.0, 54.5414, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.7936962, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_x2j3p"]
@@ -93,7 +93,7 @@ material = SubResource("CanvasItemMaterial_2ah7b")
 emitting = false
 amount = 10
 texture = ExtResource("1_e50f0")
-lifetime = 20.0
+lifetime = 25.0
 one_shot = true
 speed_scale = 1.5
 explosiveness = 0.98

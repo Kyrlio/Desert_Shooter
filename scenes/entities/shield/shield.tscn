@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c44aon35eo8lw" path="res://assets/Sounds/Impact/impactPlate_light_004.ogg" id="6_j65m0"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cmpl0"]
+random_pitch = 1.2
 streams_count = 5
 stream_0/stream = ExtResource("2_ht5sv")
 stream_1/stream = ExtResource("3_qn16r")
@@ -20,12 +21,16 @@ visible = false
 z_index = 1
 script = ExtResource("1_8pxy6")
 max_hits = 10
+cooldown_time = 4.0
 base_arc_angle_degrees = 90.0
 offset_distance = 0.755
+recharge_delay = 3.0
 recharge_rate = 10.0
+reflection_angle_variance = 40.0
 
 [node name="ImpactStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_cmpl0")
+max_polyphony = 10
 bus = &"sfx"
 
 [node name="ShieldArea" type="Area2D" parent="."]
@@ -37,8 +42,12 @@ monitorable = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldArea"]
 polygon = PackedVector2Array(0, 0, 18, -10, 18, 10)
 
+[node name="ShieldOutline" type="Line2D" parent="."]
+points = PackedVector2Array(12, -13, 12, 13)
+width = 8.0
+default_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+
 [node name="ShieldArc" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(12, -8, 12, 8)
 width = 4.0
 

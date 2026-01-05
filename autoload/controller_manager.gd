@@ -202,11 +202,7 @@ func _configure_actions_for_player(player_index: int, device_id: int) -> void:
 
 	var button_defs := [
 		{ "suffix": "dash", "buttons": [JOY_BUTTON_A, JOY_BUTTON_RIGHT_STICK, JOY_BUTTON_LEFT_SHOULDER] },
-		#{ "suffix": "next_weapon", "buttons": [JOY_BUTTON_DPAD_RIGHT] },
-		#{ "suffix": "prev_weapon", "buttons": [JOY_BUTTON_DPAD_LEFT] },
 		{ "suffix": "throw_weapon", "buttons": [JOY_BUTTON_Y]},
-		#{ "suffix": "skin_next", "buttons": [JOY_BUTTON_RIGHT_SHOULDER] },
-		#{ "suffix": "skin_prev", "buttons": [JOY_BUTTON_LEFT_SHOULDER] }
 		{ "suffix": "reload", "buttons": [JOY_BUTTON_X]}
 	]
 	for button_def in button_defs:

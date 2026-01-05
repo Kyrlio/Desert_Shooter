@@ -1,14 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://542ov0s7gl6y"]
+[gd_scene load_steps=40 format=3 uid="uid://542ov0s7gl6y"]
 
 [ext_resource type="Script" uid="uid://dhhh8ybx1ttcw" path="res://scenes/menu_scene/main_menu.gd" id="1_1ysjf"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="1_fbj1f"]
 [ext_resource type="Script" uid="uid://bqtisf0gn5jyq" path="res://scenes/menu_scene/menu_input_manager.gd" id="1_xqrp2"]
 [ext_resource type="Script" uid="uid://c0tag3crunvtu" path="res://resources/menu_config.gd" id="2_1ysjf"]
 [ext_resource type="Texture2D" uid="uid://b3n2g64yefido" path="res://scenes/entities/player/test.png" id="5_swh3s"]
+[ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="6_ax1eh"]
+[ext_resource type="Texture2D" uid="uid://b3v5dlj6jfysf" path="res://assets/logo_etc/logo_anim2.png" id="6_k1drc"]
 [ext_resource type="Script" uid="uid://codxfvevgbnk3" path="res://scenes/menu_scene/options_menu.gd" id="6_vylqo"]
 [ext_resource type="Texture2D" uid="uid://ccxqn7u574wwm" path="res://assets/ui/xbox layout/controller_xboxseries.png" id="7_1v0a0"]
+[ext_resource type="Texture2D" uid="uid://dwyilrk3kkfyj" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_3.png" id="7_k1drc"]
+[ext_resource type="PackedScene" uid="uid://we7xx2omqegd" path="res://scenes/effect/muzzle_flash/muzzle_flash.tscn" id="8_ax1eh"]
 [ext_resource type="Texture2D" uid="uid://dwni207bupeif" path="res://assets/ui/xbox layout/xbox_button_a_outline.png" id="8_xgd10"]
 [ext_resource type="Texture2D" uid="uid://dcg8ab5gx8eca" path="res://assets/ui/xbox layout/xbox_lb_outline.png" id="9_8imix"]
+[ext_resource type="Texture2D" uid="uid://cgd33ypvnsvlm" path="res://scenes/entities/bullet/bullet.png" id="9_k1drc"]
 [ext_resource type="Texture2D" uid="uid://ctwptat7ty0r8" path="res://assets/ui/xbox layout/xbox_button_x_outline.png" id="10_22pv8"]
 [ext_resource type="Texture2D" uid="uid://b5nralckn56w6" path="res://assets/ui/xbox layout/xbox_button_y_outline.png" id="11_sosyx"]
 [ext_resource type="Texture2D" uid="uid://dsk0j2douvlp" path="res://assets/ui/xbox layout/xbox_rt_outline.png" id="12_ax1eh"]
@@ -49,6 +54,751 @@ default_button = NodePath("../CommandContainer/HBoxContainer/VBoxContainer/Comma
 button_parents = Array[NodePath]([NodePath("../CommandContainer/HBoxContainer/VBoxContainer")])
 metadata/_custom_type_script = "uid://c0tag3crunvtu"
 
+[sub_resource type="Animation" id="Animation_8imix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Rifle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/Rifle:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/MuzzleFlashes/RifleMuzzleFlash:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/MuzzleFlashes/RifleMuzzleFlash2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Bullets/RifleBullet:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Bullets/RifleBullet:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 83)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Bullets/RifleBullet2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(665.74976, 82.01386)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Bullets/RifleBullet2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xgd10"]
+resource_name = "title"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.08726646259971647, 0.08726646259971647, -0.08726646259971647]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(1.15, 1.15), Vector2(0.85, 0.85)]
+}
+
+[sub_resource type="Animation" id="Animation_cv0uo"]
+resource_name = "shooting"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Rifle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3, 0.35000002, 0.44999996),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1, 0.5, 1),
+"update": 0,
+"values": [0.0, -0.2617993877991494, 0.0, 0.0, -0.2617993877991494, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Rifle:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.3, 0.35000002, 0.4, 0.44999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/MuzzleFlashes/RifleMuzzleFlash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/MuzzleFlashes/RifleMuzzleFlash2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Bullets/RifleBullet:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Bullets/RifleBullet:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(166.265, 83), Vector2(672.86, 70), Vector2(672.86, 70)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Bullets/RifleBullet2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 83), Vector2(672.86, 95)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Bullets/RifleBullet2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22pv8"]
+_data = {
+&"RESET": SubResource("Animation_8imix"),
+&"shooting": SubResource("Animation_cv0uo"),
+&"title": SubResource("Animation_xgd10")
+}
+
+[sub_resource type="Animation" id="Animation_k1drc"]
+resource_name = "uzi"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Uzi:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65000004, 0.75000006, 0.8, 0.95000005),
+"transitions": PackedFloat32Array(1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1),
+"update": 0,
+"values": [0.0, 0.2617993877991494, 0.0, 0.2617993877991494, 0.0, 0.2617993877991494, 0.0, 0.2617993877991494, 0.0, 0.2617993877991494, 0.0, 0.2617993877991494, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Uzi:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65000004, 0.70000005, 0.75000006, 0.8, 0.875, 0.95000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2), Vector2(1.25, 3), Vector2(2.25, 1.5), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/MuzzleFlashes/UziMuzzleFlash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3, 0.35000002, 0.6, 0.65000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/MuzzleFlashes/UziMuzzleFlash2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.45000002, 0.5, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, false, true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Bullets/UziBullet:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 0.45, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(455, 83), Vector2(-10, 50), Vector2(-10, 50)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Bullets/UziBullet:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0475, 0.05, 0.45, 0.4525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(455, 83), Vector2(-12.135, 95), Vector2(-12.135, 95)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1975, 0.2, 0.6, 0.6025),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.35, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, 83), Vector2(-11, 67.895), Vector2(-11, 67.895)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = false
+tracks/9/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.35, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/Bullets/UziBullet4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, 83), Vector2(-10, 40.625), Vector2(-10, 40.625)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer/Bullets/UziBullet4:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_pi2ce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Uzi:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Uzi:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/MuzzleFlashes/UziMuzzleFlash:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/MuzzleFlashes/UziMuzzleFlash2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Bullets/UziBullet:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(455, 83)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Bullets/UziBullet:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 110.54)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(163.04065, 90.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/Bullets/UziBullet4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(456, 83)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer/Bullets/UziBullet4:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_blpu8"]
+_data = {
+&"RESET": SubResource("Animation_pi2ce"),
+&"uzi": SubResource("Animation_k1drc")
+}
+
+[sub_resource type="Animation" id="Animation_2mkre"]
+resource_name = "title"
+length = 5.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/GreenPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 2.15, 4.1, 4.2, 5),
+"transitions": PackedFloat32Array(1, 2, 1, 2, 1),
+"update": 0,
+"values": [Vector2(51, 22.935), Vector2(51, 10), Vector2(51, 10), Vector2(51, 23), Vector2(51, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/GreenPlayer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 3.2, 3.4, 3.6, 3.8, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [0.0, -0.2617993877991494, 0.2617993877991494, -0.2617993877991494, 0.2617993877991494, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/GreenPlayer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.15, 2.2, 2.25, 2.3, 3, 3.2, 3.4, 3.6, 3.8, 4, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1.2, 0.75), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(0.85, 1.15), Vector2(1.15, 0.85), Vector2(0.85, 1.15), Vector2(1.15, 0.85), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/PurplePlayer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3, 4.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(265, 9), Vector2(265, 9), Vector2(315, 9), Vector2(315, 9), Vector2(265, 9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/PurplePlayer:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1.1, 1.4, 1.7, 2, 2.3, 2.6000001, 3, 3.15, 3.4, 3.7, 4, 4.3, 4.6, 4.85, 4.9),
+"transitions": PackedFloat32Array(1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5),
+"update": 0,
+"values": [0.0, 0.0, -0.08726646259971647, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647, 0.0, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647, -0.08726646259971647, 0.08726646259971647]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/PurplePlayer:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3, 1.4000001, 1.5, 1.5999999, 1.7, 1.8, 1.9, 2, 2.1, 2.1999998, 2.3000002, 2.4, 2.5, 2.6000001, 2.95, 3, 3.05, 3.1, 3.15, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8000002, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.7999997, 4.85, 4.9, 4.95, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1), Vector2(0.8, 1), Vector2(1.15, 1), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1.3, 1), Vector2(0.8, 1), Vector2(1.15, 1), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/PurplePlayer:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.95, 3, 4.8, 4.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3yjq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/GreenPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(51, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/GreenPlayer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/GreenPlayer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/PurplePlayer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(265, 25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/PurplePlayer:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/PurplePlayer:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/PurplePlayer:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pi2ce"]
+_data = {
+&"RESET": SubResource("Animation_3yjq3"),
+&"title": SubResource("Animation_2mkre")
+}
+
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,28 +820,144 @@ metadata/_custom_type_script = "uid://bqtisf0gn5jyq"
 [node name="Background" parent="." instance=ExtResource("1_fbj1f")]
 position = Vector2(437.00003, 322)
 
+[node name="RifleAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_22pv8")
+}
+autoplay = "shooting"
+
+[node name="UziAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_blpu8")
+}
+autoplay = "uzi"
+
+[node name="PlayersAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pi2ce")
+}
+autoplay = "title"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 5
+[node name="Control" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(350, 55)
+layout_mode = 3
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -248.0
-offset_top = 34.0
-offset_right = 248.0
-offset_bottom = 98.0
+anchor_bottom = 0.001
+offset_left = -175.0
+offset_top = 35.0
+offset_right = 175.0
+offset_bottom = 89.64001
 grow_horizontal = 2
+pivot_offset = Vector2(175, 26)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -32.0
+offset_right = 248.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(248, 30)
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
-text = "DESERT SHOOTER"
+text = "HELLSTORM"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GreenPlayer" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(51, 13)
+texture = ExtResource("5_swh3s")
+region_enabled = true
+region_rect = Rect2(4, 53, 16, 14)
+
+[node name="PurplePlayer" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(265, 25)
+texture = ExtResource("5_swh3s")
+region_enabled = true
+region_rect = Rect2(5, 75, 17, 17)
+
+[node name="Logo" type="Sprite2D" parent="CanvasLayer/Control"]
+texture_filter = 1
+position = Vector2(160, 35)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_k1drc")
+
+[node name="Rifle" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(-8, 52)
+scale = Vector2(2, 2)
+texture = ExtResource("6_ax1eh")
+
+[node name="Uzi" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(333, 51)
+scale = Vector2(2, 2)
+texture = ExtResource("7_k1drc")
+flip_h = true
+
+[node name="MuzzleFlashes" type="Node2D" parent="CanvasLayer"]
+scale = Vector2(3, 3)
+
+[node name="RifleMuzzleFlash" parent="CanvasLayer/MuzzleFlashes" instance=ExtResource("8_ax1eh")]
+position = Vector2(51.666664, 27.333332)
+
+[node name="RifleMuzzleFlash2" parent="CanvasLayer/MuzzleFlashes" instance=ExtResource("8_ax1eh")]
+position = Vector2(51.666664, 27.333332)
+
+[node name="UziMuzzleFlash" parent="CanvasLayer/MuzzleFlashes" instance=ExtResource("8_ax1eh")]
+position = Vector2(155, 27.666666)
+scale = Vector2(-1, 1)
+lifetime = 0.09999999999999999
+
+[node name="UziMuzzleFlash2" parent="CanvasLayer/MuzzleFlashes" instance=ExtResource("8_ax1eh")]
+position = Vector2(155, 27.666666)
+scale = Vector2(-1, 1)
+lifetime = 0.09999999999999999
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer"]
+
+[node name="RifleBullet" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(160, 83)
+scale = Vector2(1.75, 1)
+texture = ExtResource("9_k1drc")
+
+[node name="RifleBullet2" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(665.74976, 82.01386)
+scale = Vector2(1.75, 1)
+texture = ExtResource("9_k1drc")
+
+[node name="UziBullet" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(455, 83)
+scale = Vector2(1.5, 1)
+texture = ExtResource("9_k1drc")
+
+[node name="UziBullet2" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(-10, 110.54)
+scale = Vector2(1.5, 1)
+texture = ExtResource("9_k1drc")
+
+[node name="UziBullet3" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(163.04065, 90.5)
+scale = Vector2(1.5, 1)
+texture = ExtResource("9_k1drc")
+
+[node name="UziBullet4" type="Sprite2D" parent="CanvasLayer/Bullets"]
+position = Vector2(456, 83)
+scale = Vector2(1.5, 1)
+texture = ExtResource("9_k1drc")
 
 [node name="MainVBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(165, 0)

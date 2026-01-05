@@ -14,12 +14,17 @@ signal shield_ready
 @export_range(6, 32, 1) var arc_segments: int = 16
 @export_range(0.0, 5.0, 0.1) var recharge_delay: float = 1.0
 @export_range(0.1, 10.0, 0.1) var recharge_rate: float = 1.0
+@export_range(0.0, 40.0, 1.0) var reflection_angle_variance: float = 10.0
 @export_node_path("Node2D") var center_marker_path: NodePath
 @export var center_offset: Vector2 = Vector2.ZERO
+
+const COLOR_NORMAL := Color(1, 1, 1.0)
+const COLOR_REGEN := Color(0.3, 1.0, 0.5)
 
 @onready var shield_area: Area2D = $ShieldArea
 @onready var collision_polygon: CollisionPolygon2D = $"ShieldArea/CollisionPolygon2D"
 @onready var shield_arc: Line2D = $ShieldArc
+@onready var shield_outline: Line2D = $ShieldOutline
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var center_marker: Node2D = get_node_or_null(center_marker_path) as Node2D
 @onready var impact_stream_player: AudioStreamPlayer = $ImpactStreamPlayer
@@ -28,6 +33,8 @@ var remaining_hits: float
 var _is_active: bool = false
 var _in_cooldown: bool = false
 var _regen_cooldown: float = 0.0
+var _regen_tween: Tween = null
+var _is_regenerating: bool = false
 
 
 func _ready() -> void:
@@ -39,6 +46,7 @@ func _ready() -> void:
 	shield_area.monitorable = false
 	set_process(true)
 	hide()
+	shield_arc.default_color = COLOR_NORMAL
 	_update_shield_shape()
 
 
@@ -51,6 +59,7 @@ func activate() -> bool:
 	shield_area.monitoring = true
 	shield_area.monitorable = true
 	shield_arc.visible = true
+	shield_outline.visible = true
 	show()
 	return true
 
@@ -62,6 +71,7 @@ func deactivate() -> void:
 	shield_area.set_deferred("monitoring", false)
 	shield_area.set_deferred("monitorable", false)
 	shield_arc.visible = false
+	shield_outline.visible = false
 	hide()
 
 
@@ -104,7 +114,7 @@ func _handle_block_hit(hitbox: HitboxComponent) -> void:
 			return
 	var parent := hitbox.get_parent()
 	if parent is Bullet:
-		parent.register_collision()
+		_reflect_bullet(parent)
 	else:
 		hitbox.is_hit_handled = true
 
@@ -117,10 +127,34 @@ func _handle_block_hit(hitbox: HitboxComponent) -> void:
 		_deplete_shield()
 
 
+func _reflect_bullet(bullet: Bullet) -> void:
+	# Reverse the bullet direction (bounce back)
+	var reflected_dir := -bullet.direction
+	
+	# Add angle variance
+	if reflection_angle_variance > 0.0:
+		var variance_rad := deg_to_rad(randf_range(-reflection_angle_variance, reflection_angle_variance))
+		reflected_dir = reflected_dir.rotated(variance_rad)
+	
+	bullet.direction = reflected_dir
+	bullet.rotation = reflected_dir.angle()
+	
+	# Transfer ownership to shield owner
+	var shield_owner := get_parent() as Player
+	if shield_owner:
+		bullet.owner_player_index = shield_owner.player_index
+		if bullet.hitbox_component:
+			bullet.hitbox_component.owner_player_index = shield_owner.player_index
+	
+	# Offset bullet position to avoid re-triggering shield
+	bullet.global_position += reflected_dir.normalized() * 8.0
+
+
 func _deplete_shield() -> void:
 	deactivate()
 	_in_cooldown = true
 	remaining_hits = 0.0
+	_stop_regen_visual()
 	cooldown_timer.start(cooldown_time)
 	shield_depleted.emit()
 
@@ -129,20 +163,30 @@ func _on_cooldown_finished() -> void:
 	remaining_hits = max_hits
 	_in_cooldown = false
 	_regen_cooldown = 0.0
+	_stop_regen_visual()
 	_update_shield_shape()
 	shield_ready.emit()
 
 
 func _physics_process(delta: float) -> void:
 	if _in_cooldown:
+		if _is_regenerating:
+			_stop_regen_visual()
 		return
 	if _regen_cooldown > 0.0:
 		_regen_cooldown = max(_regen_cooldown - delta, 0.0)
-		return
-	if _is_active:
+		if _is_regenerating:
+			_stop_regen_visual()
 		return
 	if remaining_hits >= max_hits:
+		if _is_regenerating:
+			_stop_regen_visual()
 		return
+	
+	# Start regen visual if not already running
+	if not _is_regenerating:
+		_start_regen_visual()
+	
 	remaining_hits = min(float(max_hits), remaining_hits + recharge_rate * delta)
 	_update_shield_shape()
 
@@ -163,11 +207,15 @@ func _update_shield_shape() -> void:
 
 	if visual_ratio <= 0.0 or angle <= 0.0 or radius <= 0.0:
 		shield_arc.set_deferred("points", PackedVector2Array())
+		if is_instance_valid(shield_outline):
+			shield_outline.set_deferred("points", PackedVector2Array())
 		collision_polygon.set_deferred("polygon", PackedVector2Array())
 		return
 
 	var arc_points := _build_arc_points(angle, radius, arc_segments)
 	shield_arc.set_deferred("points", arc_points)
+	if is_instance_valid(shield_outline):
+		shield_outline.set_deferred("points", arc_points)
 
 	var polygon_points := PackedVector2Array()
 	polygon_points.append(Vector2.ZERO)
@@ -187,3 +235,24 @@ func _build_arc_points(angle: float, radius: float, segments: int) -> PackedVect
 		var unit := Vector2.RIGHT.rotated(current_angle)
 		points.append(unit * radius)
 	return points
+
+
+func _start_regen_visual() -> void:
+	if _is_regenerating:
+		return
+	_is_regenerating = true
+	if _regen_tween and _regen_tween.is_valid():
+		_regen_tween.kill()
+	_regen_tween = create_tween().set_loops()
+	_regen_tween.tween_property(shield_arc, "default_color", COLOR_REGEN, 0.3)
+	_regen_tween.tween_property(shield_arc, "default_color", COLOR_NORMAL, 0.3)
+
+
+func _stop_regen_visual() -> void:
+	if not _is_regenerating:
+		return
+	_is_regenerating = false
+	if _regen_tween and _regen_tween.is_valid():
+		_regen_tween.kill()
+	_regen_tween = null
+	shield_arc.default_color = COLOR_NORMAL

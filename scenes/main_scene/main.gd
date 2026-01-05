@@ -152,5 +152,5 @@ func _on_global_victory(winner_player_index: int) -> void:
 func _player_fall_in_void(body: Node2D) -> void:
 	if body is Player:
 		var player = body as Player
-		if not _round_ended:
+		if not _round_ended and not body.is_dead:
 			player.falling_in_void()
