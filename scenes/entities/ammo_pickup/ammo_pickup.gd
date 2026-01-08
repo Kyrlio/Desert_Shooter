@@ -6,6 +6,7 @@ extends Area2D
 @export var uzi_ammo_amount: int = 40
 @export var shotgun_ammo_amount: int = 6
 @export var sniper_ammo_amount: int = 3
+@export var revolver_ammo_amount: int = 10
 
 @onready var sprite: Sprite2D = $Sprite2D  # Optionnel: sprite de l'arme au sol
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -25,6 +26,7 @@ func _on_body_entered(body: Node2D) -> void:
 			"Uzi": body.add_ammo(uzi_ammo_amount)
 			"Shotgun": body.add_ammo(shotgun_ammo_amount)
 			"Sniper": body.add_ammo(sniper_ammo_amount)
+			"Revolver": body.add_ammo(revolver_ammo_amount)
 		
 		animation_player.play("despawn")
 		pickup_stream_player.play()

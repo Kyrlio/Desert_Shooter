@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://b0pu7tqo7y7m0"]
+[gd_scene load_steps=39 format=4 uid="uid://b0pu7tqo7y7m0"]
 
 [ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_5b3g0"]
 [ext_resource type="PackedScene" uid="uid://bwytma0wq871e" path="res://scenes/hurt_zone/hurt_zone.tscn" id="2_epv5v"]
@@ -17,11 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="13_f8d7x"]
 [ext_resource type="Texture2D" uid="uid://dwyilrk3kkfyj" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_3.png" id="14_76a4u"]
 [ext_resource type="Texture2D" uid="uid://buirw8a0smry5" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_8.png" id="15_4eni5"]
+[ext_resource type="PackedScene" uid="uid://c4v4ey2gegvru" path="res://scenes/entities/weapons/revolver.tscn" id="15_peahr"]
 [ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="16_cop3d"]
 [ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="17_bia5d"]
 [ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="18_s6ul8"]
 [ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="19_2d1dv"]
 [ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="20_ba5al"]
+[ext_resource type="Texture2D" uid="uid://c1028h844g3xs" path="res://assets/weapons/All Yellow/SPR_Tiles_2.png" id="20_br77x"]
 [ext_resource type="PackedScene" uid="uid://diol0b6nt06in" path="res://scenes/entities/player/player.tscn" id="22_q1ujk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_br77x"]
@@ -2676,8 +2678,8 @@ metadata/_edit_lock_ = true
 [node name="WeaponSpawnManager" parent="." instance=ExtResource("7_iije6")]
 texture_filter = 1
 object_pickup_scene = ExtResource("8_ckda0")
-available_objects = Array[PackedScene]([ExtResource("9_yjdg4"), ExtResource("10_1lwi2"), ExtResource("11_od342"), ExtResource("12_jil7a")])
-available_sprites = Array[Texture2D]([ExtResource("13_f8d7x"), ExtResource("14_76a4u"), ExtResource("15_4eni5"), ExtResource("16_cop3d")])
+available_objects = Array[PackedScene]([ExtResource("9_yjdg4"), ExtResource("10_1lwi2"), ExtResource("11_od342"), ExtResource("12_jil7a"), ExtResource("15_peahr")])
+available_sprites = Array[Texture2D]([ExtResource("13_f8d7x"), ExtResource("14_76a4u"), ExtResource("15_4eni5"), ExtResource("16_cop3d"), ExtResource("20_br77x")])
 pickup_parent_path = NodePath("../YSortRoot")
 spawn_interval = 35.0
 metadata/_edit_lock_ = true

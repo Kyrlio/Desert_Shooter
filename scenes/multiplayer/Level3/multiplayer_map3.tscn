@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://f2a4ce0ss1y5"]
+[gd_scene load_steps=32 format=4 uid="uid://f2a4ce0ss1y5"]
 
 [ext_resource type="Script" uid="uid://cklq77ut8ovyi" path="res://scenes/main_scene/main.gd" id="1_1qa53"]
 [ext_resource type="PackedScene" uid="uid://bq1we52sblyrb" path="res://game_camera.tscn" id="2_76lse"]
@@ -11,12 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://c55fbudaqm7bl" path="res://scenes/entities/weapons/uzi.tscn" id="9_5ap6f"]
 [ext_resource type="PackedScene" uid="uid://r4fu7s6dkih4" path="res://scenes/entities/weapons/shotgun.tscn" id="10_6esp5"]
 [ext_resource type="PackedScene" uid="uid://did8iv6uy01c" path="res://scenes/entities/weapons/sniper.tscn" id="11_sc1cg"]
+[ext_resource type="PackedScene" uid="uid://c4v4ey2gegvru" path="res://scenes/entities/weapons/revolver.tscn" id="12_afo1p"]
 [ext_resource type="Texture2D" uid="uid://cyuj3klfc0u7i" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_6.png" id="12_nmy8v"]
 [ext_resource type="Texture2D" uid="uid://dwyilrk3kkfyj" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_3.png" id="13_7pytf"]
 [ext_resource type="Texture2D" uid="uid://buirw8a0smry5" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_8.png" id="14_867l8"]
 [ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="15_lnr3d"]
 [ext_resource type="PackedScene" uid="uid://myu71h1sv5ps" path="res://scenes/entities/ammo_pickup/ammo_pickup.tscn" id="16_5hsxx"]
 [ext_resource type="Texture2D" uid="uid://dygl6ixkb8wom" path="res://assets/weapons/Ammo.png" id="17_e6ao6"]
+[ext_resource type="Texture2D" uid="uid://c1028h844g3xs" path="res://assets/weapons/All Yellow/SPR_Tiles_2.png" id="17_ybpi6"]
 [ext_resource type="PackedScene" uid="uid://dot1gthas5en8" path="res://scenes/entities/health_pickup/health_pickup.tscn" id="18_mu5pn"]
 [ext_resource type="Texture2D" uid="uid://bdm2fcloe4sbb" path="res://assets/icons/SPR_Icons_11.png" id="19_cdc6v"]
 [ext_resource type="PackedScene" uid="uid://b0pcogs5dcrso" path="res://scenes/entities/grass/grass.tscn" id="20_g761q"]
@@ -1505,8 +1507,8 @@ tile_set = SubResource("TileSet_ebi6b")
 [node name="WeaponSpawnManager" parent="." instance=ExtResource("6_k4xox")]
 texture_filter = 1
 object_pickup_scene = ExtResource("7_fvl56")
-available_objects = Array[PackedScene]([ExtResource("8_opp8v"), ExtResource("9_5ap6f"), ExtResource("10_6esp5"), ExtResource("11_sc1cg")])
-available_sprites = Array[Texture2D]([ExtResource("12_nmy8v"), ExtResource("13_7pytf"), ExtResource("14_867l8"), ExtResource("15_lnr3d")])
+available_objects = Array[PackedScene]([ExtResource("8_opp8v"), ExtResource("9_5ap6f"), ExtResource("10_6esp5"), ExtResource("11_sc1cg"), ExtResource("12_afo1p")])
+available_sprites = Array[Texture2D]([ExtResource("12_nmy8v"), ExtResource("13_7pytf"), ExtResource("14_867l8"), ExtResource("15_lnr3d"), ExtResource("17_ybpi6")])
 pickup_parent_path = NodePath("../YSortRoot")
 spawn_interval = 35.0
 metadata/_edit_lock_ = true

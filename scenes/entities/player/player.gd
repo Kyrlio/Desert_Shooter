@@ -257,6 +257,9 @@ func set_killer(killer_index: int) -> void:
 	killer_player_index = killer_index
 
 
+func get_is_reloading() -> bool:
+	return get_current_weapon().is_reloading
+
 # ========== DASH SYSTEM (Used by State Machine) ==========
 
 func is_dash_pressed() -> bool:

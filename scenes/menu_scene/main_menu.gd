@@ -9,7 +9,6 @@ const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 @onready var player_slots_row: HBoxContainer = $MultiplayerContainer/VBoxContainer/HBoxContainer
 @onready var options_container: HBoxContainer = $OptionsVBoxContainer
 @onready var multiplayer_play_button: Button = $MultiplayerContainer/VBoxContainer/MultiplayerPlayButton
-@onready var title_label: Label = %TitleLabel
 @onready var sfx_down_button: Button = %SfxDownButton
 @onready var sfx_progress_bar: ProgressBar = %SfxProgressBar
 @onready var sfx_up_button: Button = %SfxUpButton
@@ -97,7 +96,6 @@ func _on_multiplayer_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu($MultiplayerContainer, $MainVBoxContainer/MultiplayerButton)
 	main_menu_container.visible = false
-	title_label.visible = false
 	# Ensure slots are up to date when opening the menu
 	_update_multiplayer_slots()
 
@@ -111,7 +109,6 @@ func _on_multiplayer_back_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
-	title_label.visible = true
 
 func _on_menu_closed():
 	main_menu_container.visible = true
@@ -182,14 +179,12 @@ func _on_command_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu(%CommandContainer, %CommandBack)
 	main_menu_container.visible = false
-	title_label.visible = false
 
 
 func _on_command_back_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
-	title_label.visible = true
 
 
 func _on_show_aim_cursor_check_button_toggled(toggled_on: bool) -> void:

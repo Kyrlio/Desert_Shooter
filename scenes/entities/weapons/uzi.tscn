@@ -162,4 +162,4 @@ offset = Vector2(-11, -12)
 
 [node name="BarrelPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(8, -1)
+position = Vector2(6, -1)

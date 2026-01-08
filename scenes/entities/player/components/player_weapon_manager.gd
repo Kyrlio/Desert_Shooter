@@ -71,8 +71,24 @@ func change_weapon(weapon_scene: PackedScene) -> void:
 		push_error("❌ Scene is not a valid weapon")
 		return
 	
-	equip_weapon(new_weapon)
-	_sync_weapon_index_with_scene(weapon_scene)
+	if current_weapon != null:
+		if current_weapon.name == new_weapon.name:
+			add_ammo_same_weapon(current_weapon.name)
+		else:
+			equip_weapon(new_weapon)
+			_sync_weapon_index_with_scene(weapon_scene)
+	else: # Just for Knife
+		equip_weapon(new_weapon)
+		_sync_weapon_index_with_scene(weapon_scene)
+
+
+func add_ammo_same_weapon(current_weapon_name: String) -> void:
+	match current_weapon_name:
+		"Rifle": add_ammo(20)
+		"Uzi": add_ammo(30)
+		"Shotgun": add_ammo(8)
+		"Sniper": add_ammo(3)
+		"Revolver": add_ammo(10)
 
 
 func cycle_weapon(direction: int) -> void:
@@ -103,6 +119,8 @@ func process_weapon(delta: float) -> void:
 func add_ammo(qte: int):
 	if current_weapon:
 		current_weapon.add_ammo(qte)
+		if current_weapon.number_bullets_in_magazine <= 0:
+			current_weapon.reload()
 
 
 func pickup_weapon(weapon_scene: PackedScene) -> void:

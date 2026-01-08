@@ -12,8 +12,8 @@ signal shield_ready
 @export_range(0.0, 1.0, 0.05) var minimum_arc_ratio: float = 0.25
 @export var offset_distance: float = 18.0
 @export_range(6, 32, 1) var arc_segments: int = 16
-@export_range(0.0, 5.0, 0.1) var recharge_delay: float = 1.0
-@export_range(0.1, 10.0, 0.1) var recharge_rate: float = 1.0
+@export_range(0.1, 5.0, 0.1) var drain_rate: float = 1.0  ## Shield drain per second while active
+@export_range(0.1, 5.0, 0.1) var recharge_rate: float = 0.5  ## Shield regen per second while inactive
 @export_range(0.0, 40.0, 1.0) var reflection_angle_variance: float = 10.0
 @export_node_path("Node2D") var center_marker_path: NodePath
 @export var center_offset: Vector2 = Vector2.ZERO
@@ -32,7 +32,6 @@ const COLOR_REGEN := Color(0.3, 1.0, 0.5)
 var remaining_hits: float
 var _is_active: bool = false
 var _in_cooldown: bool = false
-var _regen_cooldown: float = 0.0
 var _regen_tween: Tween = null
 var _is_regenerating: bool = false
 
@@ -120,7 +119,6 @@ func _handle_block_hit(hitbox: HitboxComponent) -> void:
 
 	var shield_loss: float = float(max(hitbox.damage, 1))
 	remaining_hits = max(remaining_hits - shield_loss, 0.0)
-	_regen_cooldown = recharge_delay
 	_update_shield_shape()
 
 	if remaining_hits <= 0:
@@ -162,22 +160,29 @@ func _deplete_shield() -> void:
 func _on_cooldown_finished() -> void:
 	remaining_hits = max_hits
 	_in_cooldown = false
-	_regen_cooldown = 0.0
 	_stop_regen_visual()
 	_update_shield_shape()
 	shield_ready.emit()
 
 
 func _physics_process(delta: float) -> void:
+	# No processing during cooldown
 	if _in_cooldown:
 		if _is_regenerating:
 			_stop_regen_visual()
 		return
-	if _regen_cooldown > 0.0:
-		_regen_cooldown = max(_regen_cooldown - delta, 0.0)
+	
+	# ACTIVE: Drain shield continuously (Smash Bros style)
+	if _is_active:
 		if _is_regenerating:
 			_stop_regen_visual()
+		remaining_hits = max(remaining_hits - drain_rate * delta, 0.0)
+		_update_shield_shape()
+		if remaining_hits <= 0:
+			_deplete_shield()
 		return
+	
+	# INACTIVE: Regenerate shield slowly
 	if remaining_hits >= max_hits:
 		if _is_regenerating:
 			_stop_regen_visual()

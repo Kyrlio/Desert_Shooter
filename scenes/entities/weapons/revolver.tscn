@@ -1,15 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://did8iv6uy01c"]
+[gd_scene load_steps=9 format=3 uid="uid://c4v4ey2gegvru"]
 
-[ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_6jcko"]
-[ext_resource type="AudioStream" uid="uid://c6b3l8ausjna1" path="res://assets/Sounds/Shoot/SND_Shoot_H.ogg" id="2_3kq64"]
-[ext_resource type="Texture2D" uid="uid://cq2rfelk3au6r" path="res://assets/weapons/Yellow/SPR_Tiles_Yellow_4.png" id="2_okkp5"]
-[ext_resource type="Script" uid="uid://bkatfql0g2xjb" path="res://scenes/entities/weapons/sniper_laser.gd" id="3_8d0ct"]
+[ext_resource type="Script" uid="uid://dqdgyox5vkehh" path="res://scripts/weapon.gd" id="1_7kmp6"]
+[ext_resource type="AudioStream" uid="uid://bnnnlyrgmi454" path="res://assets/Sounds/Shoot/SND_Shoot_A.ogg" id="2_02dct"]
+[ext_resource type="Texture2D" uid="uid://c1028h844g3xs" path="res://assets/weapons/All Yellow/SPR_Tiles_2.png" id="3_7kmp6"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yctsv"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e1n7f"]
 random_pitch = 1.3
 random_volume_offset_db = 2.0
 streams_count = 1
-stream_0/stream = ExtResource("2_3kq64")
+stream_0/stream = ExtResource("2_02dct")
 
 [sub_resource type="Animation" id="Animation_5sj0x"]
 length = 0.001
@@ -80,7 +79,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Sprite2D:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
@@ -125,25 +124,24 @@ _data = {
 &"reload": SubResource("Animation_lr7jd")
 }
 
-[node name="Sniper" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
+[node name="Revolver" type="Node2D" node_paths=PackedStringArray("barrel_position", "animation_player")]
 light_mask = 0
-position = Vector2(3, -1)
-script = ExtResource("1_6jcko")
-display_name = "Sniper"
-damage = 20
-life_time = 4.0
-fire_rate = 2.0
-bullet_speed = 700
-magazine_length = 3
-number_total_ammo = 3
+script = ExtResource("1_7kmp6")
+display_name = "Revolver"
+damage = 7
+fire_rate = 1.0
+spread = 15.0
+number_bullets = 2
+magazine_length = 5
+number_total_ammo = 10
+use_normal_distribution = true
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
 
 [node name="WeaponStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_yctsv")
-pitch_scale = 0.9
+stream = SubResource("AudioStreamRandomizer_e1n7f")
 max_polyphony = 3
-bus = &"uzi"
+bus = &"sfx"
 
 [node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -152,29 +150,16 @@ libraries = {
 
 [node name="ReloadingTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 2.0
+wait_time = 0.7
 one_shot = true
-
-[node name="BarrelPosition" type="Marker2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(1, 0, 0, 0.34901962)
-position = Vector2(5, 0)
-scale = Vector2(0.3, 0.3)
-script = ExtResource("3_8d0ct")
-
-[node name="RayCast2D" type="RayCast2D" parent="BarrelPosition"]
-target_position = Vector2(1000, 0)
-collision_mask = 13
-collide_with_areas = true
-
-[node name="Line2D" type="Line2D" parent="BarrelPosition/RayCast2D"]
-points = PackedVector2Array(0, 0, 59, 0)
-begin_cap_mode = 2
-end_cap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 0
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_okkp5")
+texture = ExtResource("3_7kmp6")
 centered = false
-offset = Vector2(-11, -12)
+offset = Vector2(-7, -14)
+
+[node name="BarrelPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(8, -2)

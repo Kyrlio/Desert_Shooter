@@ -82,7 +82,7 @@ func fire(direction: Vector2) -> void:
 
 
 func reload():
-	if number_bullets_in_magazine >= magazine_length or is_reloading:
+	if number_bullets_in_magazine >= magazine_length or is_reloading or number_total_ammo <= 0:
 		return
 	is_reloading = true
 	MusicPlayer.play_reload()

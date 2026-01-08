@@ -128,9 +128,14 @@ _data = {
 light_mask = 0
 script = ExtResource("1_lr7jd")
 display_name = "Rifle"
+damage = null
+life_time = null
 fire_rate = 0.5
 bullet_speed = 300
 spread = 3.0
+number_bullets = null
+magazine_length = null
+number_total_ammo = null
 use_normal_distribution = true
 barrel_position = NodePath("BarrelPosition")
 animation_player = NodePath("WeaponAnimationPlayer")
@@ -159,4 +164,4 @@ offset = Vector2(-11, -12)
 
 [node name="BarrelPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(12, -2)
+position = Vector2(9, -2)

@@ -24,8 +24,8 @@ max_hits = 10
 cooldown_time = 4.0
 base_arc_angle_degrees = 90.0
 offset_distance = 0.755
-recharge_delay = 3.0
-recharge_rate = 10.0
+drain_rate = 0.5
+recharge_rate = 1.0
 reflection_angle_variance = 40.0
 
 [node name="ImpactStreamPlayer" type="AudioStreamPlayer" parent="."]

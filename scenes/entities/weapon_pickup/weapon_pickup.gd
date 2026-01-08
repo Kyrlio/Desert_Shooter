@@ -51,7 +51,7 @@ func _pickup_weapon() -> void:
 	if _player_nearby == null or weapon_scene == null:
 		return
 	
-	pickup_stream_player.play()
+	pickup_stream_player.play()	
 	
 	# Donner l'arme au joueur
 	_player_nearby.weapon_manager.pickup_weapon(weapon_scene)

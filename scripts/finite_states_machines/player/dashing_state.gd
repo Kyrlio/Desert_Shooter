@@ -35,16 +35,18 @@ func physics_update(delta: float) -> void:
 	# Utiliser le timer du player
 	if player.dash_timer > 0.0:
 		player.dash_timer -= delta
-		# Maintenir la vitesse de dash
 		player.velocity = dash_dir * DASH_SPEED
 		player.move_and_slide()
 	else:
-		# Dash terminé, sortir
-		var movement_vector := player.get_movement_vector()
-		if movement_vector.length_squared() > 0:
-			get_parent().change_state("RunningState")
-		else:
-			get_parent().change_state("IdleState")
+		dash_end()
+
+
+func dash_end():
+	var movement_vector := player.get_movement_vector()
+	if movement_vector.length_squared() > 0:
+		get_parent().change_state("RunningState")
+	else:
+		get_parent().change_state("IdleState")
 
 
 func exit() -> void:
