@@ -8,6 +8,7 @@ export_presets.cfg
 export/
 .cache/
 .readmes/
+.assets/logo_etc/
 
 # IDEs/editors
 .vscode/
