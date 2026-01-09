@@ -6,7 +6,6 @@ band_db/3200_hz = -5.0
 band_db/10000_hz = -60.0
 
 [resource]
-bus/0/volume_db = -6.91795
 bus/1/name = &"sfx"
 bus/1/solo = false
 bus/1/mute = false

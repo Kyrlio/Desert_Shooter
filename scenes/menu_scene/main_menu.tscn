@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://542ov0s7gl6y"]
+[gd_scene load_steps=41 format=3 uid="uid://542ov0s7gl6y"]
 
 [ext_resource type="Script" uid="uid://dhhh8ybx1ttcw" path="res://scenes/menu_scene/main_menu.gd" id="1_1ysjf"]
 [ext_resource type="PackedScene" uid="uid://7xk0ctfo0he4" path="res://autoload/background.tscn" id="1_fbj1f"]
@@ -20,8 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://ctwptat7ty0r8" path="res://assets/ui/xbox layout/xbox_button_x_outline.png" id="10_22pv8"]
 [ext_resource type="Texture2D" uid="uid://b5nralckn56w6" path="res://assets/ui/xbox layout/xbox_button_y_outline.png" id="11_sosyx"]
 [ext_resource type="Texture2D" uid="uid://dsk0j2douvlp" path="res://assets/ui/xbox layout/xbox_rt_outline.png" id="12_ax1eh"]
-[ext_resource type="Texture2D" uid="uid://cjd6bncun0m1f" path="res://assets/ui/xbox layout/xbox_stick_l.png" id="13_k1drc"]
-[ext_resource type="Texture2D" uid="uid://des5vwy7cgwt7" path="res://assets/ui/xbox layout/xbox_stick_r.png" id="14_cv0uo"]
 [ext_resource type="Texture2D" uid="uid://42y5clyn0vel" path="res://assets/ui/playstation layout/playstation_button_cross_outline.png" id="15_2mkre"]
 [ext_resource type="Texture2D" uid="uid://c0imp47ipex7s" path="res://assets/ui/playstation layout/playstation_trigger_l1_alternative_outline.png" id="16_3yjq3"]
 [ext_resource type="Texture2D" uid="uid://dicpoetkoro5x" path="res://assets/ui/playstation layout/playstation_button_square_outline.png" id="17_pi2ce"]
@@ -442,26 +440,26 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
+tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(163.04065, 90.5)]
+"values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
+tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(163.04065, 90.5)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -571,10 +569,10 @@ tracks/3/path = NodePath("CanvasLayer/Bullets/UziBullet:visible")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0475, 0.05, 0.45, 0.4525),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0475, 0.05, 0.45, 0.4525, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [false, false, true, true, false]
+"values": [false, false, true, true, false, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -595,34 +593,34 @@ tracks/5/path = NodePath("CanvasLayer/Bullets/UziBullet2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1975, 0.2, 0.6, 0.6025),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1975, 0.2, 0.6, 0.6025, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [false, false, true, true, false]
+"values": [false, false, true, true, false, false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
+tracks/6/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.35, 0.75, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, true, true, false, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0.35, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(456, 83), Vector2(-11, 67.895), Vector2(-11, 67.895)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = false
-tracks/7/path = NodePath("CanvasLayer/Bullets/UziBullet3:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.29999998, 0.35, 0.75, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [false, false, true, true, false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -883,7 +881,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_bottom = -42
 script = ExtResource("1_1ysjf")
 
 [node name="MenuInputManager" type="Node" parent="."]
@@ -898,6 +896,7 @@ position = Vector2(437.00003, 322)
 texture = ExtResource("5_2mkre")
 
 [node name="MenuBackground" parent="." instance=ExtResource("6_3yjq3")]
+metadata/_edit_lock_ = true
 
 [node name="RifleAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1026,6 +1025,39 @@ texture = ExtResource("9_k1drc")
 position = Vector2(456, 83)
 scale = Vector2(1.5, 1)
 texture = ExtResource("9_k1drc")
+
+[node name="Credits" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -155.0
+offset_right = -5.0
+offset_bottom = -4.999054
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Credits"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 149.0
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 4
+text = "Created by : 
+Cedric Roussel
+
+Art & SFX : 
+Kenney
+
+Music : 
+One Man Symphony"
 
 [node name="MainVBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(165, 0)
@@ -1171,6 +1203,7 @@ size_flags_vertical = 8
 text = "PLAY"
 
 [node name="OptionsVBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(135, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1370,6 +1403,7 @@ alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_constants/margin_top = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CommandContainer"]
 layout_mode = 2
@@ -1392,6 +1426,7 @@ custom_minimum_size = Vector2(79, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+theme_override_constants/separation = 4
 
 [node name="ControllerXboxseries" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
 position = Vector2(-27, 9.5)
@@ -1401,6 +1436,8 @@ texture = ExtResource("7_1v0a0")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 4
 text = "XBOX CONTROLLER :
 
 
@@ -1412,9 +1449,7 @@ THROW WEAPON
 
 SHOOT
 
-MOVE
 
-ORIENTE WEAPON
 "
 
 [node name="XboxButtonAOutline" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
@@ -1442,16 +1477,6 @@ position = Vector2(-20, 177)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_ax1eh")
 
-[node name="XboxButtonAOutline5" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
-position = Vector2(-20, 215)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_k1drc")
-
-[node name="XboxButtonAOutline6" type="Sprite2D" parent="CommandContainer/HBoxContainer/XboxVBoxContainer"]
-position = Vector2(-20, 253)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_cv0uo")
-
 [node name="PlaystationVBoxContainer" type="VBoxContainer" parent="CommandContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -1459,6 +1484,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.2784314, 0.19607843, 0.29411766, 1)
+theme_override_constants/outline_size = 4
 text = "PLAYSTATION CONTROLLER :
 
 
@@ -1470,9 +1497,7 @@ THROW WEAPON
 
 SHOOT
 
-MOVE
 
-ORIENTE WEAPON
 "
 
 [node name="XboxButtonAOutline" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
@@ -1499,16 +1524,6 @@ texture = ExtResource("18_blpu8")
 position = Vector2(-20, 179)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("19_osqdg")
-
-[node name="XboxButtonAOutline5" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
-position = Vector2(-20, 217)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_k1drc")
-
-[node name="XboxButtonAOutline6" type="Sprite2D" parent="CommandContainer/HBoxContainer/PlaystationVBoxContainer"]
-position = Vector2(-20, 255)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_cv0uo")
 
 [node name="ControllerPlaystation5" type="Sprite2D" parent="CommandContainer/HBoxContainer"]
 position = Vector2(346, 9.5)
