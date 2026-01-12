@@ -17,6 +17,7 @@ const SINGLEPLAYER_LEVEL: String = "uid://d1ar5lun3xl7x"
 @onready var music_up_button: Button = %MusicUpButton
 @onready var fullscreen_check_button: CheckButton = %FullscreenCheckButton
 @onready var health_progress_bar: ProgressBar = %HealthProgressBar
+@onready var credits: Control = $CanvasLayer/Credits
 
 var player_slot_nodes: Array[Control] = []
 
@@ -96,7 +97,7 @@ func _on_multiplayer_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu($MultiplayerContainer, $MainVBoxContainer/MultiplayerButton)
 	main_menu_container.visible = false
-	# Ensure slots are up to date when opening the menu
+	credits.visible = false
 	_update_multiplayer_slots()
 
 
@@ -109,6 +110,7 @@ func _on_multiplayer_back_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
+	credits.visible = true
 
 func _on_menu_closed():
 	main_menu_container.visible = true
@@ -140,6 +142,7 @@ func _on_option_pressed() -> void:
 	#main_menu_container.modulate = Color(1, 1, 1, 0.75)
 	main_menu_container.visible = false
 	%HealthLabel2.visible = true
+	credits.visible = false
 
 
 func _on_option_back_pressed() -> void:
@@ -149,6 +152,7 @@ func _on_option_back_pressed() -> void:
 	#main_menu_container.modulate = Color(1, 1, 1, 1)
 	main_menu_container.visible = true
 	%HealthLabel2.visible = false
+	credits.visible = true
 
 
 func _on_quit_button_pressed() -> void:
@@ -179,12 +183,14 @@ func _on_command_button_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.open_menu(%CommandContainer, %CommandBack)
 	main_menu_container.visible = false
+	credits.visible = false
 
 
 func _on_command_back_pressed() -> void:
 	MusicPlayer.play_button_clicked()
 	menu_input_manager.close_menu()
 	main_menu_container.visible = true
+	credits.visible = true
 
 
 func _on_show_aim_cursor_check_button_toggled(toggled_on: bool) -> void:
